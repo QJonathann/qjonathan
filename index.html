@@ -1114,39 +1114,144 @@ function Navigation({ currentPage, onPageChange }) {
             );
         }
 
-        // News Component
+// News Component - Zaktualizowany
         function News({ onBack }) {
+            const [selectedNews, setSelectedNews] = useState(null);
+
+            // Dane z dodatkowym polem 'fullContent' dla dłuższej treści
             const newsItems = [
                 {
                     id: 1,
                     date: '15 Mar 2024',
                     title: 'Zapisy na kurs maturalny 2025',
-                    content: 'Ruszyły zapisy na intensywny kurs przygotowujący do matury rozszerzonej z matematyki. Zostały ostatnie 3 miejsca w grupie wtorkowej.',
+                    shortContent: 'Ruszyły zapisy na intensywny kurs przygotowujący do matury rozszerzonej z matematyki. Zostały ostatnie 3 miejsca w grupie wtorkowej.',
+                    fullContent: `
+                        Cześć! Z przyjemnością ogłaszam start zapisów na roczny kurs przygotowujący do matury rozszerzonej z matematyki na rok 2025.
+                        
+                        Szczegóły kursu:
+                        - Start: Wrzesień 2024
+                        - Spotkania: Wtorki 17:00 - 19:00
+                        - Grupa: Max 5 osób (kameralna atmosfera)
+                        - Platforma: Google Meet + Miro
+                        
+                        W trakcie kursu przerobimy cały materiał wymagany przez CKE, skupiając się na:
+                        1.zadaniach dowodowych,
+                        2.rachunku prawdopodobieństwa,
+                        3.geometrii analitycznej,
+                        4.analizie matematycznej.
+                        
+                        Każdy uczestnik otrzymuje dostęp do nagrań z lekcji oraz bazy ponad 500 zadań autorskich. Zostały ostatnie 3 miejsca!
+                    `,
                     tag: 'Kursy'
                 },
                 {
                     id: 2,
                     date: '28 Lut 2024',
                     title: 'Nowe materiały na tablicy Miro',
-                    content: 'Dla wszystkich moich uczniów udostępniłem nową bazę zadań z termodynamiki wraz z pełnymi rozwiązaniami wideo.',
+                    shortContent: 'Dla wszystkich moich uczniów udostępniłem nową bazę zadań z termodynamiki wraz z pełnymi rozwiązaniami wideo.',
+                    fullContent: `
+                        Zaktualizowałem naszą wspólną bazę wiedzy na tablicy Miro! 
+                        
+                        W sekcji "Fizyka - Termodynamika" znajdziecie teraz:
+                        - 20 nowych zadań maturalnych z lat 2015-2023,
+                        - Interaktywne wykresy p(V),
+                        - Linki do moich rozwiązań wideo dla najtrudniejszych zadań obliczeniowych.
+                        
+                        Proszę wszystkich uczniów klas 2 i 3 o zapoznanie się z nowymi materiałami przed nadchodzącym sprawdzianem. W razie pytań piszcie na komunikatorze!
+                    `,
                     tag: 'Materiały'
                 },
                 {
                     id: 3,
                     date: '10 Sty 2024',
                     title: 'Wolne terminy na ferie',
-                    content: 'W okresie ferii zimowych otwieram dodatkowe godziny poranne. To idealny czas na nadrobienie zaległości z pierwszego semestru.',
+                    shortContent: 'W okresie ferii zimowych otwieram dodatkowe godziny poranne. To idealny czas na nadrobienie zaległości z pierwszego semestru.',
+                    fullContent: `
+                        Ferie zimowe to doskonały moment, żeby na spokojnie, bez szkolnego stresu, nadrobić zaległości lub wyprzedzić materiał.
+                        
+                        W dniach 15.01 - 28.01 uruchamiam "Poranne Maratony":
+                        - Dostępne godziny: 9:00 - 13:00
+                        - Niższa cena przy rezerwacji bloku 2h (-10%)
+                        
+                        Jeśli czujesz, że I semestr poszedł nie do końca po Twojej myśli, zapraszam do kontaktu. Ustalimy plan naprawczy na II semestr!
+                    `,
                     tag: 'Ogłoszenie'
                 },
-                {
-                    id: 4,
-                    date: '10 Sty 2024',
-                    title: 'Wolne terminy na ferie',
-                    content: 'W okresie ferii zimowych otwieram dodatkowe godziny poranne. To idealny czas na nadrobienie zaległości z pierwszego semestru.',
-                    tag: 'Ogłoszenie'
-                }
+                // Dodaj więcej newsów według tego schematu...
             ];
 
+            // Funkcja pomocnicza do renderowania akapitów
+            const renderContent = (text) => {
+                return text.split('\n').map((str, index) => (
+                    <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                        {str}
+                    </p>
+                ));
+            };
+
+            // Widok szczegółowy (Podstrona Newsa)
+            if (selectedNews) {
+                return (
+                    <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                        <div className="max-w-3xl mx-auto">
+                            {/* Przycisk powrotu do listy newsów */}
+                            <button 
+                                onClick={() => {
+                                    setSelectedNews(null);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors bg-white px-4 py-2 rounded-lg shadow-sm"
+                            >
+                                <Icon name="arrow-left" className="w-5 h-5" />
+                                Wróć do listy aktualności
+                            </button>
+
+                            <article className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <span className="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-sm font-medium">
+                                        {selectedNews.tag}
+                                    </span>
+                                    <span className="text-gray-500 flex items-center gap-2">
+                                        <Icon name="calendar" className="w-4 h-4" />
+                                        {selectedNews.date}
+                                    </span>
+                                </div>
+                                
+                                <h1 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">
+                                    {selectedNews.title}
+                                </h1>
+                                
+                                <div className="prose prose-blue max-w-none">
+                                    {renderContent(selectedNews.fullContent)}
+                                </div>
+
+                                <div className="mt-12 pt-8 border-t border-gray-100">
+                                    <h4 className="mb-4">Masz pytania dotyczące tego tematu?</h4>
+                                    <button 
+                                        onClick={() => {
+                                            // 1. Najpierw wywołujemy funkcję powrotu, żeby React załadował Stronę Główną
+                                            onBack();
+                                            
+                                            // 2. Czekamy 100ms aż sekcja "Kontakt" pojawi się w drzewie DOM
+                                            setTimeout(() => {
+                                                const contactSection = document.getElementById('contact');
+                                                if (contactSection) {
+                                                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                                                }
+                                            }, 100);
+                                        }}
+                                        className="text-blue-600 font-medium hover:underline"
+                                    >
+                                        Skontaktuj się ze mną &rarr;
+                                    </button>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                );
+            }
+
+            // Widok listy (Domyślny)
             return (
                 <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
                     <div className="max-w-4xl mx-auto">
@@ -1165,9 +1270,16 @@ function Navigation({ currentPage, onPageChange }) {
 
                         <div className="space-y-6">
                             {newsItems.map((item) => (
-                                <div key={item.id} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                                <div 
+                                    key={item.id} 
+                                    className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 cursor-pointer group"
+                                    onClick={() => {
+                                        setSelectedNews(item);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                >
                                     <div className="flex items-center gap-4 mb-3">
-                                        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                                        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-blue-600 group-hover:text-white transition-colors">
                                             {item.tag}
                                         </span>
                                         <span className="text-gray-500 text-sm flex items-center gap-1">
@@ -1175,10 +1287,15 @@ function Navigation({ currentPage, onPageChange }) {
                                             {item.date}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-bold mb-2 text-gray-800">{item.title}</h3>
-                                    <p className="text-gray-600 leading-relaxed">
-                                        {item.content}
+                                    <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-gray-600 leading-relaxed mb-4">
+                                        {item.shortContent}
                                     </p>
+                                    <div className="text-blue-600 font-medium text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                        Czytaj więcej <Icon name="arrow-right" className="w-4 h-4" />
+                                    </div>
                                 </div>
                             ))}
                         </div>
