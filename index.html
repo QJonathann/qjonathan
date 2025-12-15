@@ -1,533 +1,1142 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Korepetycje Online - Fizyka i Matematyka</title>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korepetycje Online - Fizyka i Matematyka</title>
     
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      line-height: 1.6;
-    }
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    <!-- React and ReactDOM CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-    }
+    <!-- Babel Standalone for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      line-height: 1.3;
-    }
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    h4 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-    
-    h5 {
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-    
-    p {
-      line-height: 1.6;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.75rem;
-      }
-      
-      h3 {
-        font-size: 1.25rem;
-      }
-    }
-  </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        h5 {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        button {
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.75rem;
+            }
+            h3 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="root"></div>
-  
-  <script type="module">
-    const { createElement: h, useState, Fragment } = React;
-    const { createRoot } = ReactDOM;
+    <div id="root"></div>
 
-    // Lucide Icons (simplified versions)
-    const Icon = ({ d, className = "w-6 h-6" }) => h('svg', {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2",
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
-      className
-    }, h('path', { d }));
+    <script type="text/babel">
+        const { useState } = React;
+        const { createRoot } = ReactDOM;
 
-    const GraduationCap = (props) => h(Icon, { ...props, d: "M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5" });
-    const Menu = (props) => h(Icon, { ...props, d: "M3 12h18M3 6h18M3 18h18" });
-    const X = (props) => h(Icon, { ...props, d: "M18 6L6 18M6 6l12 12" });
-    const BookOpen = (props) => h(Icon, { ...props, d: "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" });
-    const Video = (props) => h(Icon, { ...props, d: "m23 7-7 5 7 5V7z M16 5H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z" });
-    const Clock = (props) => h(Icon, { ...props, d: "M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z M12 6v6l4 2" });
-    const Award = (props) => h(Icon, { ...props, d: "M12 2a5 5 0 1 0 0 10 5 5 0 1 0 0-10z M8.21 13.89L7 23l5-3 5 3-1.21-9.12" });
-    const Users = (props) => h(Icon, { ...props, d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M23 21v-2a4 4 0 0 0-3-3.87 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M16 3.13a4 4 0 0 1 0 7.75" });
-    const Star = (props) => h(Icon, { ...props, d: "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" });
-    const Target = (props) => h(Icon, { ...props, d: "M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z M12 6a6 6 0 1 0 0 12 6 6 0 1 0 0-12z M12 10a2 2 0 1 0 0 4 2 2 0 1 0 0-4z" });
-    const Monitor = (props) => h(Icon, { ...props, d: "M2 3h20v14H2z M8 21h8 M12 17v4" });
-    const FileText = (props) => h(Icon, { ...props, d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8" });
-    const Wifi = (props) => h(Icon, { ...props, d: "M5 12.55a11 11 0 0 1 14.08 0 M1.42 9a16 16 0 0 1 21.16 0 M8.53 16.11a6 6 0 0 1 6.95 0 M12 20h.01" });
-    const CheckCircle = (props) => h(Icon, { ...props, d: "M22 11.08V12a10 10 0 1 1-5.93-9.14 M22 4L12 14.01l-3-3" });
-    const Check = (props) => h(Icon, { ...props, d: "M20 6L9 17l-5-5" });
-    const Mail = (props) => h(Icon, { ...props, d: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6" });
-    const Phone = (props) => h(Icon, { ...props, d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" });
-    const MessageCircle = (props) => h(Icon, { ...props, d: "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" });
-    const Calendar = (props) => h(Icon, { ...props, d: "M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" });
+        // Icon components (simplified versions using lucide)
+        const Icon = ({ name, className = "w-6 h-6", ...props }) => {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+            return React.createElement('i', {
+                'data-lucide': name,
+                className,
+                ...props
+            });
+        };
 
-    // Navigation Component
-    const Navigation = () => {
-      const [isMenuOpen, setIsMenuOpen] = useState(false);
+        // Navigation Component
+        function Navigation() {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-      const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        element?.scrollIntoView({ behavior: 'smooth' });
-        setIsMenuOpen(false);
-      };
+            const scrollToSection = (id) => {
+                const element = document.getElementById(id);
+                element?.scrollIntoView({ behavior: 'smooth' });
+                setIsMenuOpen(false);
+            };
 
-      const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setIsMenuOpen(false);
-      };
+            const scrollToTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setIsMenuOpen(false);
+            };
 
-      return h('nav', { className: 'fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50' },
-        h('div', { className: 'max-w-6xl mx-auto px-4 py-4' },
-          h('div', { className: 'flex items-center justify-between' },
-            h('button', {
-              onClick: scrollToTop,
-              className: 'flex items-center gap-2 hover:opacity-80 transition-opacity'
-            },
-              h(GraduationCap, { className: 'w-8 h-8 text-blue-600' }),
-              h('div', { className: 'flex flex-col items-start' },
-                h('span', { className: 'text-lg md:text-xl' }, 'Korepetycje Online'),
-                h('span', { className: 'text-xs text-gray-600' }, 'Fizyka • Matematyka')
-              )
-            ),
-            h('div', { className: 'hidden md:flex gap-6' },
-              h('button', { onClick: () => scrollToSection('about'), className: 'hover:text-blue-600 transition-colors' }, 'O mnie'),
-              h('button', { onClick: () => scrollToSection('guides'), className: 'hover:text-blue-600 transition-colors' }, 'Poradniki'),
-              h('button', { onClick: () => scrollToSection('pricing'), className: 'hover:text-blue-600 transition-colors' }, 'Cennik'),
-              h('button', { onClick: () => scrollToSection('contact'), className: 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' }, 'Kontakt')
-            ),
-            h('button', {
-              onClick: () => setIsMenuOpen(!isMenuOpen),
-              className: 'md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors'
-            }, isMenuOpen ? h(X, { className: 'w-6 h-6' }) : h(Menu, { className: 'w-6 h-6' }))
-          ),
-          isMenuOpen && h('div', { className: 'md:hidden mt-4 py-4 border-t border-gray-200' },
-            h('div', { className: 'flex flex-col gap-3' },
-              h('button', { onClick: () => scrollToSection('about'), className: 'px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors' }, 'O mnie'),
-              h('button', { onClick: () => scrollToSection('guides'), className: 'px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors' }, 'Poradniki'),
-              h('button', { onClick: () => scrollToSection('pricing'), className: 'px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors' }, 'Cennik'),
-              h('button', { onClick: () => scrollToSection('contact'), className: 'px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' }, 'Kontakt')
-            )
-          )
-        )
-      );
-    };
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
 
-    // Hero Component
-    const Hero = () => {
-      const scrollToContact = () => {
-        const element = document.getElementById('contact');
-        element?.scrollIntoView({ behavior: 'smooth' });
-      };
+            return (
+                <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+                    <div className="max-w-6xl mx-auto px-4 py-4">
+                        <div className="flex items-center justify-between">
+                            <button 
+                                onClick={scrollToTop}
+                                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                            >
+                                <Icon name="graduation-cap" className="w-8 h-8 text-blue-600" />
+                                <div className="flex flex-col items-start">
+                                    <span className="text-lg md:text-xl font-medium">Korepetycje Online</span>
+                                    <span className="text-xs text-gray-600">Fizyka • Matematyka</span>
+                                </div>
+                            </button>
+                            
+                            <div className="hidden md:flex gap-6">
+                                <button 
+                                    onClick={() => scrollToSection('about')}
+                                    className="hover:text-blue-600 transition-colors"
+                                >
+                                    O mnie
+                                </button>
+                                <button 
+                                    onClick={() => scrollToSection('guides')}
+                                    className="hover:text-blue-600 transition-colors"
+                                >
+                                    Poradniki
+                                </button>
+                                <button 
+                                    onClick={() => scrollToSection('pricing')}
+                                    className="hover:text-blue-600 transition-colors"
+                                >
+                                    Cennik
+                                </button>
+                                <button 
+                                    onClick={() => scrollToSection('contact')}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                >
+                                    Kontakt
+                                </button>
+                            </div>
 
-      return h('section', { className: 'pt-32 pb-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-50' },
-        h('div', { className: 'max-w-6xl mx-auto' },
-          h('div', { className: 'text-center mb-16' },
-            h('h1', { className: 'mb-6 text-blue-600' }, 'Profesjonalne Korepetycje Online'),
-            h('p', { className: 'text-xl text-gray-600 max-w-2xl mx-auto mb-8' },
-              'Skuteczna nauka w wygodnych warunkach Twojego domu. Spersonalizowane lekcje dostosowane do Twoich potrzeb.'
-            ),
-            h('button', {
-              onClick: scrollToContact,
-              className: 'px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors'
-            }, 'Umów pierwszą lekcję')
-          ),
-          h('div', { className: 'grid md:grid-cols-3 gap-8' },
-            h('div', { className: 'bg-white p-6 rounded-xl shadow-sm' },
-              h('div', { className: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4' },
-                h(BookOpen, { className: 'w-6 h-6 text-blue-600' })
-              ),
-              h('h3', { className: 'mb-2' }, 'Elastyczne Terminy'),
-              h('p', { className: 'text-gray-600' }, 'Dopasuj lekcje do swojego grafiku. Nauka wtedy, kiedy Ci pasuje.')
-            ),
-            h('div', { className: 'bg-white p-6 rounded-xl shadow-sm' },
-              h('div', { className: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4' },
-                h(Video, { className: 'w-6 h-6 text-blue-600' })
-              ),
-              h('h3', { className: 'mb-2' }, 'Nowoczesne Narzędzia'),
-              h('p', { className: 'text-gray-600' }, 'Wykorzystujemy tablicę Miro i najlepsze platformy do nauki online.')
-            ),
-            h('div', { className: 'bg-white p-6 rounded-xl shadow-sm' },
-              h('div', { className: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4' },
-                h(Clock, { className: 'w-6 h-6 text-blue-600' })
-              ),
-              h('h3', { className: 'mb-2' }, 'Sprawdzona Metoda'),
-              h('p', { className: 'text-gray-600' }, 'Indywidualne podejście i materiały przygotowane specjalnie dla Ciebie.')
-            )
-          )
-        )
-      );
-    };
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                            >
+                                <Icon name={isMenuOpen ? "x" : "menu"} className="w-6 h-6" />
+                            </button>
+                        </div>
 
-    // About Component
-    const About = () => {
-      const [activeTab, setActiveTab] = useState('about');
+                        {isMenuOpen && (
+                            <div className="md:hidden mt-4 py-4 border-t border-gray-200">
+                                <div className="flex flex-col gap-3">
+                                    <button 
+                                        onClick={() => scrollToSection('about')}
+                                        className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        O mnie
+                                    </button>
+                                    <button 
+                                        onClick={() => scrollToSection('guides')}
+                                        className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        Poradniki
+                                    </button>
+                                    <button 
+                                        onClick={() => scrollToSection('pricing')}
+                                        className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        Cennik
+                                    </button>
+                                    <button 
+                                        onClick={() => scrollToSection('contact')}
+                                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                    >
+                                        Kontakt
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </nav>
+            );
+        }
 
-      const tabs = [
-        { id: 'about', label: 'O mnie', icon: GraduationCap },
-        { id: 'experience', label: 'Doświadczenie', icon: Award },
-        { id: 'approach', label: 'Metoda nauczania', icon: BookOpen },
-        { id: 'achievements', label: 'Osiągnięcia', icon: Target }
-      ];
+        // Hero Component
+        function Hero() {
+            const scrollToContact = () => {
+                const element = document.getElementById('contact');
+                element?.scrollIntoView({ behavior: 'smooth' });
+            };
 
-      return h('section', { id: 'about', className: 'py-20 px-4 bg-white' },
-        h('div', { className: 'max-w-6xl mx-auto' },
-          h('div', { className: 'text-center mb-12' },
-            h('h2', { className: 'mb-4' }, 'O mnie')
-          ),
-          h('div', { className: 'grid lg:grid-cols-3 gap-8 mb-12' },
-            h('div', { className: 'lg:col-span-1' },
-              h('div', { className: 'bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl text-center sticky top-24' },
-                h('div', { className: 'w-48 h-48 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full mx-auto mb-6 flex items-center justify-center' },
-                  h(GraduationCap, { className: 'w-24 h-24 text-white' })
-                ),
-                h('h3', { className: 'mb-2' }, 'Twoje Imię'),
-                h('p', { className: 'text-blue-600 mb-4' }, 'Korepetytor Fizyki i Matematyki'),
-                h('div', { className: 'space-y-3 text-left' },
-                  h('div', { className: 'flex items-center gap-2' },
-                    h(Award, { className: 'w-5 h-5 text-blue-600 flex-shrink-0' }),
-                    h('span', { className: 'text-sm text-gray-700' }, '5+ lat doświadczenia')
-                  ),
-                  h('div', { className: 'flex items-center gap-2' },
-                    h(Users, { className: 'w-5 h-5 text-blue-600 flex-shrink-0' }),
-                    h('span', { className: 'text-sm text-gray-700' }, '200+ zadowolonych uczniów')
-                  ),
-                  h('div', { className: 'flex items-center gap-2' },
-                    h(Star, { className: 'w-5 h-5 text-blue-600 flex-shrink-0' }),
-                    h('span', { className: 'text-sm text-gray-700' }, '95% skuteczność')
-                  )
-                )
-              )
-            ),
-            h('div', { className: 'lg:col-span-2' },
-              h('div', { className: 'flex flex-wrap gap-2 mb-6' },
-                ...tabs.map(tab => {
-                  const IconComponent = tab.icon;
-                  return h('button', {
-                    key: tab.id,
-                    onClick: () => setActiveTab(tab.id),
-                    className: `flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                      activeTab === tab.id
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                    }`
-                  },
-                    h(IconComponent, { className: 'w-4 h-4' }),
-                    h('span', { className: 'text-sm' }, tab.label)
-                  );
-                })
-              ),
-              h('div', { className: 'bg-white border-2 border-gray-100 rounded-xl p-8 min-h-[400px]' },
-                activeTab === 'about' && h('div', {},
-                  h('h3', { className: 'mb-4' }, 'Kim jestem?'),
-                  h('p', { className: 'text-gray-700 mb-4' },
-                    'Jestem absolwentem [Nazwa Uczelni], z tytułem magistra w dziedzinie fizyki/matematyki. Moją pasją jest nauczanie i pomaganie uczniom w odkrywaniu piękna nauk ścisłych.'
-                  ),
-                  h('p', { className: 'text-gray-700 mb-6' },
-                    'Od ponad 5 lat prowadzę korepetycje online i stacjonarne, pomagając uczniom na różnych poziomach edukacji - od szkoły podstawowej, przez liceum, aż po przygotowania do matury i egzaminów wstępnych na studia.'
-                  ),
-                  h('h4', { className: 'mb-3' }, 'Specjalizacje:'),
-                  h('div', { className: 'grid md:grid-cols-2 gap-3' },
-                    h('div', { className: 'p-4 bg-blue-50 rounded-lg' },
-                      h('h5', { className: 'text-blue-600 mb-2' }, 'Matematyka'),
-                      h('ul', { className: 'text-sm text-gray-700 space-y-1' },
-                        h('li', {}, '• Szkoła podstawowa'),
-                        h('li', {}, '• Liceum (podstawowa i rozszerzona)'),
-                        h('li', {}, '• Przygotowanie do matury'),
-                        h('li', {}, '• Egzaminy ósmoklasisty')
-                      )
-                    ),
-                    h('div', { className: 'p-4 bg-indigo-50 rounded-lg' },
-                      h('h5', { className: 'text-indigo-600 mb-2' }, 'Fizyka'),
-                      h('ul', { className: 'text-sm text-gray-700 space-y-1' },
-                        h('li', {}, '• Szkoła podstawowa'),
-                        h('li', {}, '• Liceum (podstawowa i rozszerzona)'),
-                        h('li', {}, '• Przygotowanie do matury'),
-                        h('li', {}, '• Mechanika, elektryczność, optyka')
-                      )
-                    )
-                  )
-                ),
-                activeTab === 'experience' && h('div', {},
-                  h('h3', { className: 'mb-4' }, 'Moje doświadczenie'),
-                  h('div', { className: 'space-y-6' },
-                    h('div', { className: 'border-l-4 border-blue-600 pl-4' },
-                      h('span', { className: 'text-sm text-gray-500' }, '2020 - obecnie'),
-                      h('h4', { className: 'mb-2 mt-2' }, 'Korepetytor Online'),
-                      h('p', { className: 'text-gray-700' },
-                        'Prowadzenie indywidualnych i grupowych zajęć online z matematyki i fizyki. Wykorzystanie nowoczesnych narzędzi takich jak tablica Miro do interaktywnej nauki.'
-                      )
-                    ),
-                    h('div', { className: 'border-l-4 border-blue-600 pl-4' },
-                      h('span', { className: 'text-sm text-gray-500' }, '2018 - 2020'),
-                      h('h4', { className: 'mb-2 mt-2' }, 'Korepetytor Stacjonarny'),
-                      h('p', { className: 'text-gray-700' },
-                        'Prowadzenie korepetycji stacjonarnych dla uczniów szkół podstawowych i średnich. Przygotowanie dziesiątek uczniów do egzaminów i matury.'
-                      )
-                    )
-                  )
-                ),
-                activeTab === 'approach' && h('div', {},
-                  h('h3', { className: 'mb-4' }, 'Moja metoda nauczania'),
-                  h('p', { className: 'text-gray-700 mb-6' },
-                    'Wierzę, że każdy uczeń może osiągnąć sukces przy odpowiednim wsparciu i metodzie nauczania. Moje lekcje są interaktywne, angażujące i dostosowane do indywidualnego stylu uczenia się.'
-                  ),
-                  h('div', { className: 'space-y-4' },
-                    h('div', { className: 'p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-lg' },
-                      h('h4', { className: 'mb-2' }, '1. Diagnostyka i planowanie'),
-                      h('p', { className: 'text-gray-700' },
-                        'Na początku sprawdzam poziom wiedzy ucznia i wspólnie ustalamy cele. Tworzę indywidualny plan nauki dostosowany do potrzeb i tempa uczenia się.'
-                      )
-                    ),
-                    h('div', { className: 'p-4 bg-gradient-to-r from-indigo-50 to-transparent rounded-lg' },
-                      h('h4', { className: 'mb-2' }, '2. Teoria połączona z praktyką'),
-                      h('p', { className: 'text-gray-700' },
-                        'Nie uczę tylko "na pamięć". Pokazuję praktyczne zastosowania wzorów i praw, co pomaga w lepszym zrozumieniu i zapamiętaniu materiału.'
-                      )
-                    )
-                  )
-                ),
-                activeTab === 'achievements' && h('div', {},
-                  h('h3', { className: 'mb-4' }, 'Osiągnięcia moich uczniów'),
-                  h('p', { className: 'text-gray-700 mb-6' },
-                    'Największą satysfakcją są dla mnie sukcesy moich uczniów.'
-                  ),
-                  h('div', { className: 'space-y-4' },
-                    h('div', { className: 'p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg' },
-                      h('h5', { className: 'text-green-800 mb-1' }, 'Matura - 100% zdawalność'),
-                      h('p', { className: 'text-sm text-gray-700' },
-                        'Wszyscy moi uczniowie, którzy przygotowywali się do matury, zdali egzamin. Średnia punktów: 87%.'
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      );
-    };
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
 
-    // Guides Component (simplified for brevity)
-    const Guides = () => {
-      const [activeGuide, setActiveGuide] = useState('connection');
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h1 className="mb-6 text-blue-600">
+                                Profesjonalne Korepetycje Online
+                            </h1>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                                Skuteczna nauka w wygodnych warunkach Twojego domu. 
+                                Spersonalizowane lekcje dostosowane do Twoich potrzeb.
+                            </p>
+                            <button 
+                                onClick={scrollToContact}
+                                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            >
+                                Umów pierwszą lekcję
+                            </button>
+                        </div>
 
-      return h('section', { id: 'guides', className: 'py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50' },
-        h('div', { className: 'max-w-6xl mx-auto' },
-          h('div', { className: 'text-center mb-12' },
-            h('h2', { className: 'mb-4' }, 'Poradniki'),
-            h('p', { className: 'text-xl text-gray-600' }, 'Wszystko, co musisz wiedzieć przed pierwszą lekcją')
-          ),
-          h('div', { className: 'bg-white rounded-xl p-8 shadow-lg max-w-3xl mx-auto' },
-            h('h3', { className: 'mb-4' }, 'Jak się połączyć?'),
-            h('p', { className: 'text-gray-700 mb-6' },
-              'Proces połączenia jest prosty i intuicyjny. Oto kroki, które musisz wykonać:'
-            ),
-            h('div', { className: 'space-y-4' },
-              h('div', { className: 'flex gap-4' },
-                h('div', { className: 'flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center' }, '1'),
-                h('div', {},
-                  h('h4', { className: 'mb-2' }, 'Krok 1: Ustal termin'),
-                  h('p', { className: 'text-gray-600' }, 'Skontaktuj się ze mną przez e-mail lub telefon, aby umówić termin lekcji.')
-                )
-              ),
-              h('div', { className: 'flex gap-4' },
-                h('div', { className: 'flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center' }, '2'),
-                h('div', {},
-                  h('h4', { className: 'mb-2' }, 'Krok 2: Otrzymaj link'),
-                  h('p', { className: 'text-gray-600' }, 'Na 15 minut przed lekcją otrzymasz link do spotkania (Google Meet, Zoom lub inna platforma).')
-                )
-              ),
-              h('div', { className: 'flex gap-4' },
-                h('div', { className: 'flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center' }, '3'),
-                h('div', {},
-                  h('h4', { className: 'mb-2' }, 'Krok 3: Dołącz do spotkania'),
-                  h('p', { className: 'text-gray-600' }, 'Kliknij w link i dołącz do wideo konferencji. Upewnij się, że kamera i mikrofon działają.')
-                )
-              ),
-              h('div', { className: 'flex gap-4' },
-                h('div', { className: 'flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center' }, '4'),
-                h('div', {},
-                  h('h4', { className: 'mb-2' }, 'Krok 4: Dostęp do tablicy Miro'),
-                  h('p', { className: 'text-gray-600' }, 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować.')
-                )
-              )
-            )
-          )
-        )
-      );
-    };
+                        <div className="grid md:grid-cols-3 gap-8">
+                            <div className="bg-white p-6 rounded-xl shadow-sm">
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    <Icon name="book-open" className="w-6 h-6 text-blue-600" />
+                                </div>
+                                <h3 className="mb-2">Elastyczne Terminy</h3>
+                                <p className="text-gray-600">
+                                    Dopasuj lekcje do swojego grafiku. Nauka wtedy, kiedy Ci pasuje.
+                                </p>
+                            </div>
 
-    // Pricing Component
-    const Pricing = () => {
-      const scrollToContact = () => {
-        const element = document.getElementById('contact');
-        element?.scrollIntoView({ behavior: 'smooth' });
-      };
+                            <div className="bg-white p-6 rounded-xl shadow-sm">
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    <Icon name="video" className="w-6 h-6 text-blue-600" />
+                                </div>
+                                <h3 className="mb-2">Nowoczesne Narzędzia</h3>
+                                <p className="text-gray-600">
+                                    Wykorzystujemy tablicę Miro i najlepsze platformy do nauki online.
+                                </p>
+                            </div>
 
-      return h('section', { id: 'pricing', className: 'py-20 px-4 bg-white' },
-        h('div', { className: 'max-w-6xl mx-auto' },
-          h('div', { className: 'text-center mb-12' },
-            h('h2', { className: 'mb-4' }, 'Cennik'),
-            h('p', { className: 'text-xl text-gray-600' }, 'Wybierz pakiet dopasowany do Twoich potrzeb')
-          ),
-          h('div', { className: 'grid md:grid-cols-3 gap-8' },
-            h('div', { className: 'bg-white border-2 border-gray-200 rounded-xl p-8' },
-              h('div', { className: 'text-center mb-6' },
-                h('h3', { className: 'mb-2' }, 'Pojedyncza Lekcja'),
-                h('div', { className: 'flex items-baseline justify-center gap-2 mb-1' },
-                  h('span', { className: 'text-4xl' }, '80'),
-                  h('span', { className: 'text-gray-600' }, 'zł')
-                ),
-                h('p', { className: 'text-sm text-gray-600' }, '60 minut')
-              ),
-              h('button', {
-                onClick: scrollToContact,
-                className: 'w-full py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors'
-              }, 'Wybierz pakiet')
-            ),
-            h('div', { className: 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-2xl scale-105 rounded-xl p-8' },
-              h('div', { className: 'text-center mb-4' },
-                h('span', { className: 'px-4 py-1 bg-white/20 rounded-full text-sm' }, 'Najpopularniejszy')
-              ),
-              h('div', { className: 'text-center mb-6' },
-                h('h3', { className: 'mb-2 text-white' }, 'Pakiet 5 Lekcji'),
-                h('div', { className: 'flex items-baseline justify-center gap-2 mb-1' },
-                  h('span', { className: 'text-4xl' }, '370'),
-                  h('span', { className: 'text-white/80' }, 'zł')
-                ),
-                h('p', { className: 'text-sm text-white/80' }, '74 zł/lekcja')
-              ),
-              h('button', {
-                onClick: scrollToContact,
-                className: 'w-full py-3 rounded-lg bg-white text-blue-600 hover:bg-gray-100 transition-colors'
-              }, 'Wybierz pakiet')
-            ),
-            h('div', { className: 'bg-white border-2 border-gray-200 rounded-xl p-8' },
-              h('div', { className: 'text-center mb-6' },
-                h('h3', { className: 'mb-2' }, 'Pakiet 10 Lekcji'),
-                h('div', { className: 'flex items-baseline justify-center gap-2 mb-1' },
-                  h('span', { className: 'text-4xl' }, '700'),
-                  h('span', { className: 'text-gray-600' }, 'zł')
-                ),
-                h('p', { className: 'text-sm text-gray-600' }, '70 zł/lekcja')
-              ),
-              h('button', {
-                onClick: scrollToContact,
-                className: 'w-full py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors'
-              }, 'Wybierz pakiet')
-            )
-          )
-        )
-      );
-    };
+                            <div className="bg-white p-6 rounded-xl shadow-sm">
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    <Icon name="clock" className="w-6 h-6 text-blue-600" />
+                                </div>
+                                <h3 className="mb-2">Sprawdzona Metoda</h3>
+                                <p className="text-gray-600">
+                                    Indywidualne podejście i materiały przygotowane specjalnie dla Ciebie.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
 
-    // Contact Component
-    const Contact = () => {
-      return h('section', { id: 'contact', className: 'py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50' },
-        h('div', { className: 'max-w-6xl mx-auto' },
-          h('div', { className: 'text-center mb-12' },
-            h('h2', { className: 'mb-4' }, 'Skontaktuj się ze mną'),
-            h('p', { className: 'text-xl text-gray-600' },
-              'Chętnie odpowiem na wszystkie pytania i pomogę dobrać odpowiedni pakiet'
-            )
-          ),
-          h('div', { className: 'max-w-3xl mx-auto' },
-            h('div', { className: 'grid md:grid-cols-2 gap-6 mb-8' },
-              h('div', { className: 'bg-white p-6 rounded-xl shadow-lg' },
-                h('div', { className: 'flex items-start gap-4' },
-                  h('div', { className: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0' },
-                    h(Mail, { className: 'w-6 h-6 text-blue-600' })
-                  ),
-                  h('div', {},
-                    h('h4', { className: 'mb-1' }, 'E-mail'),
-                    h('a', { href: 'mailto:korepetycje@example.com', className: 'text-blue-600 hover:underline' }, 'korepetycje@example.com'),
-                    h('p', { className: 'text-sm text-gray-500 mt-1' }, 'Odpowiadam zwykle w ciągu 24 godzin')
-                  )
-                )
-              ),
-              h('div', { className: 'bg-white p-6 rounded-xl shadow-lg' },
-                h('div', { className: 'flex items-start gap-4' },
-                  h('div', { className: 'w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0' },
-                    h(Phone, { className: 'w-6 h-6 text-blue-600' })
-                  ),
-                  h('div', {},
-                    h('h4', { className: 'mb-1' }, 'Telefon'),
-                    h('a', { href: 'tel:+48123456789', className: 'text-blue-600 hover:underline' }, '+48 123 456 789'),
-                    h('p', { className: 'text-sm text-gray-500 mt-1' }, 'Pn-Pt: 14:00-20:00, Sb: 10:00-18:00')
-                  )
-                )
-              )
-            )
-          )
-        )
-      );
-    };
+        // About Component
+        function About() {
+            const [activeTab, setActiveTab] = useState('about');
 
-    // Main App Component
-    const App = () => {
-      return h(Fragment, {},
-        h('div', { className: 'min-h-screen bg-white' },
-          h(Navigation),
-          h(Hero),
-          h(About),
-          h(Guides),
-          h(Pricing),
-          h(Contact)
-        )
-      );
-    };
+            const tabs = [
+                { id: 'about', label: 'O mnie', icon: 'graduation-cap' },
+                { id: 'experience', label: 'Doświadczenie', icon: 'award' },
+                { id: 'approach', label: 'Metoda nauczania', icon: 'book-open' },
+                { id: 'achievements', label: 'Osiągnięcia', icon: 'target' }
+            ];
 
-    // Render the app
-    const root = createRoot(document.getElementById('root'));
-    root.render(h(App));
-  </script>
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section id="about" className="py-20 px-4 bg-white">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="mb-4">O mnie</h2>
+                        </div>
+
+                        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+                            <div className="lg:col-span-1">
+                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl text-center lg:sticky lg:top-24">
+                                    <div className="w-48 h-48 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                                        <Icon name="graduation-cap" className="w-24 h-24 text-white" />
+                                    </div>
+                                    <h3 className="mb-2">Twoje Imię</h3>
+                                    <p className="text-blue-600 mb-4">Korepetytor Fizyki i Matematyki</p>
+                                    
+                                    <div className="space-y-3 text-left">
+                                        <div className="flex items-center gap-2">
+                                            <Icon name="award" className="w-5 h-5 text-blue-600" />
+                                            <span className="text-sm text-gray-700">5+ lat doświadczenia</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Icon name="users" className="w-5 h-5 text-blue-600" />
+                                            <span className="text-sm text-gray-700">200+ zadowolonych uczniów</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Icon name="star" className="w-5 h-5 text-blue-600" />
+                                            <span className="text-sm text-gray-700">95% skuteczność</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="lg:col-span-2">
+                                <div className="flex flex-wrap gap-2 mb-6">
+                                    {tabs.map((tab) => (
+                                        <button
+                                            key={tab.id}
+                                            onClick={() => setActiveTab(tab.id)}
+                                            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                                                activeTab === tab.id
+                                                    ? 'bg-blue-600 text-white shadow-md'
+                                                    : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                                            }`}
+                                        >
+                                            <Icon name={tab.icon} className="w-4 h-4" />
+                                            <span className="text-sm">{tab.label}</span>
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="bg-white border-2 border-gray-100 rounded-xl p-8 min-h-[400px]">
+                                    {activeTab === 'about' && (
+                                        <div>
+                                            <h3 className="mb-4">Kim jestem?</h3>
+                                            <p className="text-gray-700 mb-4">
+                                                Jestem absolwentem [Nazwa Uczelni], z tytułem magistra w dziedzinie fizyki/matematyki. 
+                                                Moją pasją jest nauczanie i pomaganie uczniom w odkrywaniu piękna nauk ścisłych.
+                                            </p>
+                                            <p className="text-gray-700 mb-6">
+                                                Od ponad 5 lat prowadzę korepetycje online i stacjonarne, pomagając uczniom 
+                                                na różnych poziomach edukacji - od szkoły podstawowej, przez liceum, aż po 
+                                                przygotowania do matury i egzaminów wstępnych na studia.
+                                            </p>
+
+                                            <h4 className="mb-3">Specjalizacje:</h4>
+                                            <div className="grid md:grid-cols-2 gap-3">
+                                                <div className="p-4 bg-blue-50 rounded-lg">
+                                                    <h5 className="text-blue-600 mb-2">Matematyka</h5>
+                                                    <ul className="text-sm text-gray-700 space-y-1">
+                                                        <li>• Szkoła podstawowa</li>
+                                                        <li>• Liceum (podstawowa i rozszerzona)</li>
+                                                        <li>• Przygotowanie do matury</li>
+                                                        <li>• Egzaminy ósmoklasisty</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="p-4 bg-indigo-50 rounded-lg">
+                                                    <h5 className="text-indigo-600 mb-2">Fizyka</h5>
+                                                    <ul className="text-sm text-gray-700 space-y-1">
+                                                        <li>• Szkoła podstawowa</li>
+                                                        <li>• Liceum (podstawowa i rozszerzona)</li>
+                                                        <li>• Przygotowanie do matury</li>
+                                                        <li>• Mechanika, elektryczność, optyka</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {activeTab === 'experience' && (
+                                        <div>
+                                            <h3 className="mb-4">Moje doświadczenie</h3>
+                                            
+                                            <div className="space-y-6">
+                                                <div className="border-l-4 border-blue-600 pl-4">
+                                                    <span className="text-sm text-gray-500">2020 - obecnie</span>
+                                                    <h4 className="mb-2">Korepetytor Online</h4>
+                                                    <p className="text-gray-700">
+                                                        Prowadzenie indywidualnych i grupowych zajęć online z matematyki i fizyki. 
+                                                        Wykorzystanie nowoczesnych narzędzi takich jak tablica Miro do interaktywnej nauki.
+                                                    </p>
+                                                </div>
+
+                                                <div className="border-l-4 border-blue-600 pl-4">
+                                                    <span className="text-sm text-gray-500">2018 - 2020</span>
+                                                    <h4 className="mb-2">Korepetytor Stacjonarny</h4>
+                                                    <p className="text-gray-700">
+                                                        Prowadzenie korepetycji stacjonarnych dla uczniów szkół podstawowych i średnich. 
+                                                        Przygotowanie dziesiątek uczniów do egzaminów i matury.
+                                                    </p>
+                                                </div>
+
+                                                <div className="border-l-4 border-blue-600 pl-4">
+                                                    <span className="text-sm text-gray-500">2015 - 2020</span>
+                                                    <h4 className="mb-2">Studia - [Nazwa Uczelni]</h4>
+                                                    <p className="text-gray-700">
+                                                        Magisterium w dziedzinie fizyki/matematyki. Podczas studiów prowadziłem zajęcia 
+                                                        wyrównawcze dla młodszych studentów.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+                                                <h4 className="mb-3">Statystyki:</h4>
+                                                <div className="grid grid-cols-3 gap-4 text-center">
+                                                    <div>
+                                                        <div className="text-3xl text-blue-600 mb-1">200+</div>
+                                                        <p className="text-sm text-gray-600">Uczniów</p>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-3xl text-blue-600 mb-1">1500+</div>
+                                                        <p className="text-sm text-gray-600">Godzin lekcji</p>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-3xl text-blue-600 mb-1">95%</div>
+                                                        <p className="text-sm text-gray-600">Skuteczność</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {activeTab === 'approach' && (
+                                        <div>
+                                            <h3 className="mb-4">Moja metoda nauczania</h3>
+                                            <p className="text-gray-700 mb-6">
+                                                Wierzę, że każdy uczeń może osiągnąć sukces przy odpowiednim wsparciu i metodzie nauczania. 
+                                                Moje lekcje są interaktywne, angażujące i dostosowane do indywidualnego stylu uczenia się.
+                                            </p>
+
+                                            <div className="space-y-4">
+                                                <div className="p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-lg">
+                                                    <h4 className="mb-2">1. Diagnostyka i planowanie</h4>
+                                                    <p className="text-gray-700">
+                                                        Na początku sprawdzam poziom wiedzy ucznia i wspólnie ustalamy cele. 
+                                                        Tworzę indywidualny plan nauki dostosowany do potrzeb i tempa uczenia się.
+                                                    </p>
+                                                </div>
+
+                                                <div className="p-4 bg-gradient-to-r from-indigo-50 to-transparent rounded-lg">
+                                                    <h4 className="mb-2">2. Teoria połączona z praktyką</h4>
+                                                    <p className="text-gray-700">
+                                                        Nie uczę tylko "na pamięć". Pokazuję praktyczne zastosowania wzorów i praw, 
+                                                        co pomaga w lepszym zrozumieniu i zapamiętaniu materiału.
+                                                    </p>
+                                                </div>
+
+                                                <div className="p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-lg">
+                                                    <h4 className="mb-2">3. Interaktywne narzędzia</h4>
+                                                    <p className="text-gray-700">
+                                                        Wykorzystuję tablicę Miro, symulacje fizyczne, wykresy interaktywne i inne 
+                                                        nowoczesne narzędzia, które sprawiają, że nauka jest ciekawsza i skuteczniejsza.
+                                                    </p>
+                                                </div>
+
+                                                <div className="p-4 bg-gradient-to-r from-indigo-50 to-transparent rounded-lg">
+                                                    <h4 className="mb-2">4. Regularne sprawdziany postępów</h4>
+                                                    <p className="text-gray-700">
+                                                        Co kilka lekcji sprawdzamy postępy, rozwiązujemy testy i zadania egzaminacyjne. 
+                                                        Analizujemy błędy i pracujemy nad ich eliminacją.
+                                                    </p>
+                                                </div>
+
+                                                <div className="p-4 bg-gradient-to-r from-blue-50 to-transparent rounded-lg">
+                                                    <h4 className="mb-2">5. Materiały i wsparcie</h4>
+                                                    <p className="text-gray-700">
+                                                        Po każdej lekcji dostajesz dostęp do notatek z tablicy Miro, dodatkowych materiałów 
+                                                        i zadań do samodzielnego rozwiązania. Jestem dostępny mailowo na pytania między lekcjami.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {activeTab === 'achievements' && (
+                                        <div>
+                                            <h3 className="mb-4">Osiągnięcia moich uczniów</h3>
+                                            <p className="text-gray-700 mb-6">
+                                                Największą satysfakcją są dla mnie sukcesy moich uczniów. Oto kilka przykładów:
+                                            </p>
+
+                                            <div className="space-y-4 mb-8">
+                                                <div className="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
+                                                    <div className="flex items-start gap-3">
+                                                        <Icon name="star" className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                                                        <div>
+                                                            <h5 className="text-green-800 mb-1">Matura - 100% zdawalność</h5>
+                                                            <p className="text-sm text-gray-700">
+                                                                Wszyscy moi uczniowie, którzy przygotowywali się do matury, 
+                                                                zdali egzamin. Średnia punktów: 87%.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
+                                                    <div className="flex items-start gap-3">
+                                                        <Icon name="star" className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                                                        <div>
+                                                            <h5 className="text-green-800 mb-1">Poprawa ocen</h5>
+                                                            <p className="text-sm text-gray-700">
+                                                                95% uczniów poprawiło swoją ocenę o przynajmniej jeden stopień 
+                                                                w ciągu pierwszego semestru współpracy.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
+                                                    <div className="flex items-start gap-3">
+                                                        <Icon name="star" className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
+                                                        <div>
+                                                            <h5 className="text-green-800 mb-1">Olimpiady i konkursy</h5>
+                                                            <p className="text-sm text-gray-700">
+                                                                Kilkoro moich uczniów zakwalifikowało się do etapów wojewódzkich 
+                                                                olimpiad z matematyki i fizyki.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <h4 className="mb-4">Co mówią uczniowie i rodzice:</h4>
+                                            <div className="space-y-4">
+                                                <div className="p-4 bg-blue-50 rounded-lg">
+                                                    <p className="text-gray-700 italic mb-2">
+                                                        "Dzięki korepetycjom poprawiłem się z matematyki z 2 na 5. 
+                                                        Pan tłumaczy wszystko w prosty sposób i lekcje są naprawdę ciekawe!"
+                                                    </p>
+                                                    <p className="text-sm text-gray-600">- Kacper, uczeń liceum</p>
+                                                </div>
+
+                                                <div className="p-4 bg-blue-50 rounded-lg">
+                                                    <p className="text-gray-700 italic mb-2">
+                                                        "Moja córka wreszcie zrozumiała fizykę! Teraz sama prosi o dodatkowe zadania. 
+                                                        Bardzo polecam!"
+                                                    </p>
+                                                    <p className="text-sm text-gray-600">- Pani Anna, rodzic</p>
+                                                </div>
+
+                                                <div className="p-4 bg-blue-50 rounded-lg">
+                                                    <p className="text-gray-700 italic mb-2">
+                                                        "Zdałam maturę rozszerzoną z matematyki na 92%. Bez tych korepetycji 
+                                                        nie dałabym rady. Dziękuję!"
+                                                    </p>
+                                                    <p className="text-sm text-gray-600">- Zuzia, maturzystka</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Guides Component
+        function Guides() {
+            const [selectedGuide, setSelectedGuide] = useState(null);
+
+            const guides = [
+                {
+                    id: 'connection',
+                    title: 'Jak się połączyć?',
+                    icon: 'monitor',
+                    shortDesc: 'Prosty proces połączenia do lekcji online w 4 krokach',
+                    intro: 'Proces połączenia jest prosty i intuicyjny. Oto kroki, które musisz wykonać:',
+                    steps: [
+                        { title: 'Krok 1: Ustal termin', description: 'Skontaktuj się ze mną przez e-mail lub telefon, aby umówić termin lekcji.' },
+                        { title: 'Krok 2: Otrzymaj link', description: 'Na 15 minut przed lekcją otrzymasz link do spotkania (Google Meet, Zoom lub inna platforma).' },
+                        { title: 'Krok 3: Dołącz do spotkania', description: 'Kliknij w link i dołącz do wideo konferencji. Upewnij się, że kamera i mikrofon działają.' },
+                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować.' }
+                    ]
+                },
+                {
+                    id: 'miro',
+                    title: 'Tablica Miro',
+                    icon: 'file-text',
+                    shortDesc: 'Dowiedz się jak korzystać z interaktywnej tablicy',
+                    intro: 'Miro to interaktywna tablica, która pozwala na wspólną pracę w czasie rzeczywistym:',
+                    steps: [
+                        { title: 'Czym jest Miro?', description: 'Miro to cyfrowa tablica, na której możemy razem rysować, pisać, wklejać obrazy i rozwiązywać zadania.' },
+                        { title: 'Nie potrzebujesz konta', description: 'Wystarczy, że otworzysz link, który Ci prześlę. Nie musisz zakładać konta ani instalować aplikacji.' },
+                        { title: 'Podstawowe funkcje', description: 'Nauczę Cię podczas pierwszej lekcji, jak korzystać z narzędzi do rysowania, pisania i dodawania notatek.' },
+                        { title: 'Zapisane notatki', description: 'Wszystko, co napiszemy na tablicy, zostanie zapisane i będziesz mieć do tego dostęp po lekcji.' }
+                    ]
+                },
+                {
+                    id: 'requirements',
+                    title: 'Wymagania techniczne',
+                    icon: 'wifi',
+                    shortDesc: 'Sprawdź czego potrzebujesz do płynnych lekcji',
+                    intro: 'Aby lekcje przebiegały sprawnie, upewnij się, że spełniasz poniższe wymagania:',
+                    steps: [
+                        { title: 'Stabilne połączenie internetowe', description: 'Przynajmniej 10 Mb/s pobierania i 5 Mb/s wysyłania. Możesz sprawdzić to na speedtest.net' },
+                        { title: 'Komputer lub tablet', description: 'Zalecam komputer z myszką do wygodniejszej pracy na tablicy. Tablet też jest OK, telefon mniej wygodny.' },
+                        { title: 'Przeglądarka', description: 'Najlepiej Chrome, Firefox lub Safari w najnowszej wersji.' },
+                        { title: 'Kamera i mikrofon', description: 'Upewnij się, że działają poprawnie. Słuchawki z mikrofonem poprawiają jakość dźwięku.' }
+                    ]
+                },
+                {
+                    id: 'preparation',
+                    title: 'Przygotowanie do lekcji',
+                    icon: 'check-circle',
+                    shortDesc: 'Wskazówki jak maksymalnie wykorzystać czas lekcji',
+                    intro: 'Aby maksymalnie wykorzystać czas lekcji, oto kilka wskazówek:',
+                    steps: [
+                        { title: 'Przygotuj materiały', description: 'Miej pod ręką zeszyt, notatki z lekcji szkolnych lub zadania, które sprawiają Ci trudność.' },
+                        { title: 'Lista pytań', description: 'Zapisz sobie pytania i tematy, które chcesz poruszyć podczas lekcji.' },
+                        { title: 'Ciche miejsce', description: 'Znajdź spokojne miejsce, gdzie nikt Ci nie będzie przeszkadzał przez czas trwania lekcji.' },
+                        { title: 'Test sprzętu', description: 'Sprawdź 5 minut przed lekcją, czy wszystko działa (internet, kamera, mikrofon).' }
+                    ]
+                }
+            ];
+
+            const openGuideDetails = (guide) => {
+                setSelectedGuide(guide);
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeGuideDetails = () => {
+                setSelectedGuide(null);
+                document.body.style.overflow = 'unset';
+            };
+
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section id="guides" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="mb-4">Poradniki</h2>
+                            <p className="text-xl text-gray-600">
+                                Wszystko, co musisz wiedzieć przed pierwszą lekcją
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {guides.map((guide) => (
+                                <div
+                                    key={guide.id}
+                                    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer hover:scale-105"
+                                    onClick={() => openGuideDetails(guide)}
+                                >
+                                    <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                                        <Icon name={guide.icon} className="w-7 h-7 text-blue-600" />
+                                    </div>
+                                    <h3 className="text-center mb-3">{guide.title}</h3>
+                                    <p className="text-sm text-gray-600 text-center mb-4">
+                                        {guide.shortDesc}
+                                    </p>
+                                    <div className="text-center">
+                                        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1 mx-auto">
+                                            Czytaj więcej
+                                            <Icon name="arrow-right" className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Modal ze szczegółami poradnika */}
+                    {selectedGuide && (
+                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={closeGuideDetails}>
+                            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl">
+                                    <div className="flex justify-between items-start">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                                <Icon name={selectedGuide.icon} className="w-6 h-6 text-white" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-white mb-1">{selectedGuide.title}</h3>
+                                                <p className="text-blue-100 text-sm">{selectedGuide.shortDesc}</p>
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={closeGuideDetails}
+                                            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                                        >
+                                            <Icon name="x" className="w-6 h-6" />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="p-6">
+                                    <div className="mb-6">
+                                        <p className="text-gray-700 text-lg">
+                                            {selectedGuide.intro}
+                                        </p>
+                                    </div>
+
+                                    <div className="space-y-6">
+                                        {selectedGuide.steps.map((step, index) => (
+                                            <div key={index} className="flex gap-4">
+                                                <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-medium text-lg">
+                                                    {index + 1}
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h4 className="mb-2">{step.title}</h4>
+                                                    <p className="text-gray-600">{step.description}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-8 flex gap-4">
+                                        <button
+                                            onClick={closeGuideDetails}
+                                            className="flex-1 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                                        >
+                                            Rozumiem
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        }
+
+        // Pricing Component
+        function Pricing() {
+            const [selectedPackage, setSelectedPackage] = useState(null);
+
+            const packages = [
+                {
+                    name: 'Pojedyncza Lekcja',
+                    price: '80',
+                    duration: '60 minut',
+                    features: ['Elastyczny termin', 'Dostęp do tablicy Miro', 'Materiały po lekcji', 'Wsparcie mailowe'],
+                    popular: false,
+                    details: {
+                        description: 'Idealne rozwiązanie jeśli potrzebujesz pomocy z konkretnym tematem lub chcesz wypróbować korepetycje przed zakupem większego pakietu.',
+                        whatYouGet: [
+                            '60 minut indywidualnych zajęć online',
+                            'Dostęp do interaktywnej tablicy Miro podczas lekcji',
+                            'Zapis z tablicy i notatki po lekcji',
+                            'Możliwość zadawania pytań mailowo w ciągu 24h po lekcji',
+                            'Elastyczny wybór terminu (także weekendy)',
+                            'Materiały dodatkowe dostosowane do Twoich potrzeb'
+                        ],
+                        idealFor: [
+                            'Uczniów potrzebujących pomocy z konkretnym zagadnieniem',
+                            'Osób, które chcą przetestować jakość korepetycji',
+                            'Przygotowania do klasówki lub sprawdzianu',
+                            'Wyjaśnienia trudnego tematu przed egzaminem'
+                        ],
+                        validity: 'Termin do ustalenia indywidualnie'
+                    }
+                },
+                {
+                    name: 'Pakiet 5 Lekcji',
+                    price: '370',
+                    pricePerLesson: '74 zł/lekcja',
+                    duration: '60 minut każda',
+                    features: ['Wszystko z pojedynczej lekcji', 'Oszczędzasz 30 zł', 'Priorytetowe terminy', 'Plan nauki', 'Regularne sprawdziany postępów'],
+                    popular: true,
+                    details: {
+                        description: 'Najpopularniejszy wybór! Pakiet 5 lekcji pozwala na systematyczną pracę nad wybranymi tematami i osiągnięcie wymiernych rezultatów.',
+                        whatYouGet: [
+                            '5 x 60 minut indywidualnych zajęć online',
+                            'Wszystkie korzyści z pojedynczej lekcji',
+                            'Oszczędność 30 zł w porównaniu do pojedynczych lekcji',
+                            'Priorytetowe rezerwacje terminów',
+                            'Spersonalizowany plan nauki na cały pakiet',
+                            'Mini-test po każdych 2 lekcjach',
+                            'Stały kontakt mailowy',
+                            'Dedykowane materiały i zadania domowe'
+                        ],
+                        idealFor: [
+                            'Uczniów potrzebujących pomocy z kilku powiązanych tematów',
+                            'Systematycznego nadrabiania zaległości',
+                            'Przygotowania do ważnego egzaminu',
+                            'Utrwalenia materiału z kilku rozdziałów'
+                        ],
+                        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
+                    }
+                },
+                {
+                    name: 'Pakiet 10 Lekcji',
+                    price: '700',
+                    pricePerLesson: '70 zł/lekcja',
+                    duration: '60 minut każda',
+                    features: ['Wszystko z pakietu 5 lekcji', 'Oszczędzasz 100 zł', 'Dedykowany plan nauki', 'Comiesięczne podsumowanie', 'Kontakt przez całą ważność pakietu'],
+                    popular: false,
+                    details: {
+                        description: 'Kompleksowy pakiet dla osób nastawionych na długofalowy rozwój i znaczącą poprawę wyników. Idealne do przygotowania do matury.',
+                        whatYouGet: [
+                            '10 x 60 minut indywidualnych zajęć online',
+                            'Wszystkie korzyści z pakietu 5 lekcji',
+                            'Oszczędność 100 zł w porównaniu do pojedynczych lekcji',
+                            'Najwyższy priorytet w rezerwacji terminów',
+                            'Kompleksowy plan nauki',
+                            'Regularne testy postępów (co 3 lekcje)',
+                            'Comiesięczne podsumowanie',
+                            'Stały kontakt WhatsApp',
+                            'Rozbudowane materiały',
+                            'Możliwość bezpłatnego przesunięcia 2 terminów'
+                        ],
+                        idealFor: [
+                            'Przygotowania do matury',
+                            'Systematycznej nauki przez semestr',
+                            'Kompleksowego nadrobienia zaległości',
+                            'Znaczącej poprawy ocen',
+                            'Nauki od podstaw'
+                        ],
+                        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
+                    }
+                }
+            ];
+
+            const openPackageDetails = (pkg) => {
+                setSelectedPackage(pkg);
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closePackageDetails = () => {
+                setSelectedPackage(null);
+                document.body.style.overflow = 'unset';
+            };
+
+            const scrollToContact = () => {
+                closePackageDetails();
+                const element = document.getElementById('contact');
+                element?.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section id="pricing" className="py-20 px-4 bg-white">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="mb-4">Cennik</h2>
+                            <p className="text-xl text-gray-600">
+                                Wybierz pakiet dopasowany do Twoich potrzeb
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {packages.map((pkg, index) => (
+                                <div
+                                    key={index}
+                                    className={`rounded-xl p-8 ${
+                                        pkg.popular
+                                            ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-2xl scale-105'
+                                            : 'bg-white border-2 border-gray-200'
+                                    }`}
+                                >
+                                    {pkg.popular && (
+                                        <div className="text-center mb-4">
+                                            <span className="px-4 py-1 bg-white/20 rounded-full text-sm">
+                                                Najpopularniejszy
+                                            </span>
+                                        </div>
+                                    )}
+
+                                    <div className="text-center mb-6">
+                                        <h3 className={`mb-2 ${pkg.popular ? 'text-white' : ''}`}>
+                                            {pkg.name}
+                                        </h3>
+                                        <div className="flex items-baseline justify-center gap-2 mb-1">
+                                            <span className="text-4xl font-bold">{pkg.price}</span>
+                                            <span className={pkg.popular ? 'text-white/80' : 'text-gray-600'}>
+                                                zł
+                                            </span>
+                                        </div>
+                                        {pkg.pricePerLesson && (
+                                            <p className={`text-sm ${pkg.popular ? 'text-white/80' : 'text-gray-600'}`}>
+                                                {pkg.pricePerLesson}
+                                            </p>
+                                        )}
+                                        <p className={`text-sm ${pkg.popular ? 'text-white/80' : 'text-gray-600'}`}>
+                                            {pkg.duration}
+                                        </p>
+                                    </div>
+
+                                    <ul className="space-y-3 mb-8">
+                                        {pkg.features.map((feature, featureIndex) => (
+                                            <li key={featureIndex} className="flex items-start gap-3">
+                                                <Icon name="check" className={`w-5 h-5 flex-shrink-0 ${pkg.popular ? 'text-white' : 'text-blue-600'}`} />
+                                                <span className={`text-sm ${pkg.popular ? 'text-white' : 'text-gray-700'}`}>
+                                                    {feature}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <button
+                                        onClick={() => openPackageDetails(pkg)}
+                                        className={`w-full py-3 rounded-lg transition-colors ${
+                                            pkg.popular
+                                                ? 'bg-white text-blue-600 hover:bg-gray-100'
+                                                : 'bg-blue-600 text-white hover:bg-blue-700'
+                                        }`}
+                                    >
+                                        Zobacz szczegóły
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-12 bg-blue-50 p-6 rounded-xl">
+                            <h3 className="mb-4">Dodatkowe informacje</h3>
+                            <ul className="space-y-2 text-gray-700">
+                                <li>• Pierwsza lekcja próbna w pełnej cenie - jeśli nie będziesz zadowolony, zwracam pieniądze</li>
+                                <li>• Pakiety ważne 3 miesiące od daty zakupu</li>
+                                <li>• Możliwość odwołania lekcji do 24h przed terminem bez utraty zajęć</li>
+                                <li>• Płatność przelewem lub BLIK przed lekcją</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {selectedPackage && (
+                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={closePackageDetails}>
+                            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl">
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div>
+                                            <h3 className="mb-2 text-white">{selectedPackage.name}</h3>
+                                            <div className="flex items-baseline gap-2">
+                                                <span className="text-3xl font-bold">{selectedPackage.price} zł</span>
+                                                {selectedPackage.pricePerLesson && (
+                                                    <span className="text-blue-100">({selectedPackage.pricePerLesson})</span>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={closePackageDetails}
+                                            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                                        >
+                                            <Icon name="x" className="w-6 h-6" />
+                                        </button>
+                                    </div>
+                                    <p className="text-blue-100">{selectedPackage.duration}</p>
+                                </div>
+
+                                <div className="p-6">
+                                    <div className="mb-8">
+                                        <h4 className="mb-3 flex items-center gap-2">
+                                            <Icon name="book-open" className="w-5 h-5 text-blue-600" />
+                                            Opis pakietu
+                                        </h4>
+                                        <p className="text-gray-700">{selectedPackage.details.description}</p>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <h4 className="mb-4 flex items-center gap-2">
+                                            <Icon name="check" className="w-5 h-5 text-blue-600" />
+                                            Co dostajesz?
+                                        </h4>
+                                        <ul className="space-y-3">
+                                            {selectedPackage.details.whatYouGet.map((item, index) => (
+                                                <li key={index} className="flex items-start gap-3">
+                                                    <Icon name="arrow-right" className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                                                    <span className="text-gray-700">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <h4 className="mb-4 flex items-center gap-2">
+                                            <Icon name="calendar" className="w-5 h-5 text-blue-600" />
+                                            Idealny dla:
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {selectedPackage.details.idealFor.map((item, index) => (
+                                                <li key={index} className="flex items-start gap-3">
+                                                    <span className="text-blue-600">•</span>
+                                                    <span className="text-gray-700">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-8 p-4 bg-blue-50 rounded-lg">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Icon name="clock" className="w-5 h-5 text-blue-600" />
+                                            <h5 className="text-blue-900">Ważność pakietu</h5>
+                                        </div>
+                                        <p className="text-gray-700">{selectedPackage.details.validity}</p>
+                                    </div>
+
+                                    <div className="flex gap-4">
+                                        <button
+                                            onClick={scrollToContact}
+                                            className="flex-1 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                                        >
+                                            <Icon name="mail" className="w-5 h-5" />
+                                            Wybierz pakiet i skontaktuj się
+                                        </button>
+                                        <button
+                                            onClick={closePackageDetails}
+                                            className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                                        >
+                                            Zamknij
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </section>
+            );
+        }
+
+        // Contact Component
+        function Contact() {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section id="contact" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="mb-4">Skontaktuj się ze mną</h2>
+                            <p className="text-xl text-gray-600">
+                                Chętnie odpowiem na wszystkie pytania i pomogę dobrać odpowiedni pakiet
+                            </p>
+                        </div>
+
+                        <div className="max-w-4xl mx-auto">
+                            <div className="grid md:grid-cols-2 gap-6 mb-8">
+                                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="mail" className="w-6 h-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1">E-mail</h4>
+                                            <a href="mailto:korepetycje@example.com" className="text-blue-600 hover:underline">
+                                                korepetycje@example.com
+                                            </a>
+                                            <p className="text-sm text-gray-500 mt-1">
+                                                Odpowiadam zwykle w ciągu 24 godzin
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="phone" className="w-6 h-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1">Telefon</h4>
+                                            <a href="tel:+48123456789" className="text-blue-600 hover:underline">
+                                                +48 123 456 789
+                                            </a>
+                                            <p className="text-sm text-gray-500 mt-1">
+                                                Pn-Pt: 14:00-20:00, Sb: 10:00-18:00
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="message-circle" className="w-6 h-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1">WhatsApp / Signal</h4>
+                                            <a href="https://wa.me/48123456789" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                                +48 123 456 789
+                                            </a>
+                                            <p className="text-sm text-gray-500 mt-1">
+                                                Najszybszy sposób kontaktu
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Icon name="calendar" className="w-6 h-6 text-blue-600" />
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1">Dostępność</h4>
+                                            <p className="text-gray-600">Elastyczne terminy</p>
+                                            <p className="text-sm text-gray-500 mt-1">
+                                                Również weekendy i popołudnia
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-600 text-white p-8 rounded-xl text-center shadow-lg">
+                                <h3 className="mb-2 text-white">Szybka odpowiedź gwarantowana!</h3>
+                                <p className="text-blue-100">
+                                    Odpisuję na wszystkie wiadomości w ciągu 24 godzin. 
+                                    Jeśli pilnie potrzebujesz informacji, najlepiej napisz SMS lub WhatsApp.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <div className="min-h-screen bg-white">
+                    <Navigation />
+                    <Hero />
+                    <About />
+                    <Guides />
+                    <Pricing />
+                    <Contact />
+                </div>
+            );
+        }
+
+        // Render the app
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
