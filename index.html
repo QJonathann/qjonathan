@@ -242,10 +242,11 @@ function Navigation({ currentPage, onPageChange }) {
                             <h1 className="mb-6 text-blue-600">
                                 Korepetycje Online
                             </h1>
-                            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-                                Skuteczna nauka w wygodnych warunkach Twojego domu. 
-                                Spersonalizowane lekcje dostosowane do Twoich potrzeb.
-                            </p>
+                                <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                                    Zachęcam do przeczytania poradników i aktualności.
+                                    <br />
+                                    Skuteczna nauka w wygodnych warunkach Twojego domu. 
+                                </p>
                             <button 
                                 onClick={scrollToContact}
                                 className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -755,8 +756,8 @@ function Navigation({ currentPage, onPageChange }) {
 
             const packages = [
                 {
-                    name: 'Pojedyncza Lekcja',
-                    price: '80',
+                    name: 'Lekcje pojedyńcze',
+                    price: '40',
                     duration: '60 minut',
                     features: ['Elastyczny termin', 'Dostęp do tablicy Miro', 'Materiały po lekcji', 'Wsparcie mailowe'],
                     popular: false,
@@ -808,7 +809,7 @@ function Navigation({ currentPage, onPageChange }) {
                     }
                 },
                 {
-                    name: 'Pakiet 10 Lekcji',
+                    name: 'Lekcje regularne',
                     price: '700',
                     pricePerLesson: '70 zł/lekcja',
                     duration: '60 minut każda',
@@ -866,7 +867,7 @@ function Navigation({ currentPage, onPageChange }) {
                         <div className="text-center mb-12">
                             <h2 className="mb-4">Oferta</h2>
                             <p className="text-xl text-gray-600">
-                                Wybierz ofertę dopasowaną do Twoich potrzeb
+                                Wybierz usługi dopasowane do Twoich potrzeb
                             </p>
                         </div>
 
@@ -1145,27 +1146,20 @@ function Navigation({ currentPage, onPageChange }) {
             const newsItems = [
                 {
                     id: 1,
-                    date: '15 Mar 2024',
-                    title: 'Zapisy na kurs maturalny 2025',
-                    shortContent: 'Ruszyły zapisy na intensywny kurs przygotowujący do matury rozszerzonej z matematyki. Zostały ostatnie 3 miejsca w grupie wtorkowej.',
+                    isPinned: true,
+                    date: '16 Gru 2025',
+                    title: 'Przerwa świąteczna i sylwestrowa 2025',
+                    shortContent: 'Przerwa świąteczna trwa od 21 grudnia do 2 stycznia. Życzę wszystkim spokojnych Świąt i szczęśliwego Nowego Roku!',
                     fullContent: `
-                        Cześć! Z przyjemnością ogłaszam start zapisów na roczny kurs przygotowujący do matury rozszerzonej z matematyki na rok 2025.
-                        
-                        Szczegóły kursu:
-                        - Start: Wrzesień 2024
-                        - Spotkania: Wtorki 17:00 - 19:00
-                        - Grupa: Max 5 osób (kameralna atmosfera)
-                        - Platforma: Google Meet + Miro
-                        
-                        W trakcie kursu przerobimy cały materiał wymagany przez CKE, skupiając się na:
-                        1.zadaniach dowodowych,
-                        2.rachunku prawdopodobieństwa,
-                        3.geometrii analitycznej,
-                        4.analizie matematycznej.
-                        
-                        Każdy uczestnik otrzymuje dostęp do nagrań z lekcji oraz bazy ponad 500 zadań autorskich. Zostały ostatnie 3 miejsca!
+                        Szanowni Państwo, Drodzy Kursanci,
+
+                        Pragnę złożyć Państwu najserdeczniejsze życzenia spokojnych i radosnych Świąt Bożego Narodzenia. Niech ten wyjątkowy czas przyniesie wytchnienie od codziennego pośpiechu oraz pozwoli z optymizmem spojrzeć w przyszłość.
+
+                        Życzę, aby Nowy Rok obfitował w sukcesy osobiste i zawodowe, a nauka i rozwój przynosiły Państwu nieustanną satysfakcję. Niech rok 2026 będzie czasem realizacji ambitnych planów i spełniania marzeń.
+
+                        Dziękuję za zaufanie i dotychczasową współpracę.
                     `,
-                    tag: 'Kursy'
+                    tag: 'Ogłoszenie'
                 },
                 {
                     id: 2,
@@ -1274,8 +1268,15 @@ function Navigation({ currentPage, onPageChange }) {
                 );
             }
 
-            // Widok listy (Domyślny)
-            return (
+            // Logika sortowania: Najpierw przypięte, potem reszta
+            const sortedNews = [...newsItems].sort((a, b) => {
+                // Jeśli a jest przypięte, a b nie -> a idzie do góry (-1)
+                if (a.isPinned && !b.isPinned) return -1;
+                // Jeśli b jest przypięte, a a nie -> b idzie do góry (1)
+                if (!a.isPinned && b.isPinned) return 1;
+                return 0;
+            });
+return (
                 <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
                     <div className="max-w-4xl mx-auto">
                         <button 
@@ -1292,17 +1293,32 @@ function Navigation({ currentPage, onPageChange }) {
                         </div>
 
                         <div className="space-y-6">
-                            {newsItems.map((item) => (
+                            {sortedNews.map((item) => (
                                 <div 
                                     key={item.id} 
-                                    className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all border border-gray-100 cursor-pointer group"
+                                    className={`relative bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all cursor-pointer group ${
+                                        item.isPinned 
+                                            ? 'border-2 border-blue-500 bg-blue-50/30' // Styl dla przypiętego
+                                            : 'border border-gray-100' // Styl dla zwykłego
+                                    }`}
                                     onClick={() => {
                                         setSelectedNews(item);
                                         window.scrollTo({ top: 0, behavior: 'smooth' });
                                     }}
                                 >
+                                    {/* Ikona pinezki dla przypiętych */}
+                                    {item.isPinned && (
+                                        <div className="absolute top-4 right-4 text-blue-600 rotate-45">
+                                            <Icon name="pin" className="w-5 h-5 fill-current" />
+                                        </div>
+                                    )}
+
                                     <div className="flex items-center gap-4 mb-3">
-                                        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                                        <span className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                                            item.isPinned
+                                                ? 'bg-blue-600 text-white'
+                                                : 'bg-blue-100 text-blue-700 group-hover:bg-blue-600 group-hover:text-white'
+                                        }`}>
                                             {item.tag}
                                         </span>
                                         <span className="text-gray-500 text-sm flex items-center gap-1">
@@ -1310,12 +1326,15 @@ function Navigation({ currentPage, onPageChange }) {
                                             {item.date}
                                         </span>
                                     </div>
-                                    <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors">
+                                    
+                                    <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors pr-8">
                                         {item.title}
                                     </h3>
+                                    
                                     <p className="text-gray-600 leading-relaxed mb-4">
                                         {item.shortContent}
                                     </p>
+                                    
                                     <div className="text-blue-600 font-medium text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all">
                                         Czytaj więcej <Icon name="arrow-right" className="w-4 h-4" />
                                     </div>
