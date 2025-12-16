@@ -164,6 +164,13 @@ function Navigation({ currentPage, onPageChange }) {
                             <div className="hidden md:flex gap-6 items-center">
                                 <button onClick={() => handleNavClick('about')} className="hover:text-blue-600 transition-colors">O mnie</button>
                                 
+                                <button 
+                                    onClick={() => handleNavClick('news')} 
+                                    className={`transition-colors ${currentPage === 'news' ? 'text-blue-600 font-medium' : 'hover:text-blue-600'}`}
+                                >
+                                    Aktualności
+                                </button>
+
                                 {/* Zaktualizowany przycisk Poradniki - teraz podświetla się gdy aktywny */}
                                 <button 
                                     onClick={() => handleNavClick('guides')} 
@@ -181,12 +188,7 @@ function Navigation({ currentPage, onPageChange }) {
 
                                 <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Oferta</button>
                                 
-                                <button 
-                                    onClick={() => handleNavClick('news')} 
-                                    className={`transition-colors ${currentPage === 'news' ? 'text-blue-600 font-medium' : 'hover:text-blue-600'}`}
-                                >
-                                    Aktualności
-                                </button>
+
 
                                 <button 
                                     onClick={() => handleNavClick('contact')}
@@ -298,9 +300,9 @@ function Navigation({ currentPage, onPageChange }) {
                                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                                     <Icon name="clock" className="w-6 h-6 text-blue-600" />
                                 </div>
-                                <h3 className="mb-2">Sprawdzona Metoda</h3>
+                                <h3 className="mb-2">Darmowe opracowania</h3>
                                 <p className="text-gray-600">
-                                    Sprawdź darmowe materiały w oddzielnej zakładce.
+                                    Sprawdź darmowe materiały w zakładce Materiały.
                                 </p>
                             </div>
                         </div>
@@ -351,7 +353,7 @@ function Navigation({ currentPage, onPageChange }) {
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <Icon name="users" className="w-5 h-5 text-blue-600" />
-                                            <span className="text-sm text-gray-700">50+ zadowolonych uczniów</span>
+                                            <span className="text-sm text-gray-700">60+ zadowolonych uczniów</span>
                                         </div>
                                     </div>
                                 </div>
@@ -384,26 +386,44 @@ function Navigation({ currentPage, onPageChange }) {
                                                 Posiadam trzyletnie doświadczenie w prowadzeniu korepetycji, zarówno w formie online, jak i stacjonarnej.
                                             </p>
                                             <p className="text-gray-700 mb-6">
-                                                Specjalizuję się w pracy z uczniami szkół podstawowych (od klasy 7) oraz średnich (do klasy maturalnej), 
+                                                Specjalizuję się w pracy z uczniami szkół podstawowych oraz średnich, 
                                                 skutecznie przygotowując ich do egzaminów ósmoklasisty oraz matury.
                                             </p>
 
-                                            <h4 className="mb-3">Specjalizacje:</h4>
+                                            <h4 className="mb-3">Zrealizowane programy (przedmioty), przez 3 lata studiów:</h4>
                                             <div className="grid md:grid-cols-2 gap-3">
                                                 <div className="p-4 bg-blue-50 rounded-lg">
-                                                    <h5 className="text-blue-600 mb-2">Matematyka</h5>
+                                                    <h5 className="text-blue-600 mb-2">Zajęcia związane z matematyką</h5>
                                                     <ul className="text-sm text-gray-700 space-y-1">
-                                                        <li>• Szkoła podstawowa</li>
-                                                        <li>• Liceum (podstawowa i rozszerzona)</li>
-                                                        <li>• Przygotowanie do matury</li>
-                                                        <li>• Egzaminy ósmoklasisty</li>
+                                                        <li>• Metody numeryczne</li>
+                                                        <li>• Narzędzia wspomagania obliczeń inżynierskich</li>
+                                                        <li>• Metody opracowania danych pomiarowych</li>
+                                                        <li>• Matematyka</li>
                                                     </ul>
                                                 </div>
                                                 <div className="p-4 bg-indigo-50 rounded-lg">
-                                                    <h5 className="text-indigo-600 mb-2">Fizyka</h5>
+                                                    <h5 className="text-indigo-600 mb-2">Zajęcia związane z fizyką</h5>
                                                     <ul className="text-sm text-gray-700 space-y-1">
-                                                        <li>• Szkoła podstawowa</li>
-                                                        <li>• Liceum (podstawowa i rozszerzona)</li>
+                                                        <li>• Fizyka ośrodków ciągłych</li>
+                                                        <li>• Podstawy konstrukcji maszyn</li>
+                                                        <li>• Mechanika, Wytrzymałość materiałowa</li>
+                                                        <li>• Drgania układów mechanicznych</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="p-4 bg-indigo-50 rounded-lg">
+                                                    <h5 className="text-indigo-600 mb-2">Zajęcia związane z medycyną</h5>
+                                                    <ul className="text-sm text-gray-700 space-y-1">
+                                                        <li>• Podstawy neurologii i ortopedii</li>
+                                                        <li>• Wyposażenie oddziałów szpitalnych</li>
+                                                        <li>• Systemy informatyczne w placówkach medycznych</li>
+                                                        <li>• Podstawy anatomii i fizjologii człowieka</li>
+                                                    </ul>
+                                                </div>
+                                                <div className="p-4 bg-blue-50 rounded-lg">
+                                                    <h5 className="text-blue-600 mb-2">Inne</h5>
+                                                    <ul className="text-sm text-gray-700 space-y-1">
+                                                        <li>• Sztuczna inteligencja w zastosowaniach biomedycznych</li>
+                                                        <li>• Podstawy biomechaniki</li>
                                                         <li>• Przygotowanie do matury</li>
                                                         <li>• Mechanika, elektryczność, optyka</li>
                                                     </ul>
@@ -609,15 +629,15 @@ function Navigation({ currentPage, onPageChange }) {
             const guides = [
                 {
                     id: 'connection',
-                    title: 'Jak się połączyć?',
+                    title: 'Jak Dołączyć do Spotkania Teams Przez Przeglądarkę (Bez Konta)?',
                     icon: 'monitor',
                     shortDesc: 'Prosty proces połączenia do lekcji online w 4 krokach',
                     intro: 'Proces połączenia jest prosty i intuicyjny. Oto kroki, które musisz wykonać:',
                     steps: [
-                        { title: 'Krok 1: Ustal termin', description: 'Skontaktuj się ze mną przez e-mail lub telefon, aby umówić termin lekcji.' },
-                        { title: 'Krok 2: Otrzymaj link', description: 'Na kilka godzin - do 15 minut przed zajęciami otrzymasz link do spotkania na platformie Microsoft Teams.' },
-                        { title: 'Krok 3: Dołącz do spotkania', description: 'Kliknij w link i dołącz do wideo konferencji. Upewnij się, że kamera i mikrofon działają.' },
-                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować.' }
+                        { title: 'Otwórz link do spotkania', description: 'Kliknij link do spotkania Teams, który otrzymałeś (np. w e-mailu lub wiadomości). Link automatycznie otworzy nową kartę w Twojej przeglądarce.' },
+                        { title: 'Użyj przeglądarki i wprowadź nazwę', description: 'Po załadowaniu strony Teams zapyta Cię, jak chcesz dołączyć. Wybierz opcję "Kontynuuj w tej przeglądarce" lub "Dołącz w sieci Web zamiast tego". Następnie zostaniesz poproszony o podanie swojego imienia lub pseudonimu. Wpisz je i kliknij "Dołącz teraz" (lub "Poproś o dołączenie").' },
+                        { title: 'Poczekaj na zaakceptowanie', description: 'Zostaniesz umieszczony w poczekalni spotkania.' },
+                        { title: 'Co Zrobić, gdy Pojawi się Błąd / Zapytanie o Kod', description: 'Błąd z prośbą o kod (np. "Wprowadź kod spotkania"): Taka sytuacja zdarza się, gdy link jest niekompletny lub gdy spotkanie zostało skonfigurowane tak, aby wymagało ręcznego wpisania identyfikatora.Rozwiązanie: Skontaktuj się z osobą, która wysłała Ci link do spotkania i poproś o pełny, aktualny link, który zawiera wszystkie parametry do automatycznego dołączenia. W przypadku dołączania jako gość, unikanie błędu z kodem zależy w 99% od użycia poprawnego, pełnego linku dołączania.' }
                     ]
                 },
                 {
@@ -653,10 +673,10 @@ function Navigation({ currentPage, onPageChange }) {
                     shortDesc: 'Wskazówki jak maksymalnie wykorzystać czas lekcji',
                     intro: 'Aby maksymalnie wykorzystać czas lekcji, oto kilka wskazówek:',
                     steps: [
-                        { title: 'Przygotuj materiały', description: 'Miej pod ręką zeszyt, notatki z lekcji szkolnych lub zadania, które sprawiają Ci trudność.' },
-                        { title: 'Lista pytań', description: 'Zapisz sobie pytania i tematy, które chcesz poruszyć podczas lekcji.' },
-                        { title: 'Ciche miejsce', description: 'Znajdź spokojne miejsce, gdzie nikt Ci nie będzie przeszkadzał przez czas trwania lekcji.' },
-                        { title: 'Test sprzętu', description: 'Sprawdź 5 minut przed lekcją, czy wszystko działa (internet, kamera, mikrofon).' }
+                        { title: 'Przygotuj materiały', description: 'Miej pod ręką zeszyt, notatki z lekcji szkolnych lub zadania, które sprawiają Ci trudność' },
+                        { title: 'Lista pytań', description: 'Zapisz sobie pytania i tematy, które chcesz poruszyć podczas lekcji' },
+                        { title: 'Test sprzętu', description: 'Sprawdź 5 minut przed lekcją, czy wszystko działa (internet, kamera, mikrofon)' },
+                        { title: 'Optymalizacja czasu', description: 'Zoptymalizuj czas tak, aby wykorzystać pełną godzinę jak najlepiej' }
                     ]
                 }
             ];
@@ -1234,9 +1254,9 @@ function Materials({ onBack }) {
                             <h3 className="mb-4">Dodatkowe informacje</h3>
                             <ul className="space-y-2 text-gray-700">
                                 <li>• Pierwsza lekcja próbna w za darmo - trwa 30 minut i jest dostępna w zakładce materiały do pobrania</li>
-                                <li>• Wszystkie opracowania </li>
-                                <li>• Możliwość odwołania lekcji do 24h przed terminem bez utraty zajęć</li>
-                                <li>• Płatność przelewem lub BLIK</li>
+                                <li>• Wszystkie opracowania są aktualizowane wraz z zmianami podstawy programowej</li>
+                                <li>• Możliwość płatności w ratach</li>
+                                <li>• Płatność przelewem lub BLIK na numer telefonu</li>
                             </ul>
                         </div>
                     </div>
@@ -1443,50 +1463,32 @@ function Materials({ onBack }) {
                 {
                     id: 1,
                     isPinned: true,
-                    date: '16 Gru 2025',
+                    date: '21 Gru 2025',
                     title: 'Przerwa świąteczna i sylwestrowa 2025',
-                    shortContent: 'Przerwa świąteczna trwa od 21 grudnia do 2 stycznia. Życzę wszystkim spokojnych Świąt i szczęśliwego Nowego Roku!',
+                    shortContent: 'Przerwa świąteczna trwa od 21 grudnia do 2 stycznia.',
                     fullContent: `
                         Szanowni Państwo, Drodzy Kursanci,
-
-                        Pragnę złożyć Państwu najserdeczniejsze życzenia spokojnych i radosnych Świąt Bożego Narodzenia.
-
-                        Życzę, aby Nowy Rok był spokojny, a nauka i rozwój przynosiły Państwu nieustanną satysfakcję. Niech rok 2026 będzie czasem realizacji ambitnych planów i spełniania marzeń.
-
-                        Dziękuję za zaufanie i dotychczasową współpracę.
+                        Życzę Państwu spokojnych i radosnych Świąt Bożego Narodzenia.
+                        Życzę, aby Nowy Rok był spokojny, a nauka i rozwój przynosiły Państwu nieustanną satysfakcję. Niech rok 2026 będzie czasem realizacji ambitnych planów i spełniania marzeń. Dziękuję za zaufanie i dotychczasową współpracę.
+                        Z wyrazami szacunku, 
+                        Jonathan Ferro
+                        P.S. W zakładce Materiały, pojawiły darmowe opracowania z egzaminu ósmoklasisty i matury z matematyki.
                     `,
                     tag: 'Ogłoszenie'
                 },
                 {
                     id: 2,
-                    date: '28 Lut 2024',
-                    title: 'Nowe materiały na tablicy Miro',
+                    date: '19 Gru 2025',
+                    title: 'Zmiana Dostępności Korepetycji w Związku z Sesją Egzaminacyjną',
                     shortContent: 'Dla wszystkich moich uczniów udostępniłem nową bazę zadań z termodynamiki wraz z pełnymi rozwiązaniami wideo.',
                     fullContent: `
-                        Zaktualizowałem naszą wspólną bazę wiedzy na tablicy Miro! 
-                        
-                        W sekcji "Fizyka - Termodynamika" znajdziecie teraz:
-                        - 20 nowych zadań maturalnych z lat 2015-2023,
-                        - Interaktywne wykresy p(V),
-                        - Linki do moich rozwiązań wideo dla najtrudniejszych zadań obliczeniowych.
-                        
-                        Proszę wszystkich uczniów klas 2 i 3 o zapoznanie się z nowymi materiałami przed nadchodzącym sprawdzianem. W razie pytań piszcie na komunikatorze!
-                    `,
-                    tag: 'Materiały'
-                },
-                {
-                    id: 3,
-                    date: '10 Sty 2024',
-                    title: 'Wolne terminy na ferie',
-                    shortContent: 'W okresie ferii zimowych otwieram dodatkowe godziny poranne. To idealny czas na nadrobienie zaległości z pierwszego semestru.',
-                    fullContent: `
-                        Ferie zimowe to doskonały moment, żeby na spokojnie, bez szkolnego stresu, nadrobić zaległości lub wyprzedzić materiał.
-                        
-                        W dniach 15.01 - 28.01 uruchamiam "Poranne Maratony":
-                        - Dostępne godziny: 9:00 - 13:00
-                        - Niższa cena przy rezerwacji bloku 2h (-10%)
-                        
-                        Jeśli czujesz, że I semestr poszedł nie do końca po Twojej myśli, zapraszam do kontaktu. Ustalimy plan naprawczy na II semestr!
+                            Szanowni Uczniowie i Rodzice,
+                            Uprzejmie informuję, że w związku ze zbliżającą się sesją egzaminacyjną na Politechnice Rzeszowskiej, w okresie od 26 stycznia] do 15 lutego moja dostępność do prowadzenia korepetycji zostanie tymczasowo ograniczona.
+                            W tym czasie konsultacje i lekcje będą odbywać się ze mniejszą częstotliwością niż zwykle, a terminy mogą być ustalane w trybie bardziej elastycznym i nieregularnym. Priorytetowo traktowane będą umówione już lekcje.
+                            Proszę o wyrozumiałość w tym kluczowym dla mnie okresie. Pełna dostępność wróci od 16 lutego.
+                            Wszelkie pytania dotyczące harmonogramu proszę kierować SMS-em.
+                            Z wyrazami szacunku,
+                            Jonathan Ferro,
                     `,
                     tag: 'Ogłoszenie'
                 },
@@ -1585,7 +1587,7 @@ return (
 
                         <div className="text-center mb-12">
                             <h2 className="mb-4">Aktualności</h2>
-                            <p className="text-xl text-gray-600">Co słychać w świecie nauki?</p>
+                            <p className="text-xl text-gray-600">Aktualności związane z korepetycjami i materiałami</p>
                         </div>
 
                         <div className="space-y-6">
@@ -1665,7 +1667,7 @@ return (
                             </a>
                         </div>
                         <p className="text-sm text-gray-500 mt-6">
-                            © 2025 Korepetycje Online. Wszystkie prawa zastrzeżone.
+                            © 2025 qJonathan.pl Wszelkie prawa zastrzeżone.
                         </p>
                     </div>
                 </footer>
