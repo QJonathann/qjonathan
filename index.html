@@ -103,11 +103,19 @@ function Navigation({ currentPage, onPageChange }) {
 
             // Funkcja obsługująca nawigację
             const handleNavClick = (target) => {
+                // 1. Obsługa Aktualności
                 if (target === 'news') {
                     onPageChange('news');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    // Jeśli jesteśmy na podstronie News, najpierw wracamy na Home
+                } 
+                // 2. NOWOŚĆ: Obsługa Poradników (tego brakowało!)
+                else if (target === 'guides') {
+                    onPageChange('guides');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } 
+                // 3. Obsługa sekcji na stronie głównej (About, Pricing, Contact)
+                else {
+                    // Jeśli jesteśmy na podstronie (News lub Guides), najpierw wracamy na Home
                     if (currentPage !== 'home') {
                         onPageChange('home');
                         // Czekamy chwilę aż React przenderuje stronę główną, potem skrolujemy
@@ -151,10 +159,17 @@ function Navigation({ currentPage, onPageChange }) {
                             
                             <div className="hidden md:flex gap-6 items-center">
                                 <button onClick={() => handleNavClick('about')} className="hover:text-blue-600 transition-colors">O mnie</button>
-                                <button onClick={() => handleNavClick('guides')} className="hover:text-blue-600 transition-colors">Poradniki</button>
+                                
+                                {/* Zaktualizowany przycisk Poradniki - teraz podświetla się gdy aktywny */}
+                                <button 
+                                    onClick={() => handleNavClick('guides')} 
+                                    className={`transition-colors ${currentPage === 'guides' ? 'text-blue-600 font-medium' : 'hover:text-blue-600'}`}
+                                >
+                                    Poradniki
+                                </button>
+                                
                                 <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Oferta</button>
                                 
-                                {/* Nowy przycisk Aktualności */}
                                 <button 
                                     onClick={() => handleNavClick('news')} 
                                     className={`transition-colors ${currentPage === 'news' ? 'text-blue-600 font-medium' : 'hover:text-blue-600'}`}
@@ -182,9 +197,24 @@ function Navigation({ currentPage, onPageChange }) {
                             <div className="md:hidden mt-4 py-4 border-t border-gray-200">
                                 <div className="flex flex-col gap-3">
                                     <button onClick={() => handleNavClick('about')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">O mnie</button>
-                                    <button onClick={() => handleNavClick('guides')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Poradniki</button>
+                                    
+                                    {/* Mobilny przycisk Poradniki */}
+                                    <button 
+                                        onClick={() => handleNavClick('guides')} 
+                                        className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'guides' ? 'text-blue-600 font-medium' : ''}`}
+                                    >
+                                        Poradniki
+                                    </button>
+                                    
                                     <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Oferta</button>
-                                    <button onClick={() => handleNavClick('news')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg text-blue-600">Aktualności</button>
+                                    
+                                    <button 
+                                        onClick={() => handleNavClick('news')} 
+                                        className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'news' ? 'text-blue-600 font-medium' : ''}`}
+                                    >
+                                        Aktualności
+                                    </button>
+                                    
                                     <button onClick={() => handleNavClick('contact')} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Kontakt</button>
                                 </div>
                             </div>
@@ -553,7 +583,8 @@ function Navigation({ currentPage, onPageChange }) {
         }
 
         // Guides Component
-        function Guides() {
+// Podmień całą funkcję Guides na tę wersję:
+        function Guides({ onBack }) {
             const [selectedGuide, setSelectedGuide] = useState(null);
 
             const guides = [
@@ -567,7 +598,7 @@ function Navigation({ currentPage, onPageChange }) {
                         { title: 'Krok 1: Ustal termin', description: 'Skontaktuj się ze mną przez e-mail lub telefon, aby umówić termin lekcji.' },
                         { title: 'Krok 2: Otrzymaj link', description: 'Na kilka godzin - do 15 minut przed zajęciami otrzymasz link do spotkania na platformie Microsoft Teams.' },
                         { title: 'Krok 3: Dołącz do spotkania', description: 'Kliknij w link i dołącz do wideo konferencji. Upewnij się, że kamera i mikrofon działają.' },
-                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować. Na platformie, trzeba na platformie trzeba posiadać konto' }
+                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować.' }
                     ]
                 },
                 {
@@ -611,23 +642,75 @@ function Navigation({ currentPage, onPageChange }) {
                 }
             ];
 
-            const openGuideDetails = (guide) => {
-                setSelectedGuide(guide);
-                document.body.style.overflow = 'hidden';
-            };
+            // 1. ZMIANA: Widok szczegółowy (zamiast Modala)
+            if (selectedGuide) {
+                return (
+                    <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                        <div className="max-w-3xl mx-auto">
+                            <button 
+                                onClick={() => {
+                                    setSelectedGuide(null);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors bg-white px-4 py-2 rounded-lg shadow-sm"
+                            >
+                                <Icon name="arrow-left" className="w-5 h-5" />
+                                Wróć do listy poradników
+                            </button>
 
-            const closeGuideDetails = () => {
-                setSelectedGuide(null);
-                document.body.style.overflow = 'unset';
-            };
+                            <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 md:p-12 text-white">
+                                    <div className="flex items-center gap-4 mb-4">
+                                        <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                            <Icon name={selectedGuide.icon} className="w-6 h-6 text-white" />
+                                        </div>
+                                        <span className="uppercase tracking-wide text-sm font-semibold text-blue-100">Poradnik</span>
+                                    </div>
+                                    <h1 className="text-3xl md:text-4xl font-bold mb-2 text-white">
+                                        {selectedGuide.title}
+                                    </h1>
+                                    <p className="text-blue-100 text-lg">{selectedGuide.shortDesc}</p>
+                                </div>
 
-            React.useEffect(() => {
-                lucide.createIcons();
-            });
+                                <div className="p-8 md:p-12">
+                                    <div className="prose prose-blue max-w-none">
+                                        <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                                            {selectedGuide.intro}
+                                        </p>
 
+                                        <div className="space-y-8 mt-8">
+                                            {selectedGuide.steps.map((step, index) => (
+                                                <div key={index} className="flex gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors">
+                                                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-xl">
+                                                        {index + 1}
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="text-xl font-semibold mb-2 text-gray-900">{step.title}</h3>
+                                                        <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                );
+            }
+
+            // 2. ZMIANA: Widok listy (usunięto kod Modala z dołu)
             return (
-                <section id="guides" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
                     <div className="max-w-6xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
                         <div className="text-center mb-12">
                             <h2 className="mb-4">Poradniki</h2>
                             <p className="text-xl text-gray-600">
@@ -639,84 +722,29 @@ function Navigation({ currentPage, onPageChange }) {
                             {guides.map((guide) => (
                                 <div
                                     key={guide.id}
-                                    className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer hover:scale-105"
-                                    onClick={() => openGuideDetails(guide)}
+                                    className="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all cursor-pointer hover:scale-105 border border-gray-100"
+                                    onClick={() => {
+                                        setSelectedGuide(guide);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
                                 >
                                     <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
                                         <Icon name={guide.icon} className="w-7 h-7 text-blue-600" />
                                     </div>
-                                    <h3 className="text-center mb-3">{guide.title}</h3>
-                                    <p className="text-sm text-gray-600 text-center mb-4">
+                                    <h3 className="text-center mb-3 text-lg font-semibold">{guide.title}</h3>
+                                    <p className="text-sm text-gray-600 text-center mb-4 leading-relaxed">
                                         {guide.shortDesc}
                                     </p>
                                     <div className="text-center">
-                                        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1 mx-auto">
+                                        <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1 mx-auto group">
                                             Czytaj więcej
-                                            <Icon name="arrow-right" className="w-4 h-4" />
+                                            <Icon name="arrow-right" className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                                         </button>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-
-                    {/* Modal ze szczegółami poradnika */}
-                    {selectedGuide && (
-                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={closeGuideDetails}>
-                            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-                                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl">
-                                    <div className="flex justify-between items-start">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-                                                <Icon name={selectedGuide.icon} className="w-6 h-6 text-white" />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-white mb-1">{selectedGuide.title}</h3>
-                                                <p className="text-blue-100 text-sm">{selectedGuide.shortDesc}</p>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={closeGuideDetails}
-                                            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-                                        >
-                                            <Icon name="x" className="w-6 h-6" />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="p-6">
-                                    <div className="mb-6">
-                                        <p className="text-gray-700 text-lg">
-                                            {selectedGuide.intro}
-                                        </p>
-                                    </div>
-
-                                    <div className="space-y-6">
-                                        {selectedGuide.steps.map((step, index) => (
-                                            <div key={index} className="flex gap-4">
-                                                <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-medium text-lg">
-                                                    {index + 1}
-                                                </div>
-                                                <div className="flex-1">
-                                                    <h4 className="mb-2">{step.title}</h4>
-                                                    <p className="text-gray-600">{step.description}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-8 flex gap-4">
-                                        <button
-                                            onClick={closeGuideDetails}
-                                            className="flex-1 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                                        >
-                                            Rozumiem
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
                 </section>
             );
         }
@@ -1330,7 +1358,7 @@ function Navigation({ currentPage, onPageChange }) {
         }
 
 function App() {
-            // Stan, który decyduje co widzimy: 'home' lub 'news'
+            // Stan, który decyduje co widzimy: 'home', 'news' lub 'guides'
             const [currentPage, setCurrentPage] = useState('home');
 
             React.useEffect(() => {
@@ -1342,18 +1370,28 @@ function App() {
                     {/* Przekazujemy funkcje do nawigacji */}
                     <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
                     
-                    {currentPage === 'home' ? (
+                    {/* Widok Strony Głównej */}
+                    {currentPage === 'home' && (
                         <>
-                            {/* To jest widok Strony Głównej */}
                             <Hero />
                             <About />
-                            <Guides />
+                            {/* Guides zostało usunięte z tej listy, aby działało jako osobna podstrona */}
                             <Pricing />
                             <Contact />
                         </>
-                    ) : (
-                        /* To jest widok Aktualności (jako "podstrona") */
+                    )}
+
+                    {/* Widok Aktualności (jako "podstrona") */}
+                    {currentPage === 'news' && (
                         <News onBack={() => {
+                            setCurrentPage('home');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }} />
+                    )}
+
+                    {/* Widok Poradników (jako "podstrona") */}
+                    {currentPage === 'guides' && (
+                        <Guides onBack={() => {
                             setCurrentPage('home');
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }} />
@@ -1367,6 +1405,3 @@ function App() {
         // Render the app
         const root = createRoot(document.getElementById('root'));
         root.render(<App />);
-    </script>
-</body>
-</html>
