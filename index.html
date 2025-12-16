@@ -113,6 +113,10 @@ function Navigation({ currentPage, onPageChange }) {
                     onPageChange('guides');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } 
+                else if (target === 'materials') {
+                    onPageChange('materials');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
                 // 3. Obsługa sekcji na stronie głównej (About, Pricing, Contact)
                 else {
                     // Jeśli jesteśmy na podstronie (News lub Guides), najpierw wracamy na Home
@@ -168,6 +172,13 @@ function Navigation({ currentPage, onPageChange }) {
                                     Poradniki
                                 </button>
                                 
+                                <button 
+                                  onClick={() => handleNavClick('materials')} 
+                                    className={`transition-colors ${currentPage === 'materials' ? 'text-blue-600 font-medium' : 'hover:text-blue-600'}`}
+                                >
+                                    Materiały
+                                </button>   
+
                                 <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Oferta</button>
                                 
                                 <button 
@@ -205,7 +216,14 @@ function Navigation({ currentPage, onPageChange }) {
                                     >
                                         Poradniki
                                     </button>
-                                    
+
+                                    <button 
+                                         onClick={() => handleNavClick('materials')} 
+                                        className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'materials' ? 'text-blue-600 font-medium' : ''}`}
+                                    >
+                                        Materiały
+                                    </button>      
+
                                     <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Oferta</button>
                                     
                                     <button 
@@ -282,7 +300,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 </div>
                                 <h3 className="mb-2">Sprawdzona Metoda</h3>
                                 <p className="text-gray-600">
-                                    Indywidualne podejście i materiały przygotowane specjalnie dla ucznia.
+                                    Sprawdź darmowe materiały w oddzielnej zakładce.
                                 </p>
                             </div>
                         </div>
@@ -750,6 +768,284 @@ function Navigation({ currentPage, onPageChange }) {
             );
         }
 
+// Materials Component - Nowa sekcja
+function Materials({ onBack }) {
+            const [selectedMaterial, setSelectedMaterial] = useState(null);
+            // 1. NOWY STAN: Przechowuje aktualnie wybrany filtr ('all', 'primary', 'high_school')
+            const [activeFilter, setActiveFilter] = useState('all');
+
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            // 2. AKTUALIZACJA DANYCH: Dodajemy pole 'category' do każdego pliku
+            const materialsList = [
+                {
+                    id: 1,
+                    title: 'Wzory Matematyczne - Matura Podstawowa',
+                    description: 'Kompletny zbiór wzorów potrzebnych do egzaminu maturalnego.',
+                    category: 'high_school', // Kategoria: Szkoła Średnia
+                    fullContent: `To kompendium wiedzy dla każdego maturzysty. Dokument zawiera:
+                    - Wszystkie wzory z karty CKE,
+                    - Dodatkowe tożsamości trygonometryczne.`,
+                    type: 'PDF',
+                    size: '2.4 MB',
+                    icon: 'file-text',
+                    fileUrl: 'files/wzory_matematyczne.pdf'
+                },
+                {
+                    id: 2,
+                    title: 'Fizyka: Kinematyka (Kl. 7-8)',
+                    description: 'Podstawowe pojęcia: droga, prędkość, czas. Zadania wprowadzające.',
+                    category: 'primary', // Kategoria: Szkoła Podstawowa
+                    fullContent: `Idealne wprowadzenie do fizyki dla uczniów szkoły podstawowej.
+                    - Proste przekształcanie wzorów,
+                    - Wykresy ruchu,
+                    - Przykłady z życia codziennego.`,
+                    type: 'PDF',
+                    size: '1.2 MB',
+                    icon: 'file-spreadsheet',
+                    fileUrl: 'files/fizyka_podstawowa.pdf'
+                },
+                {
+                    id: 3,
+                    title: 'Zbiór zadań: Funkcja Kwadratowa',
+                    description: '20 zadań z pełnymi rozwiązaniami krok po kroku.',
+                    category: 'high_school', // Kategoria: Szkoła Średnia
+                    fullContent: `Zestaw 20 autorskich zadań przygotowujących do sprawdzianu i matury.
+                    - Postać ogólna, kanoniczna i iloczynowa,
+                    - Zadania optymalizacyjne.`,
+                    type: 'PDF',
+                    size: '3.1 MB',
+                    icon: 'book-open',
+                    fileUrl: 'files/zadania_funkcja.pdf'
+                },
+                {
+                    id: 4,
+                    title: 'Arkusz Egzaminu Ósmoklasisty - Matematyka',
+                    description: 'Próbny arkusz z odpowiedziami i wyjaśnieniami.',
+                    category: 'primary', // Kategoria: Szkoła Podstawowa
+                    fullContent: `Sprawdź swoją wiedzę przed egzaminem ósmoklasisty.
+                    - Zadania otwarte i zamknięte,
+                    - Geometria płaska i przestrzenna,
+                    - Arytmetyka praktyczna.`,
+                    type: 'PDF',
+                    size: '4.1 MB',
+                    icon: 'file-question',
+                    fileUrl: 'files/arkusz_osmoklasisty.pdf'
+                }
+            ];
+
+            // 3. LOGIKA FILTROWANIA: Wybieramy tylko te materiały, które pasują do filtra
+            const filteredList = activeFilter === 'all' 
+                ? materialsList 
+                : materialsList.filter(item => item.category === activeFilter);
+
+            const renderDescription = (text) => {
+                return text.split('\n').map((str, index) => (
+                    <p key={index} className="mb-2 text-gray-700 leading-relaxed">
+                        {str.trim()}
+                    </p>
+                ));
+            };
+
+            // --- WIDOK SZCZEGÓŁOWY (PODSTRONA MATERIAŁU) ---
+            if (selectedMaterial) {
+                return (
+                    <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                        <div className="max-w-3xl mx-auto">
+                            <button 
+                                onClick={() => {
+                                    setSelectedMaterial(null);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors bg-white px-4 py-2 rounded-lg shadow-sm"
+                            >
+                                <Icon name="arrow-left" className="w-5 h-5" />
+                                Wróć do listy materiałów
+                            </button>
+
+                            <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                                <div className="bg-blue-50 p-8 border-b border-blue-100">
+                                    <div className="flex items-start gap-4 mb-4">
+                                        <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                            <Icon name={selectedMaterial.icon} className="w-8 h-8" />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                                                {selectedMaterial.title}
+                                            </h2>
+                                            <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 font-medium">
+                                                <span className="bg-white px-3 py-1 rounded-full border border-gray-200">
+                                                    {selectedMaterial.type}
+                                                </span>
+                                                <span className="bg-white px-3 py-1 rounded-full border border-gray-200">
+                                                    {selectedMaterial.size}
+                                                </span>
+                                                {/* Wyświetlanie kategorii w szczegółach */}
+                                                <span className={`px-3 py-1 rounded-full border ${
+                                                    selectedMaterial.category === 'primary' 
+                                                    ? 'bg-green-100 text-green-700 border-green-200' 
+                                                    : 'bg-indigo-100 text-indigo-700 border-indigo-200'
+                                                }`}>
+                                                    {selectedMaterial.category === 'primary' ? 'Szkoła Podstawowa' : 'Szkoła Średnia'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="p-8 md:p-10">
+                                    <h3 className="text-lg font-semibold mb-4 text-gray-900">Opis materiału:</h3>
+                                    <div className="prose prose-blue max-w-none mb-10">
+                                        {renderDescription(selectedMaterial.fullContent)}
+                                    </div>
+
+                                    <div className="grid md:grid-cols-2 gap-4 pt-8 border-t border-gray-100">
+                                        <a 
+                                            href={selectedMaterial.fileUrl} 
+                                            download 
+                                            className="flex flex-col items-center justify-center p-6 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all hover:scale-[1.02] shadow-md group cursor-pointer text-center no-underline"
+                                        >
+                                            <Icon name="download" className="w-8 h-8 mb-2 group-hover:animate-bounce" />
+                                            <span className="font-bold text-lg">Pobierz plik</span>
+                                            <span className="text-blue-100 text-sm">Rozpocznie się pobieranie</span>
+                                        </a>
+
+                                        <button 
+                                            onClick={() => {
+                                                setSelectedMaterial(null);
+                                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                            }}
+                                            className="flex flex-col items-center justify-center p-6 bg-white border-2 border-gray-200 text-gray-700 rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all hover:scale-[1.02] group"
+                                        >
+                                            <Icon name="corner-up-left" className="w-8 h-8 mb-2 text-gray-400 group-hover:text-blue-500" />
+                                            <span className="font-bold text-lg">Wróć do listy</span>
+                                            <span className="text-gray-500 text-sm">Przeglądaj inne materiały</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                );
+            }
+
+            // --- WIDOK LISTY (GŁÓWNY) ---
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                    <div className="max-w-4xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
+                        <div className="text-center mb-8">
+                            <h2 className="mb-4">Materiały do pobrania</h2>
+                            <p className="text-xl text-gray-600">Darmowe pomoce naukowe dla moich uczniów</p>
+                        </div>
+
+                        {/* 4. PRZYCISKI FILTRUJĄCE */}
+                        <div className="flex flex-wrap justify-center gap-3 mb-10">
+                            <button
+                                onClick={() => setActiveFilter('all')}
+                                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                                    activeFilter === 'all' 
+                                    ? 'bg-gray-900 text-white shadow-lg scale-105' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                                }`}
+                            >
+                                Wszystkie
+                            </button>
+                            <button
+                                onClick={() => setActiveFilter('primary')}
+                                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                                    activeFilter === 'primary' 
+                                    ? 'bg-green-600 text-white shadow-lg scale-105' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                                }`}
+                            >
+                                Szkoła Podstawowa
+                            </button>
+                            <button
+                                onClick={() => setActiveFilter('high_school')}
+                                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                                    activeFilter === 'high_school' 
+                                    ? 'bg-indigo-600 text-white shadow-lg scale-105' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                                }`}
+                            >
+                                Szkoła Średnia
+                            </button>
+                        </div>
+
+                        {/* LISTA MATERIAŁÓW (używamy filteredList zamiast materialsList) */}
+                        <div className="grid gap-4">
+                            {filteredList.length > 0 ? (
+                                filteredList.map((item) => (
+                                    <div 
+                                        key={item.id} 
+                                        onClick={() => {
+                                            setSelectedMaterial(item);
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }}
+                                        className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:shadow-md transition-shadow cursor-pointer group"
+                                    >
+                                        <div className="flex items-start gap-4">
+                                            <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
+                                                item.category === 'primary' ? 'bg-green-100 text-green-600' : 'bg-indigo-100 text-indigo-600'
+                                            }`}>
+                                                <Icon name={item.icon} className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                        {item.title}
+                                                    </h3>
+                                                    {/* Badge kategorii przy tytule */}
+                                                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide ${
+                                                        item.category === 'primary' ? 'bg-green-100 text-green-700' : 'bg-indigo-100 text-indigo-700'
+                                                    }`}>
+                                                        {item.category === 'primary' ? 'SP' : 'LO'}
+                                                    </span>
+                                                </div>
+                                                <p className="text-gray-600 text-sm mb-2">{item.description}</p>
+                                                <div className="flex items-center gap-3 text-xs text-gray-500 uppercase tracking-wide font-medium">
+                                                    <span className="bg-gray-100 px-2 py-1 rounded">{item.type}</span>
+                                                    <span>{item.size}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="w-full md:w-auto px-6 py-2.5 border border-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 font-medium">
+                                            <Icon name="eye" className="w-4 h-4" />
+                                            Zobacz szczegóły
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                // Komunikat gdy brak materiałów w danej kategorii
+                                <div className="text-center py-12 text-gray-500">
+                                    <Icon name="folder-open" className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                                    <p>Brak materiałów w tej kategorii.</p>
+                                </div>
+                            )}
+                        </div>
+                        
+                        <div className="mt-12 p-6 bg-blue-50 rounded-xl text-center">
+                            <p className="text-blue-900">
+                                Potrzebujesz dostępu do pełnej bazy zadań? <br/>
+                                <span className="font-semibold">Materiały premium są dostępne dla moich stałych uczniów na dysku Google Drive.</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
         // Pricing Component
         function Pricing() {
             const [selectedPackage, setSelectedPackage] = useState(null);
@@ -759,7 +1055,7 @@ function Navigation({ currentPage, onPageChange }) {
                     name: 'Lekcje pojedyńcze',
                     price: '40',
                     duration: '60 minut',
-                    features: ['Elastyczny termin', 'Dostęp do tablicy Miro', 'Materiały po lekcji', 'Wsparcie mailowe'],
+                    features: ['Dobierz termin', 'Wejdź w link o umówionej godzinie', 'Zrozum temat', 'Dostań materiały po lekcji'],
                     popular: false,
                     details: {
                         description: 'Idealne rozwiązanie jeśli potrzebujesz pomocy z konkretnym tematem lub chcesz wypróbować korepetycje przed zakupem większego pakietu.',
@@ -937,7 +1233,7 @@ function Navigation({ currentPage, onPageChange }) {
                         <div className="mt-12 bg-blue-50 p-6 rounded-xl">
                             <h3 className="mb-4">Dodatkowe informacje</h3>
                             <ul className="space-y-2 text-gray-700">
-                                <li>• Pierwsza lekcja próbna w za darmo - trwa 30 minut</li>
+                                <li>• Pierwsza lekcja próbna w za darmo - trwa 30 minut i jest dostępna w zakładce materiały do pobrania</li>
                                 <li>• Wszystkie opracowania </li>
                                 <li>• Możliwość odwołania lekcji do 24h przed terminem bez utraty zajęć</li>
                                 <li>• Płatność przelewem lub BLIK</li>
@@ -1415,7 +1711,12 @@ function App() {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }} />
                     )}
-                    
+                    {currentPage === 'materials' && (
+                         <Materials onBack={() => {
+                             setCurrentPage('home');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                }} />
+            )}
                     <Footer />
                 </div>
             );
