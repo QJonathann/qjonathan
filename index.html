@@ -152,7 +152,7 @@ function Navigation({ currentPage, onPageChange }) {
                             <div className="hidden md:flex gap-6 items-center">
                                 <button onClick={() => handleNavClick('about')} className="hover:text-blue-600 transition-colors">O mnie</button>
                                 <button onClick={() => handleNavClick('guides')} className="hover:text-blue-600 transition-colors">Poradniki</button>
-                                <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Cennik</button>
+                                <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Oferta</button>
                                 
                                 {/* Nowy przycisk Aktualności */}
                                 <button 
@@ -183,7 +183,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 <div className="flex flex-col gap-3">
                                     <button onClick={() => handleNavClick('about')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">O mnie</button>
                                     <button onClick={() => handleNavClick('guides')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Poradniki</button>
-                                    <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Cennik</button>
+                                    <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Oferta</button>
                                     <button onClick={() => handleNavClick('news')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg text-blue-600">Aktualności</button>
                                     <button onClick={() => handleNavClick('contact')} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Kontakt</button>
                                 </div>
@@ -220,7 +220,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 onClick={scrollToContact}
                                 className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                             >
-                                Umów pierwszą lekcję
+                                Umów się na pierwsze zajęcia
                             </button>
                         </div>
 
@@ -231,7 +231,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 </div>
                                 <h3 className="mb-2">Elastyczne Terminy</h3>
                                 <p className="text-gray-600">
-                                    Dopasuj lekcje do swojego grafiku. Nauka wtedy, kiedy Ci pasuje.
+                                    Dopasuj lekcje do swojego grafiku. Nauka wtedy, kiedy Tobie pasuje.
                                 </p>
                             </div>
 
@@ -239,9 +239,9 @@ function Navigation({ currentPage, onPageChange }) {
                                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                                     <Icon name="video" className="w-6 h-6 text-blue-600" />
                                 </div>
-                                <h3 className="mb-2">Nowoczesne Narzędzia</h3>
+                                <h3 className="mb-2">Microsoft Teams i Miro</h3>
                                 <p className="text-gray-600">
-                                    Wykorzystujemy tablicę Miro i najlepsze platformy do nauki online.
+                                    Główne platformy używane do przeprowadzania zajęć online.
                                 </p>
                             </div>
 
@@ -251,7 +251,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 </div>
                                 <h3 className="mb-2">Sprawdzona Metoda</h3>
                                 <p className="text-gray-600">
-                                    Indywidualne podejście i materiały przygotowane specjalnie dla Ciebie.
+                                    Indywidualne podejście i materiały przygotowane specjalnie dla ucznia.
                                 </p>
                             </div>
                         </div>
@@ -292,21 +292,17 @@ function Navigation({ currentPage, onPageChange }) {
                                              className="w-full h-full rounded-full object-cover shadow-lg border-4 border-white"
                                          />
                                     </div>
-                                    <h3 className="mb-2">Twoje Imię</h3>
+                                    <h3 className="mb-2">Jonathan Ciupera Ferro</h3>
                                     <p className="text-blue-600 mb-4">Korepetytor Fizyki i Matematyki</p>
                                     
                                     <div className="space-y-3 text-left">
                                         <div className="flex items-center gap-2">
                                             <Icon name="award" className="w-5 h-5 text-blue-600" />
-                                            <span className="text-sm text-gray-700">5+ lat doświadczenia</span>
+                                            <span className="text-sm text-gray-700">3 lata doświadczenia</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <Icon name="users" className="w-5 h-5 text-blue-600" />
-                                            <span className="text-sm text-gray-700">200+ zadowolonych uczniów</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <Icon name="star" className="w-5 h-5 text-blue-600" />
-                                            <span className="text-sm text-gray-700">95% skuteczność</span>
+                                            <span className="text-sm text-gray-700">50+ zadowolonych uczniów</span>
                                         </div>
                                     </div>
                                 </div>
@@ -335,13 +331,12 @@ function Navigation({ currentPage, onPageChange }) {
                                         <div>
                                             <h3 className="mb-4">Kim jestem?</h3>
                                             <p className="text-gray-700 mb-4">
-                                                Jestem absolwentem [Nazwa Uczelni], z tytułem magistra w dziedzinie fizyki/matematyki. 
-                                                Moją pasją jest nauczanie i pomaganie uczniom w odkrywaniu piękna nauk ścisłych.
+                                                Jestem studentem III roku Inżynierii w Medycynie na Wydziale Matematyki i Fizyki Stosowanej Politechniki Rzeszowskiej im. Ignacego Łukasiewicza. 
+                                                Posiadam trzyletnie doświadczenie w prowadzeniu korepetycji, zarówno w formie online, jak i stacjonarnej.
                                             </p>
                                             <p className="text-gray-700 mb-6">
-                                                Od ponad 5 lat prowadzę korepetycje online i stacjonarne, pomagając uczniom 
-                                                na różnych poziomach edukacji - od szkoły podstawowej, przez liceum, aż po 
-                                                przygotowania do matury i egzaminów wstępnych na studia.
+                                                Specjalizuję się w pracy z uczniami szkół podstawowych (od klasy 7) oraz średnich (do klasy maturalnej), 
+                                                skutecznie przygotowując ich do egzaminów ósmoklasisty oraz matury.
                                             </p>
 
                                             <h4 className="mb-3">Specjalizacje:</h4>
@@ -570,9 +565,9 @@ function Navigation({ currentPage, onPageChange }) {
                     intro: 'Proces połączenia jest prosty i intuicyjny. Oto kroki, które musisz wykonać:',
                     steps: [
                         { title: 'Krok 1: Ustal termin', description: 'Skontaktuj się ze mną przez e-mail lub telefon, aby umówić termin lekcji.' },
-                        { title: 'Krok 2: Otrzymaj link', description: 'Na 15 minut przed lekcją otrzymasz link do spotkania (Google Meet, Zoom lub inna platforma).' },
+                        { title: 'Krok 2: Otrzymaj link', description: 'Na kilka godzin - do 15 minut przed zajęciami otrzymasz link do spotkania na platformie Microsoft Teams.' },
                         { title: 'Krok 3: Dołącz do spotkania', description: 'Kliknij w link i dołącz do wideo konferencji. Upewnij się, że kamera i mikrofon działają.' },
-                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować.' }
+                        { title: 'Krok 4: Dostęp do tablicy Miro', description: 'Podczas lekcji otrzymasz link do tablicy Miro, na której będziemy pracować. Na platformie, trzeba na platformie trzeba posiadać konto' }
                     ]
                 },
                 {
@@ -841,9 +836,9 @@ function Navigation({ currentPage, onPageChange }) {
                 <section id="pricing" className="py-20 px-4 bg-white">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-12">
-                            <h2 className="mb-4">Cennik</h2>
+                            <h2 className="mb-4">Oferta</h2>
                             <p className="text-xl text-gray-600">
-                                Wybierz pakiet dopasowany do Twoich potrzeb
+                                Wybierz ofertę dopasowaną do Twoich potrzeb
                             </p>
                         </div>
 
@@ -860,7 +855,7 @@ function Navigation({ currentPage, onPageChange }) {
                                     {pkg.popular && (
                                         <div className="text-center mb-4">
                                             <span className="px-4 py-1 bg-white/20 rounded-full text-sm">
-                                                Najpopularniejszy
+                                                Polecane
                                             </span>
                                         </div>
                                     )}
@@ -913,10 +908,10 @@ function Navigation({ currentPage, onPageChange }) {
                         <div className="mt-12 bg-blue-50 p-6 rounded-xl">
                             <h3 className="mb-4">Dodatkowe informacje</h3>
                             <ul className="space-y-2 text-gray-700">
-                                <li>• Pierwsza lekcja próbna w pełnej cenie - jeśli nie będziesz zadowolony, zwracam pieniądze</li>
-                                <li>• Pakiety ważne 3 miesiące od daty zakupu</li>
+                                <li>• Pierwsza lekcja próbna w za darmo - trwa 30 minut</li>
+                                <li>• Wszystkie opracowania </li>
                                 <li>• Możliwość odwołania lekcji do 24h przed terminem bez utraty zajęć</li>
-                                <li>• Płatność przelewem lub BLIK przed lekcją</li>
+                                <li>• Płatność przelewem lub BLIK</li>
                             </ul>
                         </div>
                     </div>
@@ -1040,8 +1035,8 @@ function Navigation({ currentPage, onPageChange }) {
                                         </div>
                                         <div>
                                             <h4 className="mb-1">E-mail</h4>
-                                            <a href="mailto:korepetycje@example.com" className="text-blue-600 hover:underline">
-                                                korepetycje@example.com
+                                            <a href="mailto:contact.qjonathan@gmail.com" className="text-blue-600 hover:underline">
+                                                contact.qjonathan@gmail.com
                                             </a>
                                             <p className="text-sm text-gray-500 mt-1">
                                                 Odpowiadam zwykle w ciągu 24 godzin
@@ -1057,11 +1052,11 @@ function Navigation({ currentPage, onPageChange }) {
                                         </div>
                                         <div>
                                             <h4 className="mb-1">Telefon</h4>
-                                            <a href="tel:+48123456789" className="text-blue-600 hover:underline">
-                                                +48 123 456 789
+                                            <a href="tel:+48796305827" className="text-blue-600 hover:underline">
+                                                +48 796 305 827
                                             </a>
                                             <p className="text-sm text-gray-500 mt-1">
-                                                Pn-Pt: 14:00-20:00, Sb: 10:00-18:00
+                                                Pn-Pt: 14:00-22:00, Sb: 10:00-20:00
                                             </p>
                                         </div>
                                     </div>
@@ -1073,9 +1068,9 @@ function Navigation({ currentPage, onPageChange }) {
                                             <Icon name="message-circle" className="w-6 h-6 text-blue-600" />
                                         </div>
                                         <div>
-                                            <h4 className="mb-1">WhatsApp / Signal</h4>
-                                            <a href="https://wa.me/48123456789" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
-                                                +48 123 456 789
+                                            <h4 className="mb-1">WhatsApp</h4>
+                                            <a href="https://wa.me/48796305827" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                                +48 796 305 827
                                             </a>
                                             <p className="text-sm text-gray-500 mt-1">
                                                 Najszybszy sposób kontaktu
@@ -1317,17 +1312,17 @@ function Navigation({ currentPage, onPageChange }) {
                             <Icon name="graduation-cap" className="w-8 h-8 text-blue-400" />
                             <span className="text-xl">Korepetycje Online</span>
                         </div>
-                        <p className="text-gray-400 mb-4">Profesjonalne korepetycje z fizyki i matematyki</p>
+                        <p className="text-gray-400 mb-4">Korepetycje z fizyki i matematyki</p>
                         <div className="flex justify-center gap-6 text-sm text-gray-400">
-                            <a href="tel:+48123456789" className="hover:text-white transition-colors">
-                                +48 123 456 789
+                            <a href="tel:+48796305827" className="hover:text-white transition-colors">
+                                +48 796 305 827
                             </a>
-                            <a href="mailto:kontakt@example.com" className="hover:text-white transition-colors">
-                                kontakt@example.com
+                            <a href="mailto:contact.qjonathan@gmail.com" className="hover:text-white transition-colors">
+                                contact.qjonathan@gmail.com
                             </a>
                         </div>
                         <p className="text-sm text-gray-500 mt-6">
-                            © 2024 Korepetycje Online. Wszystkie prawa zastrzeżone.
+                            © 2025 Korepetycje Online. Wszystkie prawa zastrzeżone.
                         </p>
                     </div>
                 </footer>
