@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Korepetycje Online - Fizyka i Matematyka</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎓%3C/text%3E%3C/svg%3E">
-    <!-- Tailwind CSS CDN -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- React and ReactDOM CDN -->
@@ -265,6 +264,9 @@ function Navigation({ currentPage, onPageChange }) {
                             </h1>
                                 <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
                                     Zachęcam do przeczytania poradników i aktualności.
+                                    <br />
+                                    W zakładce Materiały znajdziesz darmowe opracowania.
+                                    <br />
                                     <br />
                                     Skuteczna nauka w wygodnych warunkach Twojego domu. 
                                 </p>
@@ -814,33 +816,33 @@ function Materials({ onBack }) {
                     icon: 'file-spreadsheet',
                     fileUrl: 'materialy/fizyka_podstawowa.pdf'
                 },
-                {
-                    id: 3,
-                    title: 'Zbiór zadań: Funkcja Kwadratowa',
-                    description: '20 zadań z pełnymi rozwiązaniami krok po kroku.',
-                    category: 'high_school', // Kategoria: Szkoła Średnia
-                    fullContent: `Zestaw 20 autorskich zadań przygotowujących do sprawdzianu i matury.
-                    - Postać ogólna, kanoniczna i iloczynowa,
-                    - Zadania optymalizacyjne.`,
-                    type: 'PDF',
-                    size: '3.1 MB',
-                    icon: 'book-open',
-                    fileUrl: 'materialy/zadania_funkcja.pdf'
-                },
-                {
-                    id: 4,
-                    title: 'Arkusz Egzaminu Ósmoklasisty - Matematyka',
-                    description: 'Próbny arkusz z odpowiedziami i wyjaśnieniami.',
-                    category: 'primary', // Kategoria: Szkoła Podstawowa
-                    fullContent: `Sprawdź swoją wiedzę przed egzaminem ósmoklasisty.
-                    - Zadania otwarte i zamknięte,
-                    - Geometria płaska i przestrzenna,
-                    - Arytmetyka praktyczna.`,
-                    type: 'PDF',
-                    size: '4.1 MB',
-                    icon: 'file-question',
-                    fileUrl: 'materialy/arkusz_osmoklasisty.pdf'
-                }
+            //    {
+            //        id: 3,
+            //        title: 'Zbiór zadań: Funkcja Kwadratowa',
+            //        description: '20 zadań z pełnymi rozwiązaniami krok po kroku.',
+            //        category: 'high_school', // Kategoria: Szkoła Średnia
+            //        fullContent: `Zestaw 20 autorskich zadań przygotowujących do sprawdzianu i matury.
+            //        - Postać ogólna, kanoniczna i iloczynowa,
+            //        - Zadania optymalizacyjne.`,
+            //        type: 'PDF',
+            //        size: '3.1 MB',
+            //        icon: 'book-open',
+            //        fileUrl: 'materialy/zadania_funkcja.pdf'
+            //    },
+            //    {
+            //        id: 4,
+            //        title: 'Arkusz Egzaminu Ósmoklasisty - Matematyka',
+            //        description: 'Próbny arkusz z odpowiedziami i wyjaśnieniami.',
+            //        category: 'primary', // Kategoria: Szkoła Podstawowa
+            //        fullContent: `Sprawdź swoją wiedzę przed egzaminem ósmoklasisty.
+            //        - Zadania otwarte i zamknięte,
+            //        - Geometria płaska i przestrzenna,
+            //        - Arytmetyka praktyczna.`,
+            //        type: 'PDF',
+            //        size: '4.1 MB',
+            //        icon: 'file-question',
+            //        fileUrl: 'materialy/arkusz_osmoklasisty.pdf'
+            //    }
             ];
 
             // 3. LOGIKA FILTROWANIA: Wybieramy tylko te materiały, które pasują do filtra
@@ -1045,7 +1047,8 @@ function Materials({ onBack }) {
                         <div className="mt-12 p-6 bg-blue-50 rounded-xl text-center">
                             <p className="text-blue-900">
                                 Potrzebujesz dostępu do pełnej bazy zadań? <br/>
-                                <span className="font-semibold">Materiały premium są dostępne dla moich stałych uczniów na dysku Google Drive.</span>
+
+                                <span className="font-semibold">Pełne opracowania wszystkich typów zadań poszczególnych zagadnień będą dostępne wkrótce.</span> 
                             </p>
                         </div>
                     </div>
@@ -1083,65 +1086,65 @@ function Materials({ onBack }) {
                         validity: 'Termin do ustalenia indywidualnie'
                     }
                 },
-                {
-                    name: 'Pakiet 5 Lekcji',
-                    price: '370',
-                    pricePerLesson: '74 zł/lekcja',
-                    duration: '60 minut każda',
-                    features: ['Wszystko z pojedynczej lekcji', 'Oszczędzasz 30 zł', 'Priorytetowe terminy', 'Plan nauki', 'Regularne sprawdziany postępów'],
-                    popular: true,
-                    details: {
-                        description: 'Najpopularniejszy wybór! Pakiet 5 lekcji pozwala na systematyczną pracę nad wybranymi tematami i osiągnięcie wymiernych rezultatów.',
-                        whatYouGet: [
-                            '5 x 60 minut indywidualnych zajęć online',
-                            'Wszystkie korzyści z pojedynczej lekcji',
-                            'Oszczędność 30 zł w porównaniu do pojedynczych lekcji',
-                            'Priorytetowe rezerwacje terminów',
-                            'Spersonalizowany plan nauki na cały pakiet',
-                            'Mini-test po każdych 2 lekcjach',
-                            'Stały kontakt mailowy',
-                            'Dedykowane materiały i zadania domowe'
-                        ],
-                        idealFor: [
-                            'Uczniów potrzebujących pomocy z kilku powiązanych tematów',
-                            'Systematycznego nadrabiania zaległości',
-                            'Przygotowania do ważnego egzaminu',
-                            'Utrwalenia materiału z kilku rozdziałów'
-                        ],
-                        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
-                    }
-                },
-                {
-                    name: 'Lekcje regularne',
-                    price: '700',
-                    pricePerLesson: '70 zł/lekcja',
-                    duration: '60 minut każda',
-                    features: ['Wszystko z pakietu 5 lekcji', 'Oszczędzasz 100 zł', 'Dedykowany plan nauki', 'Comiesięczne podsumowanie', 'Kontakt przez całą ważność pakietu'],
-                    popular: false,
-                    details: {
-                        description: 'Kompleksowy pakiet dla osób nastawionych na długofalowy rozwój i znaczącą poprawę wyników. Idealne do przygotowania do matury.',
-                        whatYouGet: [
-                            '10 x 60 minut indywidualnych zajęć online',
-                            'Wszystkie korzyści z pakietu 5 lekcji',
-                            'Oszczędność 100 zł w porównaniu do pojedynczych lekcji',
-                            'Najwyższy priorytet w rezerwacji terminów',
-                            'Kompleksowy plan nauki',
-                            'Regularne testy postępów (co 3 lekcje)',
-                            'Comiesięczne podsumowanie',
-                            'Stały kontakt WhatsApp',
-                            'Rozbudowane materiały',
-                            'Możliwość bezpłatnego przesunięcia 2 terminów'
-                        ],
-                        idealFor: [
-                            'Przygotowania do matury',
-                            'Systematycznej nauki przez semestr',
-                            'Kompleksowego nadrobienia zaległości',
-                            'Znaczącej poprawy ocen',
-                            'Nauki od podstaw'
-                        ],
-                        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
-                    }
-                }
+                //{
+                //    name: 'Pakiet 5 Lekcji',
+                //    price: '370',
+                //    pricePerLesson: '74 zł/lekcja',
+                //    duration: '60 minut każda',
+                //    features: ['Wszystko z pojedynczej lekcji', 'Oszczędzasz 30 zł', 'Priorytetowe terminy', 'Plan nauki', 'Regularne sprawdziany postępów'],
+                //    popular: true,
+                //    details: {
+                //        description: 'Najpopularniejszy wybór! Pakiet 5 lekcji pozwala na systematyczną pracę nad wybranymi tematami i osiągnięcie wymiernych rezultatów.',
+                //        whatYouGet: [
+                //            '5 x 60 minut indywidualnych zajęć online',
+                //            'Wszystkie korzyści z pojedynczej lekcji',
+                //            'Oszczędność 30 zł w porównaniu do pojedynczych lekcji',
+                //            'Priorytetowe rezerwacje terminów',
+                //            'Spersonalizowany plan nauki na cały pakiet',
+                //            'Mini-test po każdych 2 lekcjach',
+                //            'Stały kontakt mailowy',
+                //            'Dedykowane materiały i zadania domowe'
+                //        ],
+                //        idealFor: [
+                //            'Uczniów potrzebujących pomocy z kilku powiązanych tematów',
+                //            'Systematycznego nadrabiania zaległości',
+                //            'Przygotowania do ważnego egzaminu',
+                //            'Utrwalenia materiału z kilku rozdziałów'
+                //        ],
+                //        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
+                //    }
+                //},
+                //{
+                //    name: 'Lekcje regularne',
+                //    price: '700',
+                //    pricePerLesson: '70 zł/lekcja',
+                //    duration: '60 minut każda',
+                //    features: ['Wszystko z pakietu 5 lekcji', 'Oszczędzasz 100 zł', 'Dedykowany plan nauki', 'Comiesięczne podsumowanie', 'Kontakt przez całą ważność pakietu'],
+                //    popular: false,
+                //    details: {
+                //        description: 'Kompleksowy pakiet dla osób nastawionych na długofalowy rozwój i znaczącą poprawę wyników. Idealne do przygotowania do matury.',
+                //        whatYouGet: [
+                //            '10 x 60 minut indywidualnych zajęć online',
+                //            'Wszystkie korzyści z pakietu 5 lekcji',
+                //            'Oszczędność 100 zł w porównaniu do pojedynczych lekcji',
+                //            'Najwyższy priorytet w rezerwacji terminów',
+                //            'Kompleksowy plan nauki',
+                //            'Regularne testy postępów (co 3 lekcje)',
+                //            'Comiesięczne podsumowanie',
+                //            'Stały kontakt WhatsApp',
+                //            'Rozbudowane materiały',
+                //            'Możliwość bezpłatnego przesunięcia 2 terminów'
+                //        ],
+                //        idealFor: [
+                //            'Przygotowania do matury',
+                //            'Systematycznej nauki przez semestr',
+                //            'Kompleksowego nadrobienia zaległości',
+                //            'Znaczącej poprawy ocen',
+                //            'Nauki od podstaw'
+                //        ],
+                //        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
+                //    }
+                //}
             ];
 
             const openPackageDetails = (pkg) => {
