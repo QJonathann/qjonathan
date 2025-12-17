@@ -317,9 +317,9 @@ function Navigation({ currentPage, onPageChange }) {
 
             const tabs = [
                 { id: 'about', label: 'O mnie', icon: 'graduation-cap' },
-                { id: 'experience', label: 'Doświadczenie', icon: 'award' },
-                { id: 'approach', label: 'Metoda nauczania', icon: 'book-open' },
-                { id: 'achievements', label: 'Osiągnięcia', icon: 'target' }
+                //{ id: 'experience', label: 'Doświadczenie', icon: 'award' },
+                //{ id: 'approach', label: 'Metoda nauczania', icon: 'book-open' },
+                //{ id: 'achievements', label: 'Osiągnięcia', icon: 'target' }
             ];
 
             React.useEffect(() => {
@@ -424,8 +424,8 @@ function Navigation({ currentPage, onPageChange }) {
                                                     <ul className="text-sm text-gray-700 space-y-1">
                                                         <li>• Sztuczna inteligencja w zastosowaniach biomedycznych</li>
                                                         <li>• Podstawy biomechaniki</li>
-                                                        <li>• Przygotowanie do matury</li>
-                                                        <li>• Mechanika, elektryczność, optyka</li>
+                                                        <li>• Metrologia medyczna</li>
+                                                        <li>• Modelowanie w inżynierii medycznej</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -648,22 +648,9 @@ function Navigation({ currentPage, onPageChange }) {
                     intro: 'Miro to interaktywna tablica, która pozwala na wspólną pracę w czasie rzeczywistym:',
                     steps: [
                         { title: 'Czym jest Miro?', description: 'Miro to cyfrowa tablica, na której możemy razem rysować, pisać, wklejać obrazy i rozwiązywać zadania.' },
-                        { title: 'Nie potrzebujesz konta', description: 'Wystarczy, że otworzysz link, który Ci prześlę. Nie musisz zakładać konta ani instalować aplikacji.' },
+                        { title: 'Potrzebujesz konto', description: 'Po kliknięciu w link, zostaniesz przekierowany do strony gdzie będziesz musiał założyć konto na swojego maila.' },
                         { title: 'Podstawowe funkcje', description: 'Nauczę Cię podczas pierwszej lekcji, jak korzystać z narzędzi do rysowania, pisania i dodawania notatek.' },
-                        { title: 'Zapisane notatki', description: 'Wszystko, co napiszemy na tablicy, zostanie zapisane i będziesz mieć do tego dostęp po lekcji.' }
-                    ]
-                },
-                {
-                    id: 'requirements',
-                    title: 'Wymagania techniczne',
-                    icon: 'wifi',
-                    shortDesc: 'Sprawdź czego potrzebujesz do płynnych lekcji',
-                    intro: 'Aby lekcje przebiegały sprawnie, upewnij się, że spełniasz poniższe wymagania:',
-                    steps: [
-                        { title: 'Stabilne połączenie internetowe', description: 'Przynajmniej 10 Mb/s pobierania i 5 Mb/s wysyłania. Możesz sprawdzić to na speedtest.net' },
-                        { title: 'Komputer lub tablet', description: 'Zalecam komputer z myszką do wygodniejszej pracy na tablicy. Tablet też jest OK, telefon mniej wygodny.' },
-                        { title: 'Przeglądarka', description: 'Najlepiej Chrome, Firefox lub Safari w najnowszej wersji.' },
-                        { title: 'Kamera i mikrofon', description: 'Upewnij się, że działają poprawnie. Słuchawki z mikrofonem poprawiają jakość dźwięku.' }
+                        { title: 'Materiały po zajęciach', description: 'Wszystko, co napiszemy na tablicy, zostanie zapisane i będziesz mieć do tego dostęp po lekcji.' }
                     ]
                 },
                 {
@@ -675,13 +662,12 @@ function Navigation({ currentPage, onPageChange }) {
                     steps: [
                         { title: 'Przygotuj materiały', description: 'Miej pod ręką zeszyt, notatki z lekcji szkolnych lub zadania, które sprawiają Ci trudność' },
                         { title: 'Lista pytań', description: 'Zapisz sobie pytania i tematy, które chcesz poruszyć podczas lekcji' },
-                        { title: 'Test sprzętu', description: 'Sprawdź 5 minut przed lekcją, czy wszystko działa (internet, kamera, mikrofon)' },
-                        { title: 'Optymalizacja czasu', description: 'Zoptymalizuj czas tak, aby wykorzystać pełną godzinę jak najlepiej' }
+                        { title: 'Test sprzętu', description: 'Sprawdź 5 minut przed lekcją, czy wszystko działa (internet, mikrofon)' },
+                        { title: 'Optymalizacja czasu', description: 'Zorganizuj czas przed zajęciami tak, aby wykorzystać pełną godzinę korepetycji jak najlepiej' }
                     ]
                 }
             ];
 
-            // 1. ZMIANA: Widok szczegółowy (zamiast Modala)
             if (selectedGuide) {
                 return (
                     <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
@@ -1237,7 +1223,7 @@ function Materials({ onBack }) {
                                     </ul>
 
                                     <button
-                                        onClick={() => openPackageDetails(pkg)}
+                                        onClick={() => scrollToContact(pkg)} // zmienić na 'openPackageDetails' jak opiszesz szczegóły
                                         className={`w-full py-3 rounded-lg transition-colors ${
                                             pkg.popular
                                                 ? 'bg-white text-blue-600 hover:bg-gray-100'
@@ -1483,7 +1469,7 @@ function Materials({ onBack }) {
                     shortContent: 'Dla wszystkich moich uczniów udostępniłem nową bazę zadań z termodynamiki wraz z pełnymi rozwiązaniami wideo.',
                     fullContent: `
                             Szanowni Uczniowie i Rodzice,
-                            Uprzejmie informuję, że w związku ze zbliżającą się sesją egzaminacyjną na Politechnice Rzeszowskiej, w okresie od 26 stycznia] do 15 lutego moja dostępność do prowadzenia korepetycji zostanie tymczasowo ograniczona.
+                            Uprzejmie informuję, że w związku ze zbliżającą się sesją egzaminacyjną na Politechnice Rzeszowskiej, w okresie od 26 stycznia do 15 lutego moja dostępność do prowadzenia korepetycji zostanie tymczasowo ograniczona.
                             W tym czasie konsultacje i lekcje będą odbywać się ze mniejszą częstotliwością niż zwykle, a terminy mogą być ustalane w trybie bardziej elastycznym i nieregularnym. Priorytetowo traktowane będą umówione już lekcje.
                             Proszę o wyrozumiałość w tym kluczowym dla mnie okresie. Pełna dostępność wróci od 16 lutego.
                             Wszelkie pytania dotyczące harmonogramu proszę kierować SMS-em.
