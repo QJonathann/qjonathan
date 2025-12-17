@@ -213,6 +213,13 @@ function Navigation({ currentPage, onPageChange }) {
                                     
                                     {/* Mobilny przycisk Poradniki */}
                                     <button 
+                                        onClick={() => handleNavClick('news')} 
+                                        className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'news' ? 'text-blue-600 font-medium' : ''}`}
+                                    >
+                                        Aktualności
+                                    </button>
+
+                                    <button 
                                         onClick={() => handleNavClick('guides')} 
                                         className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'guides' ? 'text-blue-600 font-medium' : ''}`}
                                     >
@@ -228,12 +235,6 @@ function Navigation({ currentPage, onPageChange }) {
 
                                     <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Oferta</button>
                                     
-                                    <button 
-                                        onClick={() => handleNavClick('news')} 
-                                        className={`px-4 py-2 text-left hover:bg-gray-100 rounded-lg ${currentPage === 'news' ? 'text-blue-600 font-medium' : ''}`}
-                                    >
-                                        Aktualności
-                                    </button>
                                     
                                     <button onClick={() => handleNavClick('contact')} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Kontakt</button>
                                 </div>
