@@ -1907,22 +1907,27 @@ function App() {
             const [currentPage, setCurrentPage] = useState('home');
 
             // Mapowanie URL do nazw stron
-            const pathMap = {
-                '': 'home',
-                '/': 'home',
-                '/aktualności': 'news',
-                '/news': 'news',
-                '/poradniki': 'guides',
-                '/guides': 'guides',
-                '/materiały': 'materials',
-                '/materials': 'materials',
-                '/warunki-świadczenia-usług': 'terms',
-                '/terms': 'terms',
-                '/polityka-prywatności': 'privacy',
-                '/privacy': 'privacy',
-                '/standardy-ochrony-małoletnich': 'child-protection',
-                '/child-protection': 'child-protection'
-            };
+                const pathMap = {
+                    '': 'home',
+                    '/': 'home',
+                    '/aktualności': 'news',
+                    '/aktualnosci': 'news', // <- dodane bez polskich znaków
+                    '/news': 'news',
+                    '/poradniki': 'guides',
+                    '/guides': 'guides',
+                    '/materiały': 'materials',
+                    '/materialy': 'materials', // <- dodane bez polskich znaków (Rozwiązuje Twój problem!)
+                    '/materials': 'materials',
+                    '/warunki-świadczenia-usług': 'terms',
+                    '/warunki-swiadczenia-uslug': 'terms', // <- dodane bez polskich znaków
+                    '/terms': 'terms',
+                    '/polityka-prywatności': 'privacy',
+                    '/polityka-prywatnosci': 'privacy', // <- dodane bez polskich znaków
+                    '/privacy': 'privacy',
+                    '/standardy-ochrony-małoletnich': 'child-protection',
+                    '/standardy-ochrony-maloletnich': 'child-protection', // <- dodane bez polskich znaków
+                    '/child-protection': 'child-protection'
+                };
 
             // Odwrotna mapa - do tworzenia URL
             const pageToPath = {
