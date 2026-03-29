@@ -1949,7 +1949,7 @@ function App() {
             const handlePageChange = (newPage) => {
                 const path = pageToPath[newPage] || '/';
                 window.location.hash = path;
-                setCurrentPage(newPage);
+                // Nie robimy setCurrentPage tutaj - niech hashchange event handler to obsłuży
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
