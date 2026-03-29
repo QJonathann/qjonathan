@@ -121,34 +121,28 @@ function Navigation({ currentPage, onPageChange }) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
                 // 3. Obsługa sekcji na stronie głównej (About, Pricing, Contact)
-// 3. Obsługa sekcji na stronie głównej (About, Pricing, Contact)
                 else {
-                    // Jeśli jesteśmy na podstronie (News lub Guides), najpierw wracamy na Home
+                    // Jeśli jesteśmy na podstronie, najpierw wracamy na Home
                     if (currentPage !== 'home') {
                         onPageChange('home');
-                        // Czekamy chwilę aż React przenderuje stronę główną, potem skrolujemy
                         setTimeout(() => {
-                            const element = document.getElementById(target);
-                            element?.scrollIntoView({ behavior: 'smooth' });
+                            document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
                             
-                            // Zmiana linku na pasku przeglądarki
-                            if (target === 'about') {
-                                window.history.pushState({ page: 'home' }, '', '/o-mnie');
-                            } else {
-                                window.history.pushState({ page: 'home' }, '', '/');
-                            }
+                            // Zmiana linku
+                            if (target === 'about') window.history.pushState({ page: 'home' }, '', '/o-mnie');
+                            else if (target === 'pricing') window.history.pushState({ page: 'home' }, '', '/gwarancja-jakosci');
+                            else if (target === 'contact') window.history.pushState({ page: 'home' }, '', '/kontakt');
+                            else window.history.pushState({ page: 'home' }, '', '/');
                         }, 100);
                     } else {
                         // Jeśli jesteśmy na Home, po prostu skrolujemy
-                        const element = document.getElementById(target);
-                        element?.scrollIntoView({ behavior: 'smooth' });
+                        document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
                         
-                        // Zmiana linku na pasku przeglądarki
-                        if (target === 'about') {
-                            window.history.pushState({ page: 'home' }, '', '/o-mnie');
-                        } else {
-                            window.history.pushState({ page: 'home' }, '', '/');
-                        }
+                        // Zmiana linku
+                        if (target === 'about') window.history.pushState({ page: 'home' }, '', '/o-mnie');
+                        else if (target === 'pricing') window.history.pushState({ page: 'home' }, '', '/gwarancja-jakosci');
+                        else if (target === 'contact') window.history.pushState({ page: 'home' }, '', '/kontakt');
+                        else window.history.pushState({ page: 'home' }, '', '/');
                     }
                 }
                 setIsMenuOpen(false);
@@ -1919,34 +1913,32 @@ return (
         }
 
 function App() {
-            // Stan, który decyduje co widzimy: 'home', 'news', 'guides', itd.
             const [currentPage, setCurrentPage] = useState('home');
-
-            // Mapowanie URL do nazw stron
                 const pathMap = {
                     '': 'home',
                     '/': 'home',
                     '/o-mnie': 'home',
                     '/aktualności': 'news',
-                    '/aktualnosci': 'news', // <- dodane bez polskich znaków
+                    '/aktualnosci': 'news',
                     '/news': 'news',
                     '/poradniki': 'guides',
                     '/guides': 'guides',
                     '/materiały': 'materials',
-                    '/materialy': 'materials', // <- dodane bez polskich znaków (Rozwiązuje Twój problem!)
+                    '/materialy': 'materials', 
                     '/materials': 'materials',
+                    '/gwarancja-jakosci': 'home', 
+                    '/kontakt': 'home',         
                     '/warunki-świadczenia-usług': 'terms',
-                    '/warunki-swiadczenia-uslug': 'terms', // <- dodane bez polskich znaków
+                    '/warunki-swiadczenia-uslug': 'terms', 
                     '/terms': 'terms',
                     '/polityka-prywatności': 'privacy',
-                    '/polityka-prywatnosci': 'privacy', // <- dodane bez polskich znaków
+                    '/polityka-prywatnosci': 'privacy', 
                     '/privacy': 'privacy',
                     '/standardy-ochrony-małoletnich': 'child-protection',
-                    '/standardy-ochrony-maloletnich': 'child-protection', // <- dodane bez polskich znaków
+                    '/standardy-ochrony-maloletnich': 'child-protection', 
                     '/child-protection': 'child-protection'
                 };
 
-            // Odwrotna mapa - do tworzenia URL
             const pageToPath = {
                 'home': '/',
                 'news': '/aktualnosci',
@@ -1978,13 +1970,14 @@ function App() {
                 const initialPage = pathMap[cleanPath] || 'home';
                 setCurrentPage(initialPage);
                 
-                // --- DODAJ TEN FRAGMENT KODU ---
                 if (cleanPath === '/o-mnie') {
-                    setTimeout(() => {
-                        const element = document.getElementById('about');
-                        element?.scrollIntoView({ behavior: 'smooth' });
-                    }, 300); // 300ms czekania aż wszystko się wyrenderuje
+                    setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 300);
+                } else if (cleanPath === '/gwarancja-jakosci') {
+                    setTimeout(() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }), 300);
+                } else if (cleanPath === '/kontakt') {
+                    setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 300);
                 }
+                // --- KONIEC FRAGMENTU ---
 
 
                 // Back/Forward button support
