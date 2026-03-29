@@ -1938,37 +1938,37 @@ function App() {
                 'child-protection': '/standardy-ochrony-małoletnich'
             };
 
-            // Parsowanie URL z hash
-            const getPageFromHash = () => {
-                const hash = window.location.hash.slice(1); // Usuwa #
-                const path = hash || '/';
-                return pathMap[path] || 'home';
+            // Parsowanie URL z pathname (zamiast hash!)
+            const getPageFromPathname = () => {
+                const pathname = window.location.pathname;
+                // Usuń prowadzące / i trailing dash jeśli jest
+                const cleanPath = pathname === '/' ? '/' : pathname;
+                return pathMap[cleanPath] || 'home';
             };
 
-            // Zmiana strony z aktualizacją URL
+            // Zmiana strony z aktualizacją URL (bez opóźnień!)
             const handlePageChange = (newPage) => {
-                // Zmień state PIERWSZE (natychmiast!)
                 setCurrentPage(newPage);
-                // Potem zmień URL
                 const path = pageToPath[newPage] || '/';
-                window.location.hash = path;
+                window.history.pushState({ page: newPage }, '', path);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
-            // Nasłuchiwanie zmian URL
+            // Tylko na początek - czytaj URL z pathname
             React.useEffect(() => {
-                const handleHashChange = () => {
-                    const newPage = getPageFromHash();
-                    setCurrentPage(newPage);
-                };
-
-                window.addEventListener('hashchange', handleHashChange);
-                
-                // Ustaw początkową stronę na podstawie URL
-                const initialPage = getPageFromHash();
+                const pathname = window.location.pathname;
+                const cleanPath = pathname === '/' ? '/' : pathname;
+                const initialPage = pathMap[cleanPath] || 'home';
                 setCurrentPage(initialPage);
-
-                return () => window.removeEventListener('hashchange', handleHashChange);
+                
+                // Back/Forward button support
+                const handlePopState = (e) => {
+                    const page = e.state?.page || 'home';
+                    setCurrentPage(page);
+                };
+                
+                window.addEventListener('popstate', handlePopState);
+                return () => window.removeEventListener('popstate', handlePopState);
             }, []);
 
             React.useEffect(() => {
