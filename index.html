@@ -185,10 +185,8 @@ function Navigation({ currentPage, onPageChange }) {
                                     Materiały
                                 </button>   
 
-                                <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Oferta</button>
+                                <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Gwarancja jakości</button>
                                 
-
-
                                 <button 
                                     onClick={() => handleNavClick('contact')}
                                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -232,8 +230,7 @@ function Navigation({ currentPage, onPageChange }) {
                                         Materiały
                                     </button>      
 
-                                    <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Oferta</button>
-                                    
+                                    <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Wsparcie w rozwoju</button>
                                     
                                     <button onClick={() => handleNavClick('contact')} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Kontakt</button>
                                 </div>
@@ -265,7 +262,7 @@ function Navigation({ currentPage, onPageChange }) {
                                 <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
                                     Zachęcam do przeczytania poradników i aktualności.
                                     <br />
-                                    W zakładce Materiały znajdziesz darmowe opracowania.
+                                    W zakładce Materiały znajdziesz darmowe opracowania oraz lekcje próbną.
                                     <br />
                                     <br />
                                     Skuteczna nauka w wygodnych warunkach Twojego domu. 
@@ -320,7 +317,7 @@ function Navigation({ currentPage, onPageChange }) {
 
             const tabs = [
                 { id: 'about', label: 'O mnie', icon: 'graduation-cap' },
-                //{ id: 'experience', label: 'Doświadczenie', icon: 'award' },
+                { id: 'experience', label: 'Doświadczenie', icon: 'award' },
                 //{ id: 'approach', label: 'Metoda nauczania', icon: 'book-open' },
                 //{ id: 'achievements', label: 'Osiągnięcia', icon: 'target' }
             ];
@@ -356,7 +353,7 @@ function Navigation({ currentPage, onPageChange }) {
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <Icon name="users" className="w-5 h-5 text-blue-600" />
-                                            <span className="text-sm text-gray-700">60+ zadowolonych uczniów</span>
+                                            <span className="text-sm text-gray-700">70+ zadowolonych uczniów</span>
                                         </div>
                                     </div>
                                 </div>
@@ -435,42 +432,61 @@ function Navigation({ currentPage, onPageChange }) {
                                         </div>
                                     )}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     {activeTab === 'experience' && (
                                         <div>
                                             <h3 className="mb-4">Moje doświadczenie</h3>
                                             
                                             <div className="space-y-6">
                                                 <div className="border-l-4 border-blue-600 pl-4">
-                                                    <span className="text-sm text-gray-500">2020 - obecnie</span>
-                                                    <h4 className="mb-2">Korepetytor Online</h4>
-                                                    <p className="text-gray-700">
-                                                        Prowadzenie indywidualnych i grupowych zajęć online z matematyki i fizyki. 
-                                                        Wykorzystanie nowoczesnych narzędzi takich jak tablica Miro do interaktywnej nauki.
+                                                    <h4 className="mb-2">Mój profil naukowy (Współpraca z Polską Akademią Nauk)</h4>
+                                                    <p className="text-gray-700 text-justify">
+                                                        Opracowywanie pracy inżynierskiej pt. „Analiza wokalizacji ultradźwiękowych jako biomarker zmian behawioralnych u szczurów modelu autyzmu i schizofrenii", opartej na danych z Polskiej Akademii Nauk. Doświadczenie, które zaszczepiło we mnie rygor naukowy i analityczne myślenie, które przekazuję moim uczniom.
                                                     </p>
                                                 </div>
 
                                                 <div className="border-l-4 border-blue-600 pl-4">
-                                                    <span className="text-sm text-gray-500">2018 - 2020</span>
-                                                    <h4 className="mb-2">Korepetytor Stacjonarny</h4>
-                                                    <p className="text-gray-700">
-                                                        Prowadzenie korepetycji stacjonarnych dla uczniów szkół podstawowych i średnich. 
-                                                        Przygotowanie dziesiątek uczniów do egzaminów i matury.
+                                                    <h4 className="mb-2">Popularyzator Nauki (Prezes Koła naukowego "FOTON")</h4>
+                                                    <p className="text-gray-700 text-justify">
+                                                        Jako prezes Koła Naukowego Fizyków "FOTON", odpowiadałam za popularyzację fizyki poprzez autorskie pokazy naukowe. Nauczanie i tłumaczenie niekiedy skomplikowanych zjawisk w sposób prosty, angażujący i dynamiczny to moja specjalność, co czyni moje lekcje zapadającymi w pamięć i buduje trwałe zrozumienie przedmiotu.
                                                     </p>
                                                 </div>
 
                                                 <div className="border-l-4 border-blue-600 pl-4">
-                                                    <span className="text-sm text-gray-500">2015 - 2020</span>
-                                                    <h4 className="mb-2">Studia - [Nazwa Uczelni]</h4>
-                                                    <p className="text-gray-700">
-                                                        Magisterium w dziedzinie fizyki/matematyki. Podczas studiów prowadziłem zajęcia 
-                                                        wyrównawcze dla młodszych studentów.
+                                                    <h4 className="mb-2">Międzynarodowy Program BIP VILNIUS TECH</h4>
+                                                    <p className="text-gray-700 text-justify">
+                                                        Uczestnictwo w międzynarodowym programie BIP „Sensor Driven Modelling for Healthy Living" na VILNIUS TECH. Program ten rozszerza moją wiedzę o nowoczesne zastosowania sensor i modelowania w medycynie.
+                                                    </p>
+                                                </div>
+
+                                                <div className="border-l-4 border-blue-600 pl-4">
+                                                    <h4 className="mb-2">Ogólnopolska Konferencja Naukowa</h4>
+                                                    <p className="text-gray-700 text-justify">
+                                                        Podczas konferencji „W obronie Hipokratesa” (organizowanej przez UKSW) analizowałem wpływ AI na współczesną medycynę i prawo.                
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div className="mt-8 p-4 bg-blue-50 rounded-lg">
                                                 <h4 className="mb-3">Statystyki:</h4>
-                                                <div className="grid grid-cols-3 gap-4 text-center">
+                                                <div className="grid grid-cols-4 gap-4 text-center">
                                                     <div>
                                                         <div className="text-3xl text-blue-600 mb-1">200+</div>
                                                         <p className="text-sm text-gray-600">Uczniów</p>
@@ -483,10 +499,34 @@ function Navigation({ currentPage, onPageChange }) {
                                                         <div className="text-3xl text-blue-600 mb-1">95%</div>
                                                         <p className="text-sm text-gray-600">Skuteczność</p>
                                                     </div>
+                                                    <div>
+                                                        <div className="text-3xl text-blue-600 mb-1">100%</div>
+                                                        <p className="text-sm text-gray-600">Notatek & Nagrań</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                     {activeTab === 'approach' && (
                                         <div>
@@ -1054,287 +1094,202 @@ function Materials({ onBack }) {
             );
         }
 
-        // Pricing Component
+        // Pricing Component - Wsparcie w rozwoju ścieżki edukacyjnej
         function Pricing() {
-            const [selectedPackage, setSelectedPackage] = useState(null);
+            const [selectedBenefit, setSelectedBenefit] = useState(null);
 
-            const packages = [
+            const benefits = [
                 {
-                    name: 'Lekcje pojedyńcze',
-                    price: '40',
-                    duration: '60 minut',
-                    features: ['Dobierz termin', 'Wejdź w link o umówionej godzinie', 'Zrozum temat', 'Dostań materiały po lekcji'],
-                    popular: false,
-                    details: {
-                        description: 'Idealne rozwiązanie jeśli potrzebujesz pomocy z konkretnym tematem lub chcesz wypróbować korepetycje przed zakupem większego pakietu.',
-                        whatYouGet: [
-                            '60 minut indywidualnych zajęć online',
-                            'Dostęp do interaktywnej tablicy Miro podczas lekcji',
-                            'Zapis z tablicy i notatki po lekcji',
-                            'Możliwość zadawania pytań mailowo w ciągu 24h po lekcji',
-                            'Elastyczny wybór terminu (także weekendy)',
-                            'Materiały dodatkowe dostosowane do Twoich potrzeb'
-                        ],
-                        idealFor: [
-                            'Uczniów potrzebujących pomocy z konkretnym zagadnieniem',
-                            'Osób, które chcą przetestować jakość korepetycji',
-                            'Przygotowania do klasówki lub sprawdzianu',
-                            'Wyjaśnienia trudnego tematu przed egzaminem'
-                        ],
-                        validity: 'Termin do ustalenia indywidualnie'
-                    }
+                    id: 1,
+                    title: 'Możliwość nagrania zajęć',
+                    shortDescription: 'Każda lekcja może być nagrana',
+                    icon: 'video',
+                    color: 'blue',
+                    steps: [
+                        {
+                            title: 'Nagrywanie zajęć',
+                            description: 'Każda lekcja odbywająca się przez Microsoft Teams jest automatycznie nagrywana.'
+                        },
+                        {
+                            title: 'Dostęp do nagrania',
+                            description: 'Po zakończeniu lekcji, otrzymujesz link do nagrania wraz z dostępem do materiałów.'
+                        },
+                        {
+                            title: 'Przegląd w dowolnym czasie',
+                            description: 'Możesz przejrzeć nagranie kiedy tylko chcesz, przez całą ważność pakietu.'
+                        }
+                    ]
                 },
-                //{
-                //    name: 'Pakiet 5 Lekcji',
-                //    price: '370',
-                //    pricePerLesson: '74 zł/lekcja',
-                //    duration: '60 minut każda',
-                //    features: ['Wszystko z pojedynczej lekcji', 'Oszczędzasz 30 zł', 'Priorytetowe terminy', 'Plan nauki', 'Regularne sprawdziany postępów'],
-                //    popular: true,
-                //    details: {
-                //        description: 'Najpopularniejszy wybór! Pakiet 5 lekcji pozwala na systematyczną pracę nad wybranymi tematami i osiągnięcie wymiernych rezultatów.',
-                //        whatYouGet: [
-                //            '5 x 60 minut indywidualnych zajęć online',
-                //            'Wszystkie korzyści z pojedynczej lekcji',
-                //            'Oszczędność 30 zł w porównaniu do pojedynczych lekcji',
-                //            'Priorytetowe rezerwacje terminów',
-                //            'Spersonalizowany plan nauki na cały pakiet',
-                //            'Mini-test po każdych 2 lekcjach',
-                //            'Stały kontakt mailowy',
-                //            'Dedykowane materiały i zadania domowe'
-                //        ],
-                //        idealFor: [
-                //            'Uczniów potrzebujących pomocy z kilku powiązanych tematów',
-                //            'Systematycznego nadrabiania zaległości',
-                //            'Przygotowania do ważnego egzaminu',
-                //            'Utrwalenia materiału z kilku rozdziałów'
-                //        ],
-                //        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
-                //    }
-                //},
-                //{
-                //    name: 'Lekcje regularne',
-                //    price: '700',
-                //    pricePerLesson: '70 zł/lekcja',
-                //    duration: '60 minut każda',
-                //    features: ['Wszystko z pakietu 5 lekcji', 'Oszczędzasz 100 zł', 'Dedykowany plan nauki', 'Comiesięczne podsumowanie', 'Kontakt przez całą ważność pakietu'],
-                //    popular: false,
-                //    details: {
-                //        description: 'Kompleksowy pakiet dla osób nastawionych na długofalowy rozwój i znaczącą poprawę wyników. Idealne do przygotowania do matury.',
-                //        whatYouGet: [
-                //            '10 x 60 minut indywidualnych zajęć online',
-                //            'Wszystkie korzyści z pakietu 5 lekcji',
-                //            'Oszczędność 100 zł w porównaniu do pojedynczych lekcji',
-                //            'Najwyższy priorytet w rezerwacji terminów',
-                //            'Kompleksowy plan nauki',
-                //            'Regularne testy postępów (co 3 lekcje)',
-                //            'Comiesięczne podsumowanie',
-                //            'Stały kontakt WhatsApp',
-                //            'Rozbudowane materiały',
-                //            'Możliwość bezpłatnego przesunięcia 2 terminów'
-                //        ],
-                //        idealFor: [
-                //            'Przygotowania do matury',
-                //            'Systematycznej nauki przez semestr',
-                //            'Kompleksowego nadrobienia zaległości',
-                //            'Znaczącej poprawy ocen',
-                //            'Nauki od podstaw'
-                //        ],
-                //        validity: 'Ważność pakietu: 3 miesiące od daty zakupu'
-                //    }
-                //}
+                {
+                    id: 2,
+                    title: 'Notatki z zajęć i po lekcji',
+                    shortDescription: 'Szczegółowe notatki i materiały',
+                    icon: 'notebook',
+                    color: 'green',
+                    steps: [
+                        {
+                            title: 'Notatki z tablicy',
+                            description: 'Po każdej lekcji dostajesz dobrze zorganizowane notatki z informacjami, które omówiliśmy.'
+                        },
+                        {
+                            title: 'Materiały dodatkowe',
+                            description: 'Przygotowuję dodatkowe materiały edukacyjne dostosowane do Twoich potrzeb i tego co było na lekcji.'
+                        },
+                        {
+                            title: 'Podsumowanie',
+                            description: 'Każdy materiał zawiera kluczowe punkty i wskazówki do dalszej nauki.'
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: 'Opracowanie wszystkich typów zadań',
+                    shortDescription: 'PDF i nagrania video z rozwiązaniami',
+                    icon: 'book-open',
+                    color: 'purple',
+                    steps: [
+                        {
+                            title: 'Opracowania PDF',
+                            description: 'Dostęp do gotowych opracowań zawierających wszystkie typy zadań w formacie PDF.'
+                        },
+                        {
+                            title: 'Nagrania video',
+                            description: 'Każde zadanie jest wyjaśnione krok po kroku w nagraniach video pokazujących pełne rozwiązanie.'
+                        },
+                        {
+                            title: 'Baza materiałów',
+                            description: 'Stale rozbudowana baza materiałów gwarantuje dostęp do opracowań na każdy temat.'
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: 'Dodatkowe zadania i sprawdziany',
+                    shortDescription: 'Rozszerzona baza z możliwością sprawdzenia',
+                    icon: 'check-square',
+                    color: 'orange',
+                    steps: [
+                        {
+                            title: 'Dodatkowe zadania',
+                            description: 'Dostęp do rozszerzonej bazy zadań do samodzielnego rozwiązania i ćwiczenia.'
+                        },
+                        {
+                            title: 'Sprawdziany online',
+                            description: 'Rozwiązuj testy kontrolne, aby sprawdzić swoją wiedzę i zidentyfikować luki w wiedzy.'
+                        },
+                        {
+                            title: 'Śledzenie postępów',
+                            description: 'Otrzymujesz informację zwrotną na temat Twoich wyników i rekomendacji do dalszej pracy.'
+                        }
+                    ]
+                }
             ];
-
-            const openPackageDetails = (pkg) => {
-                setSelectedPackage(pkg);
-                document.body.style.overflow = 'hidden';
-            };
-
-            const closePackageDetails = () => {
-                setSelectedPackage(null);
-                document.body.style.overflow = 'unset';
-            };
-
-            const scrollToContact = () => {
-                closePackageDetails();
-                const element = document.getElementById('contact');
-                element?.scrollIntoView({ behavior: 'smooth' });
-            };
 
             React.useEffect(() => {
                 lucide.createIcons();
             });
 
+            const colorClasses = {
+                blue: 'bg-blue-100 text-blue-600',
+                green: 'bg-blue-100 text-blue-600',
+                purple: 'bg-blue-100 text-blue-600',
+                orange: 'bg-blue-100 text-blue-600'
+            };
+
             return (
                 <section id="pricing" className="py-20 px-4 bg-white">
                     <div className="max-w-6xl mx-auto">
-                        <div className="text-center mb-12">
-                            <h2 className="mb-4">Oferta</h2>
-                            <p className="text-xl text-gray-600">
-                                Wybierz usługi dopasowane do Twoich potrzeb.
-                                <br /> 
-                                Wkrótce dostępne będą moje opracowania, oraz szczegółowe opisy
+                        <div className="text-center mb-20">
+                            
+                            <h3 className="text-2xl font-semibold text-gray-800 mb-4">Wsparcie w rozwoju ścieżki edukacyjnej</h3>
+                            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                                Maksymalne wykorzystanie potencjału edukacyjnego
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {packages.map((pkg, index) => (
-                                <div
-                                    key={index}
-                                    className={`rounded-xl p-8 ${
-                                        pkg.popular
-                                            ? 'bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-2xl scale-105'
-                                            : 'bg-white border-2 border-gray-200'
-                                    }`}
+                        <div className="grid gap-4 mb-16">
+                            {benefits.map((benefit) => (
+                                <div 
+                                    key={benefit.id}
+                                    onClick={() => {
+                                        setSelectedBenefit(benefit);
+                                    }}
+                                    className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:shadow-md transition-shadow cursor-pointer group"
                                 >
-                                    {pkg.popular && (
-                                        <div className="text-center mb-4">
-                                            <span className="px-4 py-1 bg-white/20 rounded-full text-sm">
-                                                Polecane
-                                            </span>
+                                    <div className="flex items-start gap-4">
+                                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${colorClasses[benefit.color]}`}>
+                                            <Icon name={benefit.icon} className="w-6 h-6" />
                                         </div>
-                                    )}
-
-                                    <div className="text-center mb-6">
-                                        <h3 className={`mb-2 ${pkg.popular ? 'text-white' : ''}`}>
-                                            {pkg.name}
-                                        </h3>
-                                        <div className="flex items-baseline justify-center gap-2 mb-1">
-                                            <span className="text-4xl font-bold">{pkg.price}</span>
-                                            <span className={pkg.popular ? 'text-white/80' : 'text-gray-600'}>
-                                                zł
-                                            </span>
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-1">
+                                                {benefit.title}
+                                            </h3>
+                                            <p className="text-gray-600 text-sm">{benefit.shortDescription}</p>
                                         </div>
-                                        {pkg.pricePerLesson && (
-                                            <p className={`text-sm ${pkg.popular ? 'text-white/80' : 'text-gray-600'}`}>
-                                                {pkg.pricePerLesson}
-                                            </p>
-                                        )}
-                                        <p className={`text-sm ${pkg.popular ? 'text-white/80' : 'text-gray-600'}`}>
-                                            {pkg.duration}
-                                        </p>
                                     </div>
-
-                                    <ul className="space-y-3 mb-8">
-                                        {pkg.features.map((feature, featureIndex) => (
-                                            <li key={featureIndex} className="flex items-start gap-3">
-                                                <Icon name="check" className={`w-5 h-5 flex-shrink-0 ${pkg.popular ? 'text-white' : 'text-blue-600'}`} />
-                                                <span className={`text-sm ${pkg.popular ? 'text-white' : 'text-gray-700'}`}>
-                                                    {feature}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <button
-                                        onClick={() => scrollToContact(pkg)} // zmienić na 'openPackageDetails' jak opiszesz szczegóły
-                                        className={`w-full py-3 rounded-lg transition-colors ${
-                                            pkg.popular
-                                                ? 'bg-white text-blue-600 hover:bg-gray-100'
-                                                : 'bg-blue-600 text-white hover:bg-blue-700'
-                                        }`}
-                                    >
-                                        Zobacz szczegóły
-                                    </button>
+                                    
+                                    <div className="w-full md:w-auto px-6 py-2.5 border border-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 font-medium">
+                                        <Icon name="eye" className="w-4 h-4" />
+                                        Zobacz więcej
+                                    </div>
                                 </div>
                             ))}
                         </div>
-
-                        <div className="mt-12 bg-blue-50 p-6 rounded-xl">
-                            <h3 className="mb-4">Dodatkowe informacje</h3>
-                            <ul className="space-y-2 text-gray-700">
-                                <li>• Pierwsza lekcja próbna w za darmo - godzinę i jest dostępna w zakładce materiały do pobrania</li>
-                                <li>• Wszystkie opracowania są aktualizowane wraz z zmianami podstawy programowej</li>
-                                <li>• Możliwość płatności w ratach</li>
-                                <li>• Płatność przelewem lub BLIK na numer telefonu</li>
-                            </ul>
-                        </div>
                     </div>
 
-                    {selectedPackage && (
-                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={closePackageDetails}>
-                            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-                                <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <div>
-                                            <h3 className="mb-2 text-white">{selectedPackage.name}</h3>
-                                            <div className="flex items-baseline gap-2">
-                                                <span className="text-3xl font-bold">{selectedPackage.price} zł</span>
-                                                {selectedPackage.pricePerLesson && (
-                                                    <span className="text-blue-100">({selectedPackage.pricePerLesson})</span>
-                                                )}
+                    {selectedBenefit && (
+                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedBenefit(null)}>
+                            <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+                                <div className="bg-blue-600 text-white p-6 rounded-t-2xl"
+                                     style={{
+                                         background: '#2563eb'
+                                     }}>
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div className="flex items-start gap-4">
+                                            <div className={`w-14 h-14 rounded-lg flex items-center justify-center bg-white/20`}>
+                                                <Icon name={selectedBenefit.icon} className="w-8 h-8" />
+                                            </div>
+                                            <div>
+                                                <h2 className="text-2xl font-bold">{selectedBenefit.title}</h2>
                                             </div>
                                         </div>
                                         <button
-                                            onClick={closePackageDetails}
+                                            onClick={() => setSelectedBenefit(null)}
                                             className="p-2 hover:bg-white/20 rounded-lg transition-colors"
                                         >
                                             <Icon name="x" className="w-6 h-6" />
                                         </button>
                                     </div>
-                                    <p className="text-blue-100">{selectedPackage.duration}</p>
                                 </div>
 
-                                <div className="p-6">
+                                <div className="p-8">
                                     <div className="mb-8">
-                                        <h4 className="mb-3 flex items-center gap-2">
-                                            <Icon name="book-open" className="w-5 h-5 text-blue-600" />
-                                            Opis pakietu
-                                        </h4>
-                                        <p className="text-gray-700">{selectedPackage.details.description}</p>
-                                    </div>
-
-                                    <div className="mb-8">
-                                        <h4 className="mb-4 flex items-center gap-2">
-                                            <Icon name="check" className="w-5 h-5 text-blue-600" />
-                                            Co dostajesz?
-                                        </h4>
-                                        <ul className="space-y-3">
-                                            {selectedPackage.details.whatYouGet.map((item, index) => (
-                                                <li key={index} className="flex items-start gap-3">
-                                                    <Icon name="arrow-right" className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                                                    <span className="text-gray-700">{item}</span>
-                                                </li>
+                                        <p className="text-gray-700 text-base mb-8 leading-relaxed">Prosty proces włączenia do spotkania Teams Przez Przeglądarkę (Bez Konta):</p>
+                                        
+                                        <div className="space-y-6">
+                                            {selectedBenefit.steps && selectedBenefit.steps.map((step, index) => (
+                                                <div key={index} className="flex gap-4">
+                                                    <div className="flex-shrink-0">
+                                                        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-blue-100 text-blue-600 font-semibold text-lg">
+                                                            {index + 1}
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <h4 className="text-lg font-semibold text-gray-900 mb-1">{step.title}</h4>
+                                                        <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                                                    </div>
+                                                </div>
                                             ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="mb-8">
-                                        <h4 className="mb-4 flex items-center gap-2">
-                                            <Icon name="calendar" className="w-5 h-5 text-blue-600" />
-                                            Idealny dla:
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {selectedPackage.details.idealFor.map((item, index) => (
-                                                <li key={index} className="flex items-start gap-3">
-                                                    <span className="text-blue-600">•</span>
-                                                    <span className="text-gray-700">{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="mb-8 p-4 bg-blue-50 rounded-lg">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Icon name="clock" className="w-5 h-5 text-blue-600" />
-                                            <h5 className="text-blue-900">Ważność pakietu</h5>
                                         </div>
-                                        <p className="text-gray-700">{selectedPackage.details.validity}</p>
                                     </div>
 
-                                    <div className="flex gap-4">
+                                    <div className="flex gap-4 pt-6 border-t border-gray-200">
                                         <button
-                                            onClick={scrollToContact}
+                                            onClick={() => setSelectedBenefit(null)}
                                             className="flex-1 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
                                         >
-                                            <Icon name="mail" className="w-5 h-5" />
-                                            Wybierz pakiet i skontaktuj się
-                                        </button>
-                                        <button
-                                            onClick={closePackageDetails}
-                                            className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                        >
-                                            Zamknij
+                                            <Icon name="corner-up-left" className="w-5 h-5" />
+                                            Wróć do listy
                                         </button>
                                     </div>
                                 </div>
@@ -1444,6 +1399,220 @@ function Materials({ onBack }) {
             );
         }
 
+        // Terms Component
+        function Terms({ onBack }) {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                    <div className="max-w-3xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
+                        <div className="bg-white p-8 rounded-xl shadow-sm">
+                            <h1 className="mb-6">Warunki świadczenia usług</h1>
+                            
+                            <div className="prose prose-blue max-w-none space-y-6">
+                                <div className="border-l-4 border-blue-300 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">§1. Postanowienia ogólne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Niniejszy regulamin określa zasady współpracy edukacyjnej pomiędzy Nauczycielem <i>Jonathan Ciupera Ferro</i>, a Klientem <i>Uczniem/Rodzicem</i>.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Współpraca opiera się na modelu mentoringowym, skupionym na rozwoju umiejętności analitycznych i inżynierskich.
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-400 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§2. Rezerwacja i odwoływanie zajęć</h2>
+                                    
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zasady dla Klienta:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Odwołanie zajęć musi nastąpić nie później niż 24 godziny przed ustalonym terminem.</li>
+                                            <li>W przypadku odwołania zajęć w czasie krótszym niż 24h lub nieobecności Ucznia, Klient zobowiązany jest do uiszczenia opłaty w wysokości 50% ceny zajęć.</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zasady dla Nauczyciela:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Nauczyciel zobowiązuje się do poinformowania o zmianie terminu co najmniej 48 godzin przed zajęciami.</li>
+                                            <li>W przypadku odwołania zajęć przez Nauczyciela w czasie krótszym niż 48h, kolejna godzina zajęć dla Klienta jest bezpłatna.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§3. Nagrania i materiały dydaktyczne</h2>
+                                    
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Dostęp do nagrań:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Uczeń ma możliwość otrzymania nagrania wideo z przebiegu lekcji do celów powtórkowych.
+                                        </p>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Warunki techniczne:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            W szczególnych przypadkach, wynikających ze specyfiki technicznej wykorzystywanego urządzenia lub uwarunkowań sprzętowych uniemożliwiających rejestrację ekranu, Nauczyciel zamiast nagrania wideo dostarcza Klientowi rozszerzone, pisemne opracowanie tematu lekcji w formie pliku PDF.
+                                        </p>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Logistyka nagrań:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Nagranie (jeśli technicznie możliwe) jest udostępniane Klientowi w ciągu 24 godzin od zakończenia lekcji.</li>
+                                            <li>Ze względu na optymalizację zasobów, nagranie jest przechowywane na serwerze przez 48 godzin, po czym zostaje trwale usunięte. Klient jest odpowiedzialny za jego pobranie w tym terminie.</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zgody i prywatność:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Nagrywanie odbywa się za obopólną zgodą. Klient ma prawo do udziału w nagraniu bez rejestracji swojego głosu (komunikacja przez czat).
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="font-semibold text-gray-800 mb-2">Własność intelektualna:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Nagrania oraz przekazywane opracowania PDF stanowią autorską własność intelektualną Nauczyciela. Obowiązuje całkowity zakaz ich publicznego udostępniania lub odsprzedaży.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§4. Płatności i prawo do odstąpienia</h2>
+                                    
+                                    <ul className="list-disc list-inside space-y-3 text-gray-700">
+                                        <li>Płatność za zajęcia odbywa się z góry, w terminie ustalonym podczas rezerwacji.</li>
+                                        <li>W przypadku zakupu treści cyfrowych (gotowych nagrań/kursów), Klient wyraża zgodę na ich dostarczenie przed upływem terminu do odstąpienia od umowy, co skutkuje utratą prawa do zwrotu (zgodnie z ustawą o prawach konsumenta).</li>
+                                    </ul>
+                                </div>
+
+                                {/* Informacja końcowa */}
+                                <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <p className="text-sm text-gray-600">
+                                        <span className="font-semibold">Data wejścia w życie:</span> Regulamin obowiązuje od dnia opublikowania na stronie internetowej.
+                                    </p>
+                                    <p className="text-sm text-gray-600 mt-2">
+                                        Zamawiając usługi, Klient oświadcza, że zapoznał się z niniejszym regulaminem i wyraża zgodę na jego warunki.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Privacy Component
+        function Privacy({ onBack }) {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                    <div className="max-w-3xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
+                        <div className="bg-white p-8 rounded-xl shadow-sm">
+                            <h1 className="mb-6">Polityka prywatności</h1>
+                            
+                            <div className="prose prose-blue max-w-none space-y-6">
+                                {/* 1. Administrator Danych */}
+                                <div className="border-l-4 border-blue-300 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">1. Administrator Danych</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Administratorem Twoich danych osobowych jest <i>Jonathan Ciupera Ferro</i>, prowadzący działalność edukacyjną (działalność nierejestrowana) za pośrednictwem strony qJonathan.pl. 
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        <strong>Kontakt:</strong> contact.qjonathan@gmail.com
+                                    </p>
+                                </div>
+
+                                {/* 2. Cel i Podstawa Przetwarzania */}
+                                <div className="border-l-4 border-blue-400 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">2. Cel i Podstawa Przetwarzania</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Przetwarzam Twoje dane (imię, e-mail, nr telefonu) w celu:
+                                    </p>
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                        <li><strong>Ustalenia terminów i realizacji zajęć</strong> (Art. 6 ust. 1 lit. b RODO).</li>
+                                        <li><strong>Przesyłania materiałów dydaktycznych</strong> i nagrań z lekcji.</li>
+                                        <li><strong>Rozliczeń finansowych</strong> (ewidencja sprzedaży).</li>
+                                    </ul>
+                                </div>
+
+                                {/* 3. Hosting i Dane Techniczne */}
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">3. Hosting i Dane Techniczne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Strona jest hostowana w usłudze GitHub Pages (GitHub Inc., USA). Dane techniczne (np. adres IP) mogą być przetwarzane na serwerach w USA na podstawie Standardowych Klauzul Umownych, zapewniających bezpieczeństwo danych.
+                                    </p>
+                                </div>
+
+                                {/* 4. Narzędzia Zewnętrzne */}
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">4. Narzędzia Zewnętrzne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        W ramach współpracy korzystam z:
+                                    </p>
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                        <li><strong>Microsoft Teams / Miro</strong> – do prowadzenia zajęć.</li>
+                                        <li><strong>WhatsApp</strong> – do bieżącej komunikacji.</li>
+                                        <li><strong>Google Drive</strong> – do krótkoterminowego udostępniania nagrań.</li>
+                                    </ul>
+                                </div>
+
+                                {/* 5. Twoje Prawa */}
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">5. Twoje Prawa</h2>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Masz prawo do wglądu w swoje dane, ich poprawienia, żądania usunięcia oraz ograniczenia przetwarzania. Możesz także wnieść skargę do Prezesa UODO.
+                                    </p>
+                                </div>
+
+                                {/* 6. Ciasteczka (Cookies) */}
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">6. Ciasteczka (Cookies)</h2>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Strona wykorzystuje jedynie niezbędne pliki cookies do poprawnego wyświetlania treści. Nie stosuję inwazyjnego śledzenia ani profilowania reklamowego.
+                                    </p>
+                                </div>
+
+                                {/* Informacja końcowa */}
+                                <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <p className="text-sm text-gray-600">
+                                        <span className="font-semibold">Data wejścia w życie:</span> Polityka prywatności obowiązuje od dnia opublikowania na stronie internetowej.
+                                    </p>
+                                    <p className="text-sm text-gray-600 mt-2">
+                                        Korzystając ze strony oraz usług, oświadczasz, że zapoznałeś się z niniejszą polityką prywatności i wyrażasz zgodę na przetwarzanie Twoich danych na określonych warunkach.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
 // News Component - Zaktualizowany
         function News({ onBack }) {
             const [selectedNews, setSelectedNews] = useState(null);
@@ -1467,7 +1636,7 @@ function Materials({ onBack }) {
                 },
                 {
                     id: 2,
-                    isPinned: true,
+//                    isPinned: true,
                     date: '19 Gru 2025',
                     title: 'Zmiana Dostępności Korepetycji w Związku z Sesją Egzaminacyjną',
                     shortContent: 'Dla wszystkich moich uczniów udostępniłem nową bazę zadań z termodynamiki wraz z pełnymi rozwiązaniami wideo.',
@@ -1634,39 +1803,171 @@ return (
             );
         }
 
+        // Cookie Banner Component
+        function CookieBanner({ onPrivacyClick }) {
+            const [showCookies, setShowCookies] = useState(true);
+
+            React.useEffect(() => {
+                // Sprawdzam czy użytkownik już zaakceptował cookies
+                const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+                if (cookiesAccepted) {
+                    setShowCookies(false);
+                }
+            }, []);
+
+            const handleAccept = () => {
+                localStorage.setItem('cookiesAccepted', 'true');
+                setShowCookies(false);
+            };
+
+            if (!showCookies) return null;
+
+            return (
+                <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 md:p-6 z-40 border-t border-gray-700">
+                    <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+                        <div className="flex items-start gap-3 flex-1">
+                            <Icon name="cookie" className="w-5 h-5 flex-shrink-0 mt-0.5 text-blue-400" />
+                            <div>
+                                <p className="text-sm leading-relaxed">
+                                    Strona wykorzystuje pliki cookies do poprawnego wyświetlania treści. 
+                                    <button 
+                                        onClick={onPrivacyClick}
+                                        className="text-blue-400 hover:text-blue-300 font-medium ml-1"
+                                    >
+                                        Dowiedz się więcej
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={handleAccept}
+                            className="flex-shrink-0 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors whitespace-nowrap"
+                        >
+                            Akceptuję
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
         // Footer Component
-        function Footer() {
+        function Footer({ onPageChange }) {
+            const handleFooterNavClick = (page) => {
+                onPageChange(page);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
             React.useEffect(() => {
                 lucide.createIcons();
             });
 
             return (
                 <footer className="bg-gray-900 text-white py-8 px-4">
-                    <div className="max-w-6xl mx-auto text-center">
-                        <div className="flex items-center justify-center gap-2 mb-4">
-                            <Icon name="graduation-cap" className="w-8 h-8 text-blue-400" />
-                            <span className="text-xl">Korepetycje Online</span>
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid md:grid-cols-3 gap-8 mb-8">
+                            <div className="text-center md:text-left">
+                                <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
+                                    <Icon name="graduation-cap" className="w-8 h-8 text-blue-400" />
+                                    <span className="text-xl">Korepetycje Online</span>
+                                </div>
+                                <p className="text-gray-400 mb-4">Korepetycje z fizyki i matematyki</p>
+                            </div>
+                            <div className="text-center">
+                                <h4 className="text-white font-medium mb-4">Kontakt</h4>
+                                <div className="flex flex-col gap-2 text-sm text-gray-400">
+                                    <a href="tel:+48796305827" className="hover:text-white transition-colors">
+                                        +48 796 305 827
+                                    </a>
+                                    <a href="mailto:contact.qjonathan@gmail.com" className="hover:text-white transition-colors">
+                                        contact.qjonathan@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <h4 className="text-white font-medium mb-4">Zasady i bezpieczeństwo</h4>
+                                <div className="flex flex-col gap-2 text-sm text-gray-400">
+                                    <button onClick={() => handleFooterNavClick('terms')} className="hover:text-white transition-colors">
+                                        Warunki świadczenia usług
+                                    </button>
+                                    <button onClick={() => handleFooterNavClick('privacy')} className="hover:text-white transition-colors">
+                                        Polityka prywatności
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <p className="text-gray-400 mb-4">Korepetycje z fizyki i matematyki</p>
-                        <div className="flex justify-center gap-6 text-sm text-gray-400">
-                            <a href="tel:+48796305827" className="hover:text-white transition-colors">
-                                +48 796 305 827
-                            </a>
-                            <a href="mailto:contact.qjonathan@gmail.com" className="hover:text-white transition-colors">
-                                contact.qjonathan@gmail.com
-                            </a>
+                        <div className="border-t border-gray-700 pt-6 text-center">
+                            <p className="text-sm text-gray-500">
+                                © 2026 qJonathan.pl Wszelkie prawa zastrzeżone.
+                            </p>
                         </div>
-                        <p className="text-sm text-gray-500 mt-6">
-                            © 2026 qJonathan.pl Wszelkie prawa zastrzeżone.
-                        </p>
                     </div>
                 </footer>
             );
         }
 
 function App() {
-            // Stan, który decyduje co widzimy: 'home', 'news' lub 'guides'
+            // Stan, który decyduje co widzimy: 'home', 'news', 'guides', itd.
             const [currentPage, setCurrentPage] = useState('home');
+
+            // Mapowanie URL do nazw stron
+            const pathMap = {
+                '': 'home',
+                '/': 'home',
+                '/aktualności': 'news',
+                '/news': 'news',
+                '/poradniki': 'guides',
+                '/guides': 'guides',
+                '/materiały': 'materials',
+                '/materials': 'materials',
+                '/warunki-świadczenia-usług': 'terms',
+                '/terms': 'terms',
+                '/polityka-prywatności': 'privacy',
+                '/privacy': 'privacy',
+                '/standardy-ochrony-małoletnich': 'child-protection',
+                '/child-protection': 'child-protection'
+            };
+
+            // Odwrotna mapa - do tworzenia URL
+            const pageToPath = {
+                'home': '/',
+                'news': '/aktualności',
+                'guides': '/poradniki',
+                'materials': '/materiały',
+                'terms': '/warunki-świadczenia-usług',
+                'privacy': '/polityka-prywatności',
+                'child-protection': '/standardy-ochrony-małoletnich'
+            };
+
+            // Parsowanie URL z hash
+            const getPageFromHash = () => {
+                const hash = window.location.hash.slice(1); // Usuwa #
+                const path = hash || '/';
+                return pathMap[path] || 'home';
+            };
+
+            // Zmiana strony z aktualizacją URL
+            const handlePageChange = (newPage) => {
+                const path = pageToPath[newPage] || '/';
+                window.location.hash = path;
+                setCurrentPage(newPage);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // Nasłuchiwanie zmian URL
+            React.useEffect(() => {
+                const handleHashChange = () => {
+                    const newPage = getPageFromHash();
+                    setCurrentPage(newPage);
+                };
+
+                window.addEventListener('hashchange', handleHashChange);
+                
+                // Ustaw początkową stronę na podstawie URL
+                const initialPage = getPageFromHash();
+                setCurrentPage(initialPage);
+
+                return () => window.removeEventListener('hashchange', handleHashChange);
+            }, []);
 
             React.useEffect(() => {
                 lucide.createIcons();
@@ -1675,7 +1976,7 @@ function App() {
             return (
                 <div className="min-h-screen bg-white">
                     {/* Przekazujemy funkcje do nawigacji */}
-                    <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
+                    <Navigation currentPage={currentPage} onPageChange={handlePageChange} />
                     
                     {/* Widok Strony Głównej */}
                     {currentPage === 'home' && (
@@ -1690,26 +1991,27 @@ function App() {
 
                     {/* Widok Aktualności (jako "podstrona") */}
                     {currentPage === 'news' && (
-                        <News onBack={() => {
-                            setCurrentPage('home');
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }} />
+                        <News onBack={() => handlePageChange('home')} />
                     )}
 
                     {/* Widok Poradników (jako "podstrona") */}
                     {currentPage === 'guides' && (
-                        <Guides onBack={() => {
-                            setCurrentPage('home');
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }} />
+                        <Guides onBack={() => handlePageChange('home')} />
                     )}
                     {currentPage === 'materials' && (
-                         <Materials onBack={() => {
-                             setCurrentPage('home');
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                }} />
-            )}
-                    <Footer />
+                         <Materials onBack={() => handlePageChange('home')} />
+                    )}
+                    {currentPage === 'terms' && (
+                        <Terms onBack={() => handlePageChange('home')} />
+                    )}
+                    {currentPage === 'privacy' && (
+                        <Privacy onBack={() => handlePageChange('home')} />
+                    )}
+                    {currentPage === 'child-protection' && (
+                        <ChildProtection onBack={() => handlePageChange('home')} />
+                    )}
+                    <CookieBanner onPrivacyClick={() => handlePageChange('privacy')} />
+                    <Footer onPageChange={handlePageChange} />
                 </div>
             );
         }
