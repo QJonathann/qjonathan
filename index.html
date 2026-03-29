@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>qJonathan - Wsparcie w rozwoju ścieżki edukacyjnej | Fizyka i Matematyka</title>
-    <meta name="description" content="Inżynierskie podejście do nauki. Korepetycje z fizyki i matematyki, darmowe materiały PDF, autorskie notatki i nagrania z lekcji. Buduj swoją przewagę z qJonathan.">
-    <meta name="keywords" content="korepetycje fizyka, korepetycje matematyka, korepetycje online, matura fizyka, matura matematyka, inżynier korepetytor, qJonathan">
+    <meta name="description" content="Inżynierskie podejście do nauki. Korepetycje z fizyki i matematyki, darmowe materiały PDF, autorskie notatki i nagrania z lekcji. Buduj swoją przewagę.">
+    <meta name="keywords" content="korepetycje fizyka, korepetycje matematyka, korepetycje online, matura fizyka, matura matematyka, inżynieria w medycynie, qJonathan">
     <meta name="author" content="Jonathan Ciupera Ferro">
     <meta name="robots" content="index, follow">
 
@@ -1083,7 +1083,6 @@ function Materials({ onBack }) {
                         <div className="mt-12 p-6 bg-blue-50 rounded-xl text-center">
                             <p className="text-blue-900">
                                 Potrzebujesz dostępu do pełnej bazy zadań? <br/>
-
                                 <span className="font-semibold">Pełne opracowania wszystkich typów zadań poszczególnych zagadnień będą dostępne wkrótce.</span> 
                             </p>
                         </div>
@@ -1928,18 +1927,16 @@ function App() {
             // Odwrotna mapa - do tworzenia URL
             const pageToPath = {
                 'home': '/',
-                'news': '/aktualności',
+                'news': '/aktualnosci',
                 'guides': '/poradniki',
-                'materials': '/materiały',
-                'terms': '/warunki-świadczenia-usług',
-                'privacy': '/polityka-prywatności',
-                'child-protection': '/standardy-ochrony-małoletnich'
+                'materials': '/materialy',
+                'terms': '/warunki-swiadczenia-uslug',
+                'privacy': '/polityka-prywatnosci',
+                'child-protection': '/standardy-ochrony-maloletnich'
             };
 
-            // Parsowanie URL z pathname (zamiast hash!)
             const getPageFromPathname = () => {
-                const pathname = window.location.pathname;
-                // Usuń prowadzące / i trailing dash jeśli jest
+                const pathname = decodeURI(window.location.pathname); // Dodane decodeURI()
                 const cleanPath = pathname === '/' ? '/' : pathname;
                 return pathMap[cleanPath] || 'home';
             };
@@ -1954,7 +1951,7 @@ function App() {
 
             // Tylko na początek - czytaj URL z pathname
             React.useEffect(() => {
-                const pathname = window.location.pathname;
+                const pathname = decodeURI(window.location.pathname); // Dodane decodeURI()
                 const cleanPath = pathname === '/' ? '/' : pathname;
                 const initialPage = pathMap[cleanPath] || 'home';
                 setCurrentPage(initialPage);
