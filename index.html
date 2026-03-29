@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>qJonathan - Wsparcie w edukacji | Fizyka i Matematyka</title>
+    <title>qJonathan - Wsparcie w edukacyji | Fizyka i Matematyka</title>
     <meta name="description" content="Korepetycje z fizyki i matematyki, darmowe materiały PDF, autorskie notatki i nagrania z lekcji. Buduj swoją przewagę.">
     <meta name="keywords" content="korepetycje fizyka, korepetycje matematyka, korepetycje online, matura fizyka, matura matematyka, inżynieria w medycynie, qJonathan">
     <meta name="author" content="Jonathan Ciupera Ferro">
@@ -198,10 +198,12 @@ function Navigation({ currentPage, onPageChange }) {
                                     Materiały
                                 </button>   
 
-                                <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Gwarancja jakości</button>
-                                <a href="https://ai.qjonathan.pl" className="hover:text-blue-600 transition-colors cursor-pointer">Asystent AI</a>
-                                
-                                <button 
+                             <button onClick={() => handleNavClick('pricing')} className="hover:text-blue-600 transition-colors">Gwarancja jakości</button>
+                                <a href="https://ai.qjonathan.pl" className="flex items-center gap-2 text-blue-600 font-medium hover:opacity-80 transition-all">
+                                    <Icon name="cpu" className="w-5 h-5" />
+                                    Asystent AI
+                                </a>
+                             <button 
                                     onClick={() => handleNavClick('contact')}
                                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                                 >
@@ -245,7 +247,10 @@ function Navigation({ currentPage, onPageChange }) {
                                     </button>      
 
                                     <button onClick={() => handleNavClick('pricing')} className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg">Wsparcie w rozwoju</button>
-                                    <a href="https://ai.qjonathan.pl" className="px-4 py-2 text-left hover:bg-gray-100 rounded-lg block">AI Asystent</a>
+                                    <a href="https://ai.qjonathan.pl" className="flex items-center gap-2 px-4 py-2 text-blue-600 font-medium hover:bg-gray-100 rounded-lg">
+                                        <Icon name="cpu" className="w-5 h-5" />
+                                        Asystent AI
+                                    </a>                                    
                                     <button onClick={() => handleNavClick('contact')} className="px-4 py-2 bg-blue-600 text-white rounded-lg">Kontakt</button>
                                 </div>
                             </div>
