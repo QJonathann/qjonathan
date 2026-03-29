@@ -1947,9 +1947,11 @@ function App() {
 
             // Zmiana strony z aktualizacją URL
             const handlePageChange = (newPage) => {
+                // Zmień state PIERWSZE (natychmiast!)
+                setCurrentPage(newPage);
+                // Potem zmień URL
                 const path = pageToPath[newPage] || '/';
                 window.location.hash = path;
-                // Nie robimy setCurrentPage tutaj - niech hashchange event handler to obsłuży
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
