@@ -203,6 +203,7 @@ function Navigation({ currentPage, onPageChange }) {
                                     <Icon name="cpu" className="w-5 h-5" />
                                     Asystent AI
                                 </a>
+                                
                              <button 
                                     onClick={() => handleNavClick('contact')}
                                     className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -286,12 +287,13 @@ function Navigation({ currentPage, onPageChange }) {
                                     <br />
                                     Skuteczna nauka w wygodnych warunkach Twojego domu. 
                                 </p>
-                            <button 
-                                onClick={scrollToContact}
-                                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                            >
-                                Umów się na pierwsze zajęcia
-                            </button>
+                        {/* ZAKTUALIZOWANY PRZYCISK */}
+                    <button 
+                        onClick={() => window.open('https://rezerwacje.qjonathan.pl', '_blank')}
+                        className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+                    >
+                        Całodobowy system rezerwacji lekcji
+                    </button>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-8">
