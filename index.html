@@ -276,7 +276,8 @@
 
                         <div className="grid lg:grid-cols-3 gap-8 mb-12">
                             <div className="lg:col-span-1">
-                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl text-center lg:sticky lg:top-24">
+                                {/* Zaktualizowano lg:top-24 na lg:top-32, aby nie zakrywało baneru */}
+                                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl text-center lg:sticky lg:top-32">
                                     <div className="w-48 h-48 mx-auto mb-6 relative">
                                         <img 
                                              src="photo.jpg" 
@@ -423,6 +424,216 @@
                                 <p className="text-blue-100">
                                     Odpisuję na wszystkie wiadomości w ciągu 24 godzin. Jeśli pilnie potrzebujesz informacji, najlepiej napisz SMS lub na WhatsApp.
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Terms Component (Warunki świadczenia usług)
+        function Terms({ onBack }) {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                    <div className="max-w-3xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
+                        <div className="bg-white p-8 rounded-xl shadow-sm">
+                            <h1 className="mb-6">Warunki świadczenia usług</h1>
+                            
+                            <div className="prose prose-blue max-w-none space-y-6">
+                                <div className="border-l-4 border-blue-300 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">§1. Postanowienia ogólne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Niniejszy regulamin określa zasady współpracy edukacyjnej pomiędzy Nauczycielem <i>Jonathan Ciupera Ferro</i>, a Klientem <i>Uczniem/Rodzicem</i>.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Współpraca opiera się na modelu mentoringowym, skupionym na rozwoju umiejętności analitycznych i inżynierskich.
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-400 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§2. Rezerwacja i odwoływanie zajęć</h2>
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zasady dla Klienta:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Odwołanie zajęć musi nastąpić nie później niż 24 godziny przed ustalonym terminem.</li>
+                                            <li>W przypadku odwołania zajęć w czasie krótszym niż 24h lub nieobecności Ucznia, Klient zobowiązany jest do uiszczenia opłaty w wysokości 50% ceny zajęć.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zasady dla Nauczyciela:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Nauczyciel zobowiązuje się do poinformowania o zmianie terminu co najmniej 48 godzin przed zajęciami.</li>
+                                            <li>W przypadku odwołania zajęć przez Nauczyciela w czasie krótszym niż 48h, kolejna godzina zajęć dla Klienta jest bezpłatna.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§3. Nagrania i materiały dydaktyczne</h2>
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Dostęp do nagrań:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Uczeń ma możliwość otrzymania nagrania wideo z przebiegu lekcji do celów powtórkowych.
+                                        </p>
+                                    </div>
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Warunki techniczne:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            W szczególnych przypadkach, wynikających ze specyfiki technicznej wykorzystywanego urządzenia lub uwarunkowań sprzętowych uniemożliwiających rejestrację ekranu, Nauczyciel zamiast nagrania wideo dostarcza Klientowi rozszerzone, pisemne opracowanie tematu lekcji w formie pliku PDF.
+                                        </p>
+                                    </div>
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Logistyka nagrań:</h3>
+                                        <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                            <li>Nagranie jest udostępniane Klientowi w ciągu 24 godzin od zakończenia lekcji.</li>
+                                            <li>Ze względu na optymalizację zasobów, nagranie jest przechowywane na serwerze przez 48 godzin, po czym zostaje trwale usunięte. Klient jest odpowiedzialny za jego pobranie w tym terminie.</li>
+                                        </ul>
+                                    </div>
+                                    <div className="mb-4">
+                                        <h3 className="font-semibold text-gray-800 mb-2">Zgody i prywatność:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Nagrywanie odbywa się za obopólną zgodą. Klient ma prawo do udziału w nagraniu bez rejestracji swojego głosu.
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-semibold text-gray-800 mb-2">Własność intelektualna:</h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            Nagrania oraz przekazywane opracowania PDF stanowią autorską własność intelektualną Nauczyciela. Obowiązuje całkowity zakaz ich publicznego udostępniania lub odsprzedaży.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-4">§4. Płatności i prawo do odstąpienia</h2>
+                                    <ul className="list-disc list-inside space-y-3 text-gray-700">
+                                        <li>Płatność za zajęcia odbywa się z góry, w terminie ustalonym podczas rezerwacji.</li>
+                                        <li>W przypadku zakupu treści cyfrowych (gotowych nagrań/kursów), Klient wyraża zgodę na ich dostarczenie przed upływem terminu do odstąpienia od umowy, co skutkuje utratą prawa do zwrotu (zgodnie z ustawą o prawach konsumenta).</li>
+                                    </ul>
+                                </div>
+
+                                <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <p className="text-sm text-gray-600">
+                                        <span className="font-semibold">Data wejścia w życie:</span> Regulamin obowiązuje od dnia opublikowania na stronie internetowej.
+                                    </p>
+                                    <p className="text-sm text-gray-600 mt-2">
+                                        Zamawiając usługi, Klient oświadcza, że zapoznał się z niniejszym regulaminem i wyraża zgodę na jego warunki.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Privacy Component (Polityka prywatności)
+        function Privacy({ onBack }) {
+            React.useEffect(() => {
+                lucide.createIcons();
+            });
+
+            return (
+                <section className="pt-32 pb-20 px-4 bg-gray-50 min-h-screen">
+                    <div className="max-w-3xl mx-auto">
+                        <button 
+                            onClick={onBack}
+                            className="mb-8 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+                        >
+                            <Icon name="arrow-left" className="w-5 h-5" />
+                            Wróć do strony głównej
+                        </button>
+
+                        <div className="bg-white p-8 rounded-xl shadow-sm">
+                            <h1 className="mb-6">Polityka prywatności</h1>
+                            
+                            <div className="prose prose-blue max-w-none space-y-6">
+                                <div className="border-l-4 border-blue-300 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">1. Administrator Danych</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Administratorem Twoich danych osobowych jest <i>Jonathan Ciupera Ferro</i>, prowadzący działalność edukacyjną (działalność nierejestrowana) za pośrednictwem strony qJonathan.pl. 
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        <strong>Kontakt:</strong> contact.qjonathan@gmail.com
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-400 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">2. Cel i Podstawa Przetwarzania</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Przetwarzam Twoje dane (imię, e-mail, nr telefonu) w celu:
+                                    </p>
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                        <li><strong>Ustalenia terminów i realizacji zajęć</strong> (Art. 6 ust. 1 lit. b RODO).</li>
+                                        <li><strong>Przesyłania materiałów dydaktycznych</strong> i nagrań z lekcji.</li>
+                                        <li><strong>Rozliczeń finansowych</strong> (ewidencja sprzedaży).</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">3. Hosting i Dane Techniczne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Strona jest hostowana w usłudze GitHub Pages (GitHub Inc., USA). Dane techniczne (np. adres IP) mogą być przetwarzane na serwerach w USA na podstawie Standardowych Klauzul Umownych, zapewniających bezpieczeństwo danych.
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-500 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">4. Narzędzia Zewnętrzne</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        W ramach współpracy korzystam z:
+                                    </p>
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                        <li><strong>Microsoft Teams / Miro</strong> – do prowadzenia zajęć.</li>
+                                        <li><strong>WhatsApp</strong> – do bieżącej komunikacji.</li>
+                                        <li><strong>Google Drive</strong> – do krótkoterminowego udostępniania nagrań.</li>
+                                    </ul>
+                                </div>
+
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">5. Twoje Prawa</h2>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Masz prawo do wglądu w swoje dane, ich poprawienia, żądania usunięcia oraz ograniczenia przetwarzania. Możesz także wnieść skargę do Prezesa UODO.
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">6. Ciasteczka (Cookies)</h2>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Strona wykorzystuje jedynie niezbędne pliki cookies do poprawnego wyświetlania treści. Nie stosuję inwazyjnego śledzenia ani profilowania reklamowego.
+                                    </p>
+                                </div>
+
+                                <div className="border-l-4 border-blue-600 pl-6 py-2">
+                                    <h2 className="text-xl font-bold text-gray-900 mb-3">7. Wirtualny Asystent AI i historia czatu</h2>
+                                    <p className="text-gray-700 leading-relaxed mb-3">
+                                        Na naszej stronie udostępniamy Wirtualnego Asystenta opartego na sztucznej inteligencji, który pomaga w kwestiach organizacyjnych i informacyjnych. W trosce o najwyższą jakość obsługi oraz rozwój naszych usług, informujemy, że:
+                                    </p>
+                                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                        <li><strong>Analiza zapytań:</strong> Treść pytań wpisywanych w oknie czatu jest analizowana przez zautomatyzowane modele sztucznej inteligencji (LLM).</li>
+                                        <li><strong>Zapisywanie historii (logi):</strong> Historia konwersacji z Asystentem jest przesyłana na nasz wewnętrzny, zabezpieczony serwer komunikacyjny wyłącznie w celach technicznych, analitycznych oraz poprawy jakości obsługi przez Administratora.</li>
+                                        <li><strong>Ochrona danych:</strong> Zdecydowanie prosimy o <strong>niepodawanie wrażliwych danych osobowych</strong> (np. PESEL, adres zamieszkania, hasła) w oknie czatu. Czat służy wyłącznie do zapytań ogólnych. W celu przekazania danych do rezerwacji lekcji prosimy o kontakt bezpośredni (e-mail, telefon, WhatsApp).</li>
+                                    </ul>
+                                </div>
+
+                                <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <p className="text-sm text-gray-600">
+                                        <span className="font-semibold">Data wejścia w życie:</span> Polityka prywatności obowiązuje od dnia opublikowania na stronie internetowej.
+                                    </p>
+                                    <p className="text-sm text-gray-600 mt-2">
+                                        Korzystając ze strony oraz usług, oświadczasz, że zapoznałeś się z niniejszą polityką prywatności i wyrażasz zgodę na przetwarzanie Twoich danych na określonych warunkach.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -580,7 +791,7 @@
                 <div className="min-h-screen bg-white">
                     <Navigation currentPage={currentPage} onPageChange={handlePageChange} />
                     
-                    {/* ZAKTUALIZOWANY BANNER - Poprawiony z-index z z-45 na z-40 */}
+                    {/* PRZYPIĘTY BANNER (z-40 i stała pozycja) */}
                     <div className="fixed top-[72px] left-0 right-0 bg-amber-50 border-b border-amber-200 text-amber-800 px-4 py-2.5 text-center text-sm font-medium z-40 shadow-sm flex items-center justify-center gap-2">
                         <Icon name="construction" className="w-4 h-4 text-amber-600 animate-pulse flex-shrink-0" />
                         <span>
