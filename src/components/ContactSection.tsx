@@ -47,7 +47,7 @@ export const ContactSection: React.FC = () => {
   }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("contact.qjonathan@gmail.com");
+    navigator.clipboard.writeText("kontakt@qjonathan.pl");
     setCopiedMail(true);
     setTimeout(() => setCopiedMail(false), 2000);
   };
@@ -84,10 +84,10 @@ export const ContactSection: React.FC = () => {
               <h3 className="text-sm font-semibold text-slate-800">E-mail</h3>
               <div className="flex items-center gap-2 mt-0.5">
                 <a
-                  href="mailto:contact.qjonathan@gmail.com"
+                  href="mailto:kontakt@qjonathan.pl"
                   className="text-base font-bold text-blue-600 hover:text-blue-700 truncate hover:underline"
                 >
-                  contact.qjonathan@gmail.com
+                  kontakt@qjonathan.pl
                 </a>
                 <button
                   onClick={handleCopyEmail}
