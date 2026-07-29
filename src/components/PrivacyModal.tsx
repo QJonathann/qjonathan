@@ -56,7 +56,7 @@ export const PrivacyModal: React.FC<PrivacyModalProps> = ({ isOpen, onClose }) =
                 Administratorem Twoich danych osobowych jest <strong>Jonathan Ciupera Ferro</strong>, prowadzący działalność edukacyjną (działalność nierejestrowana) za pośrednictwem strony <strong>qJonathan.pl</strong>.
               </p>
               <p className="font-semibold text-slate-900">
-                Kontakt: <a href="mailto:contact.qjonathan@gmail.com" className="text-blue-600 hover:underline">contact.qjonathan@gmail.com</a>
+                Kontakt: <a href="mailto:kontakt@qjonathan.pl" className="text-blue-600 hover:underline">kontakt@qjonathan.pl</a>
               </p>
             </section>
 
