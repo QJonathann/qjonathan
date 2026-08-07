@@ -149,16 +149,18 @@ export const AiAssistantSection: React.FC = () => {
                     <span className="text-[10px] text-slate-500 font-medium">Auto-typograf</span>
                   </div>
 
-                  <div className="text-xs sm:text-sm font-mono text-slate-200 min-h-[52px] bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 flex items-center leading-relaxed">
-                    <span>{typedText}</span>
-                    <span className="inline-block w-2 h-4 bg-blue-400 ml-1 animate-pulse"></span>
+                  <div className="text-xs sm:text-sm font-mono text-slate-200 min-h-[80px] sm:min-h-[64px] bg-slate-950/80 p-3 rounded-xl border border-slate-800/80 flex items-start leading-relaxed">
+                    <div className="w-full">
+                      <span>{typedText}</span>
+                      <span className="inline-block w-2 h-4 bg-blue-400 ml-1 animate-pulse align-middle"></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Action Footer (No textarea input, clean CTA) */}
+          {/* Action Footer */}
           <div className="p-5 sm:p-6 bg-slate-950/60 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5 text-slate-300">
               <Zap className="w-4 h-4 text-yellow-400 shrink-0" />
