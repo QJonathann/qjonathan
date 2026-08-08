@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Check, ArrowRight, Sparkles, Clock, ShieldCheck, GraduationCap, BookOpen, Users, Youtube } from "lucide-react";
+import { Check, ArrowRight, Sparkles, Clock, ShieldCheck, GraduationCap, BookOpen, Users, Youtube, Monitor } from "lucide-react";
 import { TrialLessonModal } from "./TrialLessonModal";
 
 interface OfferSectionProps {
@@ -18,22 +18,21 @@ interface OfferPlan {
 }
 
 export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
-  const [selectedSubject, setSelectedSubject] = useState<"matematyka" | "fizyka">("matematyka");
+  const [selectedSubject, setSelectedSubject] = useState<"matematyka" | "fizyka" | "informatyka">("matematyka");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const mathPlans: OfferPlan[] = [
     {
       id: "math-sp-zwykla",
-      title: "Szkoła Podstawowa – Zwykła",
+      title: "Szkoła Podstawowa",
       levelBadge: "Klasy 4–8 • Podstawowa",
       price: "40 zł",
       duration: "45 minut",
-      targetAudience: "Szybkie omówienie materiału szkolnego i bieżąca pomoc przy zadaniach domowych.",
+      targetAudience: "Pomoc w bieżącym materiale i przygotowanie do Egzaminu 8-klasisty.",
       features: [
-        "Ćwiczenie bieżącego materiału z lekcji",
-        "Pomoc w przygotowaniu do kartkówek",
-        "Nadrabianie podstawowych zaległości",
-        "Przyjazna i bezstresowa atmosfera",
+        "Koniec stresu przed sprawdzianami z matematyki",
+        "Zrozumienie zamiast wkuwania schematów i regułek",
+        "Oszczędność czasu przy pracach domowych",
       ],
     },
     {
@@ -41,43 +40,40 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
       title: "Szkoła Podstawowa – Plus",
       levelBadge: "Klasy 7–8 • Egzamin CKE",
       price: "50 zł",
-      duration: "60 minut (1 godz.)",
+      duration: "60 minut",
       popular: true,
-      targetAudience: "Wydłużona lekcja z pełną notatką graficzną PDF i dodatkowymi powtórkami do egzaminu.",
+      targetAudience: "Kompleksowe przygotowanie do Egzaminu 8-klasisty (praca na arkuszach).",
       features: [
-        "Pełne 60 minut intensywnej pracy",
-        "Kompletne notatki z lekcji w formacie PDF",
-        "Autorskie zestawy zadań utrwalających",
-        "Wsparcie przy trudniejszych zagadnieniach",
+        "Gotowa baza do powtórek: cyfrowe notatki PDF po każdej lekcji",
+        "Ułożony plan działania oparty na pewniakach egzaminacyjnych",
+        "Rozwój myślenia algorytmicznego i szybkich metod liczenia",
       ],
     },
     {
       id: "math-liceum-zwykla",
-      title: "Liceum – Lekcja Zwykła",
+      title: "Liceum",
       levelBadge: "Liceum / Technikum • Podstawa",
       price: "60 zł",
-      duration: "45 minut",
-      targetAudience: "Systematyczne nadrabianie zaległości ze szkoły średniej oraz praca na lekcjach.",
+      duration: "50 minut",
+      targetAudience: "Systematyczne przygotowanie do matury podstawowej.",
       features: [
-        "Analiza definicji i wzorów licealnych",
-        "Praca na zadaniach z klasówek i sprawdzianów",
-        "Nauka sprawnego korzystania z Kart Wzorów",
-        "Rozwiązywanie arkuszy matury podstawowej",
+        "Koniec stresu przed sprawdzianami i nadrabianie zaległości",
+        "Zrozumienie trudnych działów zamiast uczenia się na pamięć",
+        "Oszczędność czasu dzięki prostym „hakom” na typowe zadania",
       ],
     },
     {
       id: "math-liceum-plus",
-      title: "Liceum – Lekcja Plus (Rozszerzenie)",
+      title: "Liceum Plus",
       levelBadge: "Matura Rozszerzona • CKE",
       price: "70 zł",
-      duration: "60 minut (1 godz.)",
+      duration: "60 minut",
       popular: true,
-      targetAudience: "Kompleksowe przygotowanie do matury rozszerzonej z matematyki z pakietem notatek.",
+      targetAudience: "Przygotowanie do matury podstawowej i rozszerzonej (zadania z parametrem, dowody).",
       features: [
-        "Dowody matematyczne i zadania z parametrem",
-        "Notatki z tablicy w formacie PDF po zajęciach",
-        "Dostęp do dedykowanego Asystenta AI 24/7",
-        "Indywidualne wsparcie WhatsApp przed maturą",
+        "Gotowa baza do powtórek: interaktywne notatki PDF ze wszystkimi przekształceniami",
+        "Ułożony plan działania aż do samego egzaminu",
+        "Zaawansowane myślenie analityczne i algorytmiczne",
       ],
     },
   ];
@@ -85,16 +81,15 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
   const physicsPlans: OfferPlan[] = [
     {
       id: "phys-sp-zwykla",
-      title: "Szkoła Podstawowa – Zwykła",
+      title: "Szkoła Podstawowa",
       levelBadge: "Klasy 7–8 • Podstawowa",
       price: "40 zł",
       duration: "45 minut",
-      targetAudience: "Zrozumienie podstawowych praw fizyki, przeliczania jednostek oraz prostej kinematyki.",
+      targetAudience: "Koniec stresu przed nowymi zjawiskami i sprawdzianami.",
       features: [
-        "Wyjaśnianie pojęć fizycznych bez trudnego języka",
-        "Przeliczanie jednostek i wzorów fizycznych",
-        "Pomoc przy zadaniach domowych ze szkoły",
-        "Budowanie pewności siebie na lekcjach",
+        "Zrozumienie fizyki na przykładach z życia",
+        "Koniec wkuwania suchych wzorów",
+        "Oszczędność czasu podczas rozwiązywania zadań i przeliczania jednostek",
       ],
     },
     {
@@ -102,48 +97,105 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
       title: "Szkoła Podstawowa – Plus",
       levelBadge: "Klasy 7–8 • Z Notatkami",
       price: "50 zł",
-      duration: "60 minut (1 godz.)",
+      duration: "60 minut",
       popular: true,
-      targetAudience: "Godzina lekcyjna wzbogacona o przejrzystą notatkę z rysunkami i schematami w PDF.",
+      targetAudience: "Gotowa baza do powtórek: ilustrowane notatki PDF z rysunkami zjawisk.",
       features: [
-        "60 minut zajęć z omówieniem ćwiczeń",
-        "Ilustrowane notatki z fizyki w PDF",
-        "Przykłady z życia codziennego i eksperymenty",
-        "Sprawdzanie i korekta zadań własnych",
+        "Ułożony plan działania oparty na logice, a nie na definicjach",
+        "Myślenie przyczynowo-skutkowe w zadaniach tekstowych i doświadczeniach",
       ],
     },
     {
       id: "phys-liceum-zwykla",
-      title: "Liceum – Lekcja Zwykła",
+      title: "Liceum",
       levelBadge: "Liceum / Technikum • Podstawa",
       price: "60 zł",
-      duration: "45 minut",
-      targetAudience: "Nadrabianie zaległości z fizyki klasycznej: dynamika, prąd elektryczny, optyka i termodynamika.",
+      duration: "50 minut",
+      targetAudience: "Koniec stresu przed sprawdzianami (dynamika, prąd, kinematyka).",
       features: [
-        "Rozwiązywanie zadań obrachunkowych i teoretycznych",
-        "Przygotowanie do sprawdzianów i poprawek",
-        "Krok po kroku przeliczanie układów SI",
-        "Praca na oficjalnych pytaniach maturalnych",
+        "Zrozumienie wektorów i sił zamiast zgadywania i dobierania wzorów w ciemno",
+        "Oszczędność czasu dzięki wypracowanym schematom rozwiązywania zadań",
       ],
     },
     {
       id: "phys-liceum-plus",
-      title: "Liceum – Lekcja Plus (Rozszerzenie)",
+      title: "Liceum Plus",
       levelBadge: "Matura Rozszerzona • Fizyka CKE",
       price: "70 zł",
-      duration: "60 minut (1 godz.)",
+      duration: "60 minut",
       popular: true,
-      targetAudience: "Dla kandydatów na politechniki i kierunki ścisłe – pełne przygotowanie rozszerzone z notatkami.",
+      targetAudience: "Pełne przygotowanie do matury rozszerzonej z fizyki (dla kandydatów na politechniki).",
       features: [
-        "Fizyka nowożytna, wektory i ruch po okręgu",
-        "Cyfrowy skrypt PDF ze wszystkimi schematami z lekcji",
-        "Analiza problematycznych zadań doświadczalnych",
-        "Dostęp do Asystenta AI z zapytaniami z fizyki",
+        "Gotowa baza do powtórek: cyfrowy skrypt PDF z rozpisanymi eksperymentami i wykresami",
+        "Ułożony plan działania z przerabianiem oficjalnych arkuszy CKE",
+        "Myślenie problemowe i analiza zadań doświadczalnych",
       ],
     },
   ];
 
-  const currentPlans = selectedSubject === "matematyka" ? mathPlans : physicsPlans;
+  const infoPlans: OfferPlan[] = [
+    {
+      id: "info-szkolna",
+      title: "Informatyka Szkolna (Podstawa)",
+      levelBadge: "Szkoła • Narzędzia PC",
+      price: "50 zł",
+      duration: "50 minut",
+      targetAudience: "Pomoc w bieżącym materiale szkolnym i nauka przydatnych programów.",
+      features: [
+        "Koniec stresu przed kartkówkami i zadaniami z informatyki",
+        "Praktyczne umiejętności (np. pakiet Office, prosta grafika) zamiast wkuwania teorii",
+        "Szybsze i samodzielne odrabianie prac domowych przy komputerze",
+      ],
+    },
+    {
+      id: "info-projekty",
+      title: "Edukacja Cyfrowa – Tworzenie Stron",
+      levelBadge: "Rozwój • Technologie Webowe",
+      price: "50 zł",
+      duration: "50 minut",
+      popular: true,
+      targetAudience: "Praktyczne podstawy projektowania i budowania nowoczesnych stron internetowych.",
+      features: [
+        "Tworzenie własnych projektów krok po kroku (od układu graficznego po kod i publikację)",
+        "Rozwój logicznego myślenia i kreatywności przy tworzeniu wirtualnych wizytówek czy blogów",
+        "Zdobycie konkretnych umiejętności technologicznych gotowych do natychmiastowego wykorzystania",
+      ],
+    },
+    {
+      id: "info-bezpieczenstwo",
+      title: "Edukacja Cyfrowa – Internet",
+      levelBadge: "Dla każdego • Bezpieczeństwo",
+      price: "50 zł",
+      duration: "50 minut",
+      targetAudience: "Bezstresowe i bezpieczne korzystanie z komputera, smartfona i internetu.",
+      features: [
+        "Praktyczna ochrona danych, unikanie oszustw i bezpieczna bankowość",
+        "Obsługa przydatnych narzędzi (e-urząd, komunikatory, zakupy online, chmura)",
+        "Oszczędność czasu i pełna cyfrowa niezależność w codziennym życiu",
+      ],
+    },
+    {
+      id: "info-ai",
+      title: "Edukacja Cyfrowa – Narzędzia AI",
+      levelBadge: "Nowoczesność • Automatyzacja",
+      price: "50 zł",
+      duration: "50 minut",
+      popular: true,
+      targetAudience: "Praktyczne wykorzystanie sztucznej inteligencji (np. ChatGPT) w pracy i w domu.",
+      features: [
+        "Nauka tworzenia skutecznych zapytań (promptów), by otrzymywać idealne odpowiedzi",
+        "Oszczędność czasu dzięki automatyzacji zadań, pisania maili czy analizy tekstów",
+        "Błyskawiczne generowanie pomysłów, podsumowań i grafik jako wsparcie w obowiązkach",
+      ],
+    },
+  ];
+
+  const currentPlans =
+    selectedSubject === "matematyka"
+      ? mathPlans
+      : selectedSubject === "fizyka"
+      ? physicsPlans
+      : infoPlans;
 
   const handleBookingRedirect = () => {
     window.open("https://rezerwacje.qjonathan.pl", "_blank", "noopener,noreferrer");
@@ -194,12 +246,12 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        {/* Subject Toggle Buttons (Matematyka / Fizyka) */}
+        {/* Subject Toggle Buttons (Matematyka / Fizyka / Informatyka) */}
         <div className="flex justify-center mb-12">
-          <div className="bg-slate-100 p-1.5 rounded-2xl border border-slate-200 inline-flex items-center gap-1.5 shadow-inner">
+          <div className="bg-slate-100 p-1.5 rounded-2xl border border-slate-200 flex flex-wrap justify-center items-center gap-1.5 shadow-inner">
             <button
               onClick={() => setSelectedSubject("matematyka")}
-              className={`px-6 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
                 selectedSubject === "matematyka"
                   ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
@@ -210,7 +262,7 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
             </button>
             <button
               onClick={() => setSelectedSubject("fizyka")}
-              className={`px-6 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
                 selectedSubject === "fizyka"
                   ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
@@ -218,6 +270,17 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
             >
               <GraduationCap className="w-4 h-4" />
               <span>Fizyka</span>
+            </button>
+            <button
+              onClick={() => setSelectedSubject("informatyka")}
+              className={`px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer flex items-center gap-2 ${
+                selectedSubject === "informatyka"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
+                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/60"
+              }`}
+            >
+              <Monitor className="w-4 h-4" />
+              <span>Informatyka & AI</span>
             </button>
           </div>
         </div>
@@ -249,7 +312,7 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
                 <h3 className="text-lg font-extrabold text-slate-900 mb-1.5 leading-snug">
                   {plan.title}
                 </h3>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4 min-h-[36px]">
+                <p className="text-xs text-slate-500 leading-relaxed mb-4 min-h-[48px]">
                   {plan.targetAudience}
                 </p>
 
@@ -264,7 +327,7 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
                 {/* Feature List */}
                 <ul className="space-y-2.5 mb-6">
                   {plan.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs font-medium text-slate-700">
+                    <li key={i} className="flex items-start gap-2 text-xs font-medium text-slate-700 leading-relaxed">
                       <div className="w-3.5 h-3.5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
