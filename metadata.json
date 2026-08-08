@@ -1,5 +1,5 @@
 {
-  "name": "Korepetycje Online",
+  "name": "Nauka 2.0",
   "description": "Profesjonalna platforma korepetycji online z fizyki i matematyki z interaktywną bazą materiałów oraz inteligentnym Asystentem AI.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
