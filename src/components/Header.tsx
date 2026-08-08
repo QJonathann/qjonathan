@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
               Nauka 2.0
             </span>
             <span className="text-xs font-semibold tracking-wider text-blue-600 uppercase">
-              Fizyka • Matematyka
+              Fizyka • Matematyka • Edukacja cyfrowa
             </span>
           </div>
         </div>
