@@ -23,10 +23,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTerms, onOpenP
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-bold text-white leading-tight">
-                  Korepetycje Online
+                  Nauka 2.0
                 </span>
                 <span className="text-xs font-semibold tracking-wider text-blue-400 uppercase">
-                  Fizyka • Matematyka
+                  Fizyka • Matematyka • Edukacja cyfrowa
                 </span>
               </div>
             </div>
