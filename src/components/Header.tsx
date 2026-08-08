@@ -42,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, activeSection }) => 
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-tight text-slate-900 leading-tight">
-              Korepetycje Online
+              Nauka 2.0
             </span>
             <span className="text-xs font-semibold tracking-wider text-blue-600 uppercase">
               Fizyka • Matematyka
