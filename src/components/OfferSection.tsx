@@ -151,8 +151,8 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
       id: "info-projekty",
       title: "Edukacja Cyfrowa – Tworzenie Stron",
       levelBadge: "Rozwój • Technologie Webowe",
-      price: "50 zł",
-      duration: "50 minut",
+      price: "60 zł",
+      duration: "60 minut",
       popular: true,
       targetAudience: "Praktyczne podstawy projektowania i budowania nowoczesnych stron internetowych.",
       features: [
@@ -178,8 +178,8 @@ export const OfferSection: React.FC<OfferSectionProps> = ({ onNavigate }) => {
       id: "info-ai",
       title: "Edukacja Cyfrowa – Narzędzia AI",
       levelBadge: "Nowoczesność • Automatyzacja",
-      price: "50 zł",
-      duration: "50 minut",
+      price: "60 zł",
+      duration: "60 minut",
       popular: true,
       targetAudience: "Praktyczne wykorzystanie sztucznej inteligencji (np. ChatGPT) w pracy i w domu.",
       features: [
