@@ -47,8 +47,8 @@ export const TrialLessonModal: React.FC<TrialLessonModalProps> = ({ isOpen, onCl
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 shadow-lg border border-slate-800 mb-6 group">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0"
-                title="Przykładowa Lekcja Próbna z Fizyki i Matematyki - mgr inż. Jonathan"
+                src="https://www.youtube.com"
+                title="Przykładowa Lekcja Próbna z Fizyki i Matematyki - Jonathan"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
