@@ -125,9 +125,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTerms, onOpenP
 
         {/* Bottom Bar with Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© 2026 qJonathan.pl. Wszelkie prawa zastrzeżone.</p>
+          <p>© 2026 Nauka20.pl. Wszelkie prawa zastrzeżone.</p>
           <div className="flex items-center gap-2">
-            <span>Korepetycje Online – Fizyka & Matematyka</span>
+            <span>Korepetycje Online – Edukacja cyfrowa</span>
           </div>
         </div>
       </div>
